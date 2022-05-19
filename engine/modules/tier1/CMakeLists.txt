@@ -22,3 +22,5 @@ set_target_properties(tier1 PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/public/
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
+
+target_link_libraries(tier1 PUBLIC Rpcrt4.lib)

@@ -1,13 +1,28 @@
 # Source Engine 2007 - CLion/CMake
 
-Trying to build the Source Engine 2007 leak in CLion using CMake, one module at a time.
+This is the 2007 Source Engine leak transferred to a raw CMake project, made in CLion. It should be noted
+that this project doesn't need CLion to work, it is just a collection of carefully configured CMake projects and should
+be able to build with just CMake and The v80 MSVC toolkit.
+
+## Setup Guide [CLion]
+
+1. Install [CLion](https://www.jetbrains.com/clion/). CLion is a paid application developed by [JetBrains](https://www.jetbrains.com/),
+however you can get their entire toolkit for $20/month, which is very worth it. Otherwise, you can live off CLions free trials
+that they renew with every update, so if you're just a hobbyist you can scrape by that way.
+
+2. 
 
 ## Built Modules
 
 These are just modules within the engine that currently build in this project.
 
 - bitmap
+- bzip2
+- choreoobjects
 - dmxloader
+- engine
+- launcher
+- launcher_main
 - materialsystem
 - mathlib
 - particles
@@ -16,10 +31,9 @@ These are just modules within the engine that currently build in this project.
 - tier1
 - tier2
 - tier3
+- vgui_controls
 - vstdlib
 - vtf
-- choreobjects
-- vgui_controls
 
 ## Built Games
 - Portal

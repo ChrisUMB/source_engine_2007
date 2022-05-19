@@ -2095,7 +2095,7 @@ inline void CParticleSystemDefinition::MarkReadsControlPoint( int nPoint )
 }
 
 inline bool CParticleSystemDefinition::ReadsControlPoint( int nPoint ) const 
-{ 
+{
 	return ( m_nControlPointReadMask & ( 1ULL << nPoint ) ) != 0;
 }
 

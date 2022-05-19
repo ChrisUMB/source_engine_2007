@@ -206,6 +206,8 @@ void CWeaponPortalgun::SetCanFirePortal2( bool bCanFire /*= true*/ )
 //-----------------------------------------------------------------------------
 void CWeaponPortalgun::PrimaryAttack( void )
 {
+
+
 	if ( !CanFirePortal1() )
 		return;
 

@@ -1,36 +1,7 @@
-cmake_minimum_required(VERSION 3.22)
-set(CMAKE_CXX_STANDARD 11)
+load_sources_file()
+add_library(cl_portal SHARED ${SE_SOURCES})
 
-message("DO SOMETHING")
-
-#add_compile_definitions(
-#        WINVER=0x600 WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE NO_STRING_T
-#        CLIENT_DLL VECTOR PROTECTED_THINGS_ENABLE fopen=dont_use_fopen strncpy=use_Q_strncpy_instead _snprintf=use_Q_snprintf_instead
-#        ENABLE_HTMLWINDOW PORTAL HL2_EPISODIC HL2_CLIENT_DLL _WINDLL _MBCS)
-
-add_compile_definitions(
-        WIN32
-        _WIN32
-        _DEBUG
-        DEBUG
-        _WINDOWS
-        _USRDLL
-        _CRT_SECURE_NO_DEPRECATE
-        _CRT_NONSTDC_NO_DEPRECATE
-        NO_STRING_T
-        CLIENT_DLL
-        VECTOR
-        PROTECTED_THINGS_ENABLE
-        fopen=dont_use_fopen
-        strncpy=use_Q_strncpy_instead
-        _snprintf=use_Q_snprintf_instead
-        ENABLE_HTMLWINDOW
-        PORTAL
-        HL2_EPISODIC
-        HL2_CLIENT_DLL)
-
-include_directories(
-        headers
+target_include_directories(cl_portal PRIVATE headers
         ${SE_COMMON}
         ${SE_PUBLIC}
         ${SE_PUBLIC}/tier0
@@ -45,32 +16,28 @@ include_directories(
         ${SE_GAMES}/hl2/client/headers
         ${SE_GAMES}/hl2/shared/headers
         ${SE_GAMES}/portal/shared/headers
-)
+        )
 
-# TODO: Investigate why the game won't build with these source files here. /hl2/hud_credits.cpp /hl2/hud_flashlight.cpp /portal/src/portal_credits.cpp
+target_compile_definitions(cl_portal PRIVATE
+        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE NO_STRING_T CLIENT_DLL VECTOR PROTECTED_THINGS_ENABLE fopen=dont_use_fopen strncpy=use_Q_strncpy_instead _snprintf=use_Q_snprintf_instead ENABLE_HTMLWINDOW PORTAL HL2_EPISODIC HL2_CLIENT_DLL>
+        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE NO_STRING_T CLIENT_DLL VECTOR PROTECTED_THINGS_ENABLE fopen=dont_use_fopen strncpy=use_Q_strncpy_instead _snprintf=use_Q_snprintf_instead ENABLE_HTMLWINDOW PORTAL HL2_EPISODIC HL2_CLIENT_DLL>
+        )
 
-load_sources_file()
-add_library(cl_portal SHARED ${SE_SOURCES})
+target_compile_options(cl_portal PRIVATE
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /MT /GS- /Gy /fp:fast /W4 /nologo /c /Wp64 /Zi /TP /errorReport:prompt>
+        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /MTd /GS- /Gy /FD /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
+        )
 
-target_link_options(cl_portal PRIVATE /DEBUG /DLL /MACHINE:X86 /NODEFAULTLIB:libc,libcd,libcmtd /INCREMENTAL:NO /SUBSYSTEM:WINDOWS /OPT:ICF /ERRORREPORT:PROMPT /NOLOGO)
-#                                       /EHsc /MT -MD /MT /Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt /O2 /Ob2 /Oi /Ot /FD /Gy /Zi /Be /Bd /EP
-target_compile_options(cl_portal PRIVATE /Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt)
+target_link_options(cl_portal PRIVATE
+        $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86>
+        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86 /OPT:REF /OPT:ICF>
+        )
 
-#set_property(TARGET cl_portal PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-
-#target_link_options(cl_portal PRIVATE
-#        "$<$<CONFIG:Release>:${SEBUILD_LINKER_OPTIONS_RELEASE}>"
-#        "$<$<CONFIG:Debug>:${SEBUILD_LINKER_OPTIONS_DEBUG}>"
-#        )
-
-#target_compile_options(cl_portal PRIVATE
-#        "$<$<CONFIG:Release>:${SEBUILD_CXX_OPTIONS_RELEASE}>"
-#        "$<$<CONFIG:Debug>:${SEBUILD_CXX_OPTIONS_DEBUG}>"
-#        )
-
-#TODO: Can I combine all of this into one set_target_properties call?
-set_property(TARGET cl_portal PROPERTY RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/portal/bin/)
-set_target_properties(cl_portal PROPERTIES OUTPUT_NAME "client")
-
+set_target_properties(cl_portal PROPERTIES
+        OUTPUT_NAME client
+        RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/portal/bin/
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/public/
+        MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
+        )
 
 target_link_libraries(cl_portal PUBLIC bitmap choreoobjects dmxloader mathlib particles tier0 tier1 tier2 tier3 vgui_controls vstdlib)

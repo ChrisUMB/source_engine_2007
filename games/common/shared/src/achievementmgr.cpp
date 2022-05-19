@@ -1010,10 +1010,13 @@ void CAchievementMgr::ResetAchievements()
 		CBaseAchievement *pAchievement = m_mapAchievement[i];
 		ResetAchievement_Internal( pAchievement );
 	}
-	if ( SteamUserStats() )
-	{
-		SteamUserStats()->StoreStats( gameID );
-	}
+
+    //TODO: PATCH AND IT'S STUPID. Only causing issues in debug build.
+//	if ( SteamUserStats() )
+//	{
+//		SteamUserStats()->StoreStats( gameID );
+//	}
+
 	SaveGlobalState();
 }
 
@@ -1037,10 +1040,11 @@ void CAchievementMgr::ResetAchievement( int iAchievementID )
 	if ( pAchievement )
 	{
 		ResetAchievement_Internal( pAchievement );
-		if ( SteamUserStats() )
-		{
-			SteamUserStats()->StoreStats( gameID );
-		}
+        //TODO: PATCH AND IT'S STUPID. Only causing issues in debug build.
+//		if ( SteamUserStats() )
+//		{
+//			SteamUserStats()->StoreStats( gameID );
+//		}
 		SaveGlobalState();
 	}
 }

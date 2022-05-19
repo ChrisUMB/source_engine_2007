@@ -59,5 +59,5 @@ add_subdirectory(engine/modules/launcher)
 add_subdirectory(engine/modules/engine)
 
 
-#add_subdirectory(games/modules/portal/client)
-#add_subdirectory(games/modules/portal/server)
+add_subdirectory(games/modules/portal/client)
+add_subdirectory(games/modules/portal/server)
