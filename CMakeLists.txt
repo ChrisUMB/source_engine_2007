@@ -38,6 +38,9 @@ macro("load_sources_file")
     STRING(REPLACE "\${SE_GAMES_COMMON}" "${SE_GAMES_COMMON}" SE_SOURCES "${SE_SOURCES}")
 endmacro()
 
+# Needed for msvc v120 I guess
+add_compile_definitions(WINVER=0x600)
+
 add_subdirectory(engine/modules/launcher_main)
 add_subdirectory(engine/modules/tier0)
 add_subdirectory(engine/modules/tier1)
