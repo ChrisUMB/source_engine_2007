@@ -15,10 +15,13 @@
 
 //-----------------------------------------------------------------------------
 
+#if WINVER < 0x600
+//TODO: We might want to use this round f
 inline float round( float f )
 {
 	return (float)( (int)( f + 0.5 ) );
 }
+#endif
 
 //-----------------------------------------------------------------------------
 // CAI_MoveSolver

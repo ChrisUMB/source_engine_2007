@@ -13,6 +13,7 @@ target_include_directories(vtf PRIVATE
         ${SE_PUBLIC}
         ${SE_PUBLIC}/tier0
         ${SE_PUBLIC}/tier1
+        ${SE_WIN_INCLUDE_DIRS}
         ${CMAKE_SOURCE_DIR}/lib/dx9sdk/include
         )
 
