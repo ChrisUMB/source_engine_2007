@@ -1,0 +1,7 @@
+# Project exclude paths
+/build/
+/build/*
+/lib/x360xdk/lib/xbox
+/lib/x360xdk/lib/xbox/*
+# Project exclude paths
+/run/

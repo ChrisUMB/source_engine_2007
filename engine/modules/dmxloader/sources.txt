@@ -1,0 +1,5 @@
+src/dmxattribute.cpp
+src/dmxelement.cpp
+src/dmxloader.cpp
+src/dmxloadertext.cpp
+src/dmxserializationdictionary.cpp

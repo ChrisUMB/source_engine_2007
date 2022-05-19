@@ -1,0 +1,5 @@
+${SE_GAMES_COMMON}/shared/src/choreoactor.cpp
+${SE_GAMES_COMMON}/shared/src/choreochannel.cpp
+${SE_GAMES_COMMON}/shared/src/choreoevent.cpp
+${SE_GAMES_COMMON}/shared/src/choreoscene.cpp
+${SE_GAMES_COMMON}/shared/src/sceneimage.cpp

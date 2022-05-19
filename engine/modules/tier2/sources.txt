@@ -1,0 +1,16 @@
+${SE_PUBLIC}/materialsystem/MaterialSystemUtil.cpp
+${SE_PUBLIC}/map_utils.cpp
+src/vconfig.cpp
+src/utlstreambuffer.cpp
+src/util_init.cpp
+src/tier2.cpp
+src/soundutils.cpp
+src/riff.cpp
+src/renderutils.cpp
+src/p4helpers.cpp
+src/meshutils.cpp
+src/keybindings.cpp
+src/fileutils.cpp
+src/dmconnect.cpp
+src/defaultfilesystem.cpp
+src/beamsegdraw.cpp

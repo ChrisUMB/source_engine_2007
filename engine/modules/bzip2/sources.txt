@@ -1,0 +1,8 @@
+src/blocksort.c
+src/bzip2.c
+src/bzlib.c
+src/compress.c
+src/crctable.c
+src/decompress.c
+src/huffman.c
+src/randtable.c

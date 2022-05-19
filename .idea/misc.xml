@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
+  <component name="CidrRootsConfiguration">
+    <sourceRoots>
+      <file path="$PROJECT_DIR$/engine/modules/bitmap" />
+      <file path="$PROJECT_DIR$/engine/modules/bzip2" />
+      <file path="$PROJECT_DIR$/engine/modules/choreoobjects" />
+      <file path="$PROJECT_DIR$/engine/modules/dmxloader" />
+      <file path="$PROJECT_DIR$/engine/modules/engine" />
+      <file path="$PROJECT_DIR$/engine/modules/launcher" />
+      <file path="$PROJECT_DIR$/engine/modules/launcher_main" />
+      <file path="$PROJECT_DIR$/engine/modules/materialsystem" />
+      <file path="$PROJECT_DIR$/engine/modules/mathlib" />
+      <file path="$PROJECT_DIR$/engine/modules/particles" />
+      <file path="$PROJECT_DIR$/engine/modules/shaderlib" />
+      <file path="$PROJECT_DIR$/engine/modules/tier0" />
+      <file path="$PROJECT_DIR$/engine/modules/tier1" />
+      <file path="$PROJECT_DIR$/engine/modules/tier2" />
+      <file path="$PROJECT_DIR$/engine/modules/tier3" />
+      <file path="$PROJECT_DIR$/engine/modules/utils" />
+      <file path="$PROJECT_DIR$/engine/modules/vgui_controls" />
+      <file path="$PROJECT_DIR$/engine/modules/vstdlib" />
+      <file path="$PROJECT_DIR$/engine/modules/vtf" />
+      <file path="$PROJECT_DIR$/games/modules/cstrike" />
+      <file path="$PROJECT_DIR$/games/modules/dod" />
+      <file path="$PROJECT_DIR$/games/modules/ep3" />
+      <file path="$PROJECT_DIR$/games/modules/episodic" />
+      <file path="$PROJECT_DIR$/games/modules/hl1" />
+      <file path="$PROJECT_DIR$/games/modules/hl2" />
+      <file path="$PROJECT_DIR$/games/modules/hl2mp" />
+      <file path="$PROJECT_DIR$/games/modules/portal" />
+      <file path="$PROJECT_DIR$/games/modules/sdk" />
+      <file path="$PROJECT_DIR$/games/modules/tf" />
+      <file path="$PROJECT_DIR$/games/modules/tf2" />
+      <file path="$PROJECT_DIR$/games/modules/tfc" />
+    </sourceRoots>
+    <excludeRoots>
+      <file path="$PROJECT_DIR$/build" />
+      <file path="$PROJECT_DIR$/lib/x360xdk/lib/xbox" />
+      <file path="$PROJECT_DIR$/run" />
+    </excludeRoots>
+  </component>
+</project>

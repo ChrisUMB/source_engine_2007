@@ -1,0 +1,3 @@
+src/BaseShader.cpp
+src/ShaderDLL.cpp
+src/shaderlib_cvar.cpp

@@ -1,0 +1,12 @@
+src/colorconversion.cpp
+src/float_bm.cpp
+src/float_bm2.cpp
+src/float_bm3.cpp
+src/float_bm4.cpp
+src/float_bm_bilateral_filter.cpp
+src/float_cube.cpp
+src/imageformat.cpp
+src/psd.cpp
+src/resample.cpp
+src/tgaloader.cpp
+src/tgawriter.cpp

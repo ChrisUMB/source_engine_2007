@@ -1,0 +1,4 @@
+src/choreoutils.cpp
+src/scenetokenprocessor.cpp
+src/studiohdrstub.cpp
+src/tier3.cpp
