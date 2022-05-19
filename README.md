@@ -2,68 +2,95 @@
 
 This is the 2007 Source Engine leak transferred to a raw CMake project, made in CLion. It should be noted
 that this project doesn't need CLion to work, it is just a collection of carefully configured CMake projects and should
-be able to build with just CMake and The v80 MSVC toolkit.
+be able to build with just CMake and The v80 MSVC toolkit. This project is still entirely in development, and any user
+end should expect changes. I will try my best to utilize branches as to not break anything.
 
 ## Setup Guide [CLion]
+
+This setup guide should get you from an empty IDE to running and building Portal and all the supported engine modules,
+including some necessary file patching to get resources working and some non-buildable binaries put in place.
 
 1. Install [CLion](https://www.jetbrains.com/clion/). CLion is a paid application developed by [JetBrains](https://www.jetbrains.com/),
 however you can get their entire toolkit for $20/month, which is very worth it. Otherwise, you can live off CLions free trials
 that they renew with every update, so if you're just a hobbyist you can scrape by that way.
 
-2. 
 
-## Built Modules
+2. Add Visual Studio 2005 Toolchain to CLion. Follow the tutorial [here](https://florian0.gitlab.io/sro_devkit/build-environment/clion/#prepare-clion),
+it should only take you about 5 or so minutes. You will probably want to create an empty project for this step. If this tutorial ever goes down, contact me and I'll post one myself.
 
-These are just modules within the engine that currently build in this project.
 
-- bitmap
-- bzip2
-- choreoobjects
-- dmxloader
-- engine
-- launcher
-- launcher_main
-- materialsystem
-- mathlib
-- particles
-- shaderlib
-- tier0
-- tier1
-- tier2
-- tier3
-- vgui_controls
-- vstdlib
-- vtf
+3. Pull this repository in CLion. If you're not at the `Welcome` screen, it's `File > New > Project from Version Control..`,
+otherwise, just click `Get from VCS` and follow the screen prompt.
+   ![](https://media.discordapp.net/attachments/365987434800087041/976782626364997652/clion64_wFynBgIn68.gif?width=827&height=676)
 
-## Built Games
-- Portal
 
-## Reorganization
+4. Configure the build types appropriately. This project supports release and debug at the time of writing. Just click
+the `+` in the top left of the Project Wizard, it will automatically create a second build type `Release`. Then for both
+build types `Debug` and `Release`, set their Toolchain to `Visual Studio 2005` that you setup in the 2nd step.
+![](https://media.discordapp.net/attachments/365987434800087041/976783039256477706/clion64_9fkWmVhfYm.gif?width=816&height=676)
 
-I reorganized the project pretty heavily, and will probably continue to do so.
 
-### Engine Modules
+5. After the project finishes setting up, you'll want to build all the modules. `Build > Build All in ...` This is going to 
+take a considerable amount of time, maybe 15 minutes or so. Parallel build configurations are on my todo list, but for a 
+first time setup, it's not terrible. CMake does a good job of caching, making future builds *considerably* faster.<br>
+*note*: This isn't strictly necessary, but this will happen now or later, directly or indirectly, so may as well do it now.
+![](https://cdn.discordapp.com/attachments/365987434800087041/976787183883132938/unknown.png)
 
-Engine modules reside in `engine/modules`, this is where you'll find things like `tier0`, `vstdlib`, et cetera. These
-weren't changed very much in terms of structure, just my usual `src` and `headers` refactoring.
 
-### Game Modules
+6. Create a `launch_portal` configuration. This is optional but highly recommended, it allows you to click one button that
+will compile the Portal client and server, and then run the game from within CLion. The pattern for this is applicable for
+any of the games here, but Portal is the only one supported at the time of writing.<br><br>![](https://media.discordapp.net/attachments/365987434800087041/976796005515280424/unknown.png)
+<br>Go to the top right next to the build button (looks like a hammer), click the dropdown, and click `Edit Configurations`. From there, click the `+` in the
+top left, and add a `CMake Application`.<br><br>You can name it whatever you want, I named mine `launch_portal`. Set the
+target to `launcher_main`, and the executable should automatically be set to `launcher_main` as well. Then, you'll want
+to add `-game portal -allowdebug` to the program arguments. This will start portal, and `-allowdebug` tells Source Engine
+that it's allowed to load engine modules that were compiled with debug information, without this flag, those modules will
+crash the engine.<br><br>Lastly, at the bottom, below `Before launch`, add two Cmake Targets with the `+` in the top left;
+one for `cl_portal` and one for `sv_portal`. This tells the configuration to build these two projects first. If you're doing
+more stuff than just modifying the client and the server for portal, you might want to set this to just build `all targets`
+instead.
+![](https://media.discordapp.net/attachments/365987434800087041/976796373322186772/unknown.png?width=898&height=676)
 
-Game modules is where you'll find all the different games, like portal, they are in `games/modules`. I put them
-in a "modules" subdirectory like that because I needed a place to store common game classes that get shared around
-a lot, works well enough. I modified games to be structured like `{game}/client`, `{game}/server`, `{game}/shared`,
-that way if you are specifically working on something very game related, all of its sources are adjacent, not spread
-about multiple higher level folders.
 
-### CMake Shenanigans
+7. The last thing we need to do is a bit of file "patching", where we take some game resources from other places and put
+them into our game directory.<br><br>Firstly, we need to add some binaries. This project is incomplete and doesn't build
+everything necessary to actually run the game independently, and there are also some binaries that can't be build. For
+now, I have provided a [downloadable zip file](https://cdn.discordapp.com/attachments/365987434800087041/976801819328151612/leak_binaries_patch.zip)
+that contains the binaries necessary. Take this and unzip it into your `run/bin/` directory in your project. You should
+already have a few binaries in there if you did the "build all" step previously, otherwise the game won't run without those, too.
+This configuration of binaries was tested very loosely, but I was able to load chamber 08 with default DirectX version.<br><br>
+Next, you're going to want to gather some assets for the game. This should be the last bit of your file patch work. Firstly,
+we are going to gather a collection of files from a known good download of `Source Unpack 3420`, which you can download [here](https://sourceunpack.gameabusefastcomplete.com/Portal_3420.7z).
+Unzip that archive into a folder, open the `portal/` directory, and copy these folders: `cfg, maps, materials, models, reslists, 
+resource, scenes, scripts, sound`. You'll want to copy these into the `run/portal/` folder in your project.
+Next, just copy the entire `hl2` folder into your `run/` directory.<br><br>
+Lastly, we are going to patch particle files. For this, you'll need a known good download of `Source Unpack 5135` which
+you can download [here](https://sourceunpack.gameabusefastcomplete.com/Source_Unpack.zip). Next, unzip this archive just
+like the previous one. Now, copy from the archive, the `portal/particles/` folder into `run/portal/`. Lastly, copy
+`hl2/particles/` into `run/hl2/`. The reason for getting these from 5135 is that the leak version uses the newer particle
+system.
 
-`SE_ENGINE` : /engine/  
-`SE_ENGINE_MODULES` : /engine/modules  
-`SE_COMMON` : /engine/common  
-`SE_PUBLIC` : /engine/public  
-`SE_GAMES` : /games/modules  
-`SE_GAMES_COMMON` : /games/common  
 
-`load_sources_file` : Macro that populates `SE_SOURCES` with a list of sources in a `sources.txt` in the same folder as the
-CMake file. This is useful because source lists for games are huge, so getting them out of the CMake file was necessary.
-This macro also does some string replacements, so you can use the aforementioned variables inside the `sources.txt` file.
+8. That's it! You should now be able to run the previously created `launch_portal` configuration, and it should work.
+
+## Project Structure
+
+I wanted to briefly go over the layout of the project as it differs from the Visual Studio 2005 leak layout.
+
+
+Firstly, I separated games from the engine. There is a `games/modules/` folder that contains all the games, and a
+`engine/modules/` that contains all the engine modules. Outside of that, there is also a `/lib` folder where engine
+modules will output their `.lib` files into `lib/public/`, otherwise, all other necessary libraries are stored there.
+
+`/engine` contains `/common` and `/public` which contains all of the public headers and shared source files for engine
+modules. It's not really cleaned up at all, I just moved it so it wasn't in the same area as the actual engine modules
+source code and CMake projects.
+
+I modified the structure of game source code. In the leak, games are structured in a `games/client/{game}` way where the
+client, server, and shared code are all separated. I restructured it so that game folders contain `client`, `server`, and
+`shared` instead.
+
+Lastly, I made engine `.dll` files export to `/run/bin`, and tried to set it up so `/run` was a good run directory. So far,
+it seems pretty well-structured all things considered, but I am open for criticisms and better ideas.
+
+[//]: # (TODO: replace previous Discord links with links to files within the repo.)
