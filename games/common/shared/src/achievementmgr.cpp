@@ -1040,6 +1040,7 @@ void CAchievementMgr::ResetAchievement( int iAchievementID )
 	if ( pAchievement )
 	{
 		ResetAchievement_Internal( pAchievement );
+
         //TODO: PATCH AND IT'S STUPID. Only causing issues in debug build.
 //		if ( SteamUserStats() )
 //		{

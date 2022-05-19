@@ -109,7 +109,7 @@ inline void *MemAlloc_InlineCallocMemset( void *pMem, size_t nCount, size_t nEle
 
 #define _malloc_dbg(s, t, f, l)	WHYCALLINGTHISDIRECTLY(s)
 
-/*
+
 #if defined(__AFX_H__) && defined(DEBUG_NEW)
 	#define new DEBUG_NEW
 #else
@@ -117,7 +117,7 @@ inline void *MemAlloc_InlineCallocMemset( void *pMem, size_t nCount, size_t nEle
 	#define MEMALL_DEBUG_NEW new(_NORMAL_BLOCK, __FILE__, __LINE__)
 	#define new MEMALL_DEBUG_NEW
 #endif
-*/
+
 
 #undef _strdup
 #undef strdup
