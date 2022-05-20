@@ -5,10 +5,10 @@ set(CMAKE_CXX_STANDARD 11)
 
 # TODO: Find WindowsSDK from https://github.com/rpavlik/cmake-modules/blob/main/FindWindowsSDK.cmake instead.
 set(WINSDK_INCLUDE_DIRS
-        "C:/Program Files (x86)/Windows Kits/8.1/Include"
-        "C:/Program Files (x86)/Windows Kits/8.1/Include/shared"
-        "C:/Program Files (x86)/Windows Kits/8.1/Include/um"
-        "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/winrt"
         )
 
 add_compile_definitions(

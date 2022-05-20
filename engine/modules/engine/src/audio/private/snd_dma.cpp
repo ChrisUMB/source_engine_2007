@@ -37,6 +37,7 @@
 #include "../../pure_server.h"
 #include "filesystem/IQueuedLoader.h"
 #include "voice.h"
+#include <cstdlib>
 #if defined( _X360 )
 #include "xbox/xbox_console.h"
 #include "xmp.h"

@@ -114,8 +114,8 @@ inline void *ReallocUnattributed( void *pMem, size_t nSize )
 // under linux this malloc() overrides the libc malloc() and so we
 // end up in a recursion (as g_pMemAlloc->Alloc() calls malloc)
 #if _MSC_VER >= 1400
-#define ALLOC_CALL _CRTNOALIAS _CRTRESTRICT 
-#define FREE_CALL _CRTNOALIAS 
+#define ALLOC_CALL _CRTRESTRICT
+#define FREE_CALL
 #else
 #define ALLOC_CALL
 #define FREE_CALL
@@ -167,7 +167,7 @@ void *_malloc_base( size_t nSize )
 }
 #endif
 
-void *_calloc_base( size_t nSize )
+void *_calloc_base( size_t nCount, size_t nSize )
 {
 	void *pMem = AllocUnattributed( nSize );
 	memset(pMem, 0, nSize);
@@ -179,7 +179,7 @@ void *_realloc_base( void *pMem, size_t nSize )
 	return ReallocUnattributed( pMem, nSize );
 }
 
-void *_recalloc_base( void *pMem, size_t nSize )
+void *_recalloc_base( void *pMem, size_t nCount, size_t nSize )
 {
 	void *pMemOut = ReallocUnattributed( pMem, nSize );
 	memset(pMemOut, 0, nSize);
@@ -205,7 +205,7 @@ void * __cdecl _malloc_crt(size_t size)
 
 void * __cdecl _calloc_crt(size_t count, size_t size)
 {
-	return _calloc_base( count * size );
+	return _calloc_base(count,  count * size );
 }
 
 void * __cdecl _realloc_crt(void *ptr, size_t size)
@@ -215,7 +215,7 @@ void * __cdecl _realloc_crt(void *ptr, size_t size)
 
 void * __cdecl _recalloc_crt(void *ptr, size_t count, size_t size)
 {
-	return _recalloc_base( ptr, size * count );
+	return _recalloc_base( ptr, count, size * count );
 }
 
 ALLOC_CALL void * __cdecl _recalloc ( void * memblock, size_t count, size_t size )
@@ -608,7 +608,7 @@ int _CrtSetDbgFlag( int nNewFlag )
 #define AFNAME(var) __p_ ## var
 #define AFRET(var)  &var
 
-int _crtDbgFlag = _CRTDBG_ALLOC_MEM_DF;
+//int _crtDbgFlag = _CRTDBG_ALLOC_MEM_DF;
 int* AFNAME(_crtDbgFlag)(void)
 {
 	return AFRET(_crtDbgFlag);
@@ -1238,10 +1238,10 @@ struct _tiddata {
 
     /* pointer to the copy of the multibyte character information used by
      * the thread */
-    pthreadmbcinfo  ptmbcinfo;
+    void *  ptmbcinfo;
 
     /* pointer to the copy of the locale informaton used by the thead */
-    pthreadlocinfo  ptlocinfo;
+    void *  ptlocinfo;
     int         _ownlocale;     /* if 1, this thread owns its own locale */
 
     /* following field is needed by NLG routines */
@@ -1289,7 +1289,7 @@ typedef struct _tiddata * _ptiddata;
 
 class _LocaleUpdate
 {
-    _locale_tstruct localeinfo;
+//    _locale_tstruct localeinfo;
     _ptiddata ptd;
     bool updated;
     public:
@@ -1322,10 +1322,10 @@ class _LocaleUpdate
 //        if (updated)
 //	        ptd->_ownlocale = ptd->_ownlocale & ~_PER_THREAD_LOCALE_BIT;
     }
-    _locale_t GetLocaleT()
-    {
-        return &localeinfo;
-    }
+//    _locale_t GetLocaleT()
+//    {
+//        return &localeinfo;
+//    }
 };
 
 
