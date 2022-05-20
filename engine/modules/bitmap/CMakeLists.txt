@@ -4,11 +4,10 @@ add_library(bitmap STATIC ${SE_SOURCES})
 
 target_include_directories(bitmap PRIVATE ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${SE_PUBLIC}/mathlib
 
-        ${CMAKE_SOURCE_DIR}/lib/dx9sdk/Include
-        ${CMAKE_SOURCE_DIR}/lib/x360xdk/include/win32/vs2005
+        ${SE_LIBS}/dx9sdk/Include
+        ${SE_LIBS}/x360xdk/include/win32/vs2005
         )
 
-file(WRITE stuff.txt ${CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES})
 target_compile_definitions(bitmap PRIVATE
         $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE>
         $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE>
