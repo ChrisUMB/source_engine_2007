@@ -724,10 +724,10 @@ int __cdecl _CrtDbgReport( int nRptType, const char * szFile,
 #if defined( _DEBUG )
  
 // wrapper which passes no debug info; not available in debug
-void __cdecl _invalid_parameter_noinfo(void)
-{
-    Assert(0);
-}
+//void __cdecl _invalid_parameter_noinfo(void)
+//{
+//    Assert(0);
+//}
 
 #endif /* defined( _DEBUG ) */
 
@@ -754,8 +754,15 @@ int __cdecl _CrtDbgReportW( int nRptType, const wchar_t *szFile, int nLine,
 	return 0;
 }
 
-int __cdecl _VCrtDbgReportA( int nRptType, const wchar_t * szFile, int nLine, 
-							 const wchar_t * szModule, const wchar_t * szFormat, va_list arglist )
+int __cdecl _VCrtDbgReportA(
+        _In_       int         _ReportType,
+        _In_opt_   void*       _ReturnAddress,
+        _In_opt_z_ char const* _FileName,
+        _In_       int         _LineNumber,
+        _In_opt_z_ char const* _ModuleName,
+        _In_opt_z_ char const* _Format,
+        va_list     _ArgList
+        )
 {
 	Assert(0);
 	return 0;
@@ -930,11 +937,11 @@ void __cdecl _aligned_free_dbg( void * memblock)
     _aligned_free(memblock);
 }
 
-size_t __cdecl _CrtSetDebugFillThreshold( size_t _NewDebugFillThreshold)
-{
-	assert(0);
-    return 0;
-}
+//size_t __cdecl _CrtSetDebugFillThreshold( size_t _NewDebugFillThreshold)
+//{
+//	assert(0);
+//    return 0;
+//}
 
 //===========================================
 // NEW!!! 64-bit

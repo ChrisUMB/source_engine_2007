@@ -42,7 +42,9 @@ IMPLEMENT_CLIENTCLASS_DT(C_BaseFlex, DT_BaseFlex, CBaseFlex)
 	RecvPropVector(RECVINFO(m_viewtarget)),
 
 #ifdef HL2_CLIENT_DLL
-	RecvPropFloat( RECVINFO(m_vecViewOffset[0]) ),
+
+//	RecvPropFloat( RECVINFO(m_vecViewOffset[0]) ),
+    RecvPropFloat("m_vecViewOffset[0]", ((::size_t) &reinterpret_cast<char const volatile &>((((currentRecvDTClass *) 0)->m_vecViewOffset[0]))), sizeof(((currentRecvDTClass *) 0)->m_vecViewOffset[0])),
 	RecvPropFloat( RECVINFO(m_vecViewOffset[1]) ),
 	RecvPropFloat( RECVINFO(m_vecViewOffset[2]) ),
 
