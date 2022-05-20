@@ -1,0 +1,3 @@
+src/convert_x360.cpp
+src/s3tc_decode.cpp
+src/vtf.cpp
