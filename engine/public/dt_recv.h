@@ -279,7 +279,7 @@ inline bool RecvTable::IsInMainList() const
 		RecvTable.Construct(RecvProps+1, sizeof(RecvProps) / sizeof(RecvProp) - 1, pRecvTableName); \
 		return 1; \
 	}
-
+//#define RECVINFO(varName)						#varName, (offsetof(currentRecvDTClass, varName)), sizeof(((currentRecvDTClass*)0)->varName)
 #define RECVINFO(varName)						#varName, ((::size_t)&reinterpret_cast<char const volatile&>((((currentRecvDTClass*)0)->varName))), sizeof(((currentRecvDTClass*)0)->varName)
 #define RECVINFO_NAME(varName, remoteVarName)	#remoteVarName, ((::size_t)&reinterpret_cast<char const volatile&>((((currentRecvDTClass*)0)->varName))), sizeof(((currentRecvDTClass*)0)->varName)
 #define RECVINFO_STRING(varName)				#varName, ((::size_t)&reinterpret_cast<char const volatile&>((((currentRecvDTClass*)0)->varName))), STRINGBUFSIZE(currentRecvDTClass, varName)
