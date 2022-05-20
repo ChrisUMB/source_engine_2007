@@ -16,12 +16,20 @@ add_compile_definitions(
         _CRT_NO_VA_START_VALIDATION
 )
 
-# This clears out all cmake and MSVC defaults, hopefully.
+# This clears out all cmake and MSVC defaults, hopefully. Doesn't seem to ACTUALLY work, to be honest... :(
 set(CMAKE_CXX_FLAGS "")
 set(CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE} "")
-# These two are most definitely unnecessary but I'd rather be safe than sorry.
 set(CMAKE_C_FLAGS "")
 set(CMAKE_C_FLAGS_${CMAKE_BUILD_TYPE} "")
+set(CMAKE_EXE_LINKER_FLAGS "")
+set(CMAKE_MODULE_LINKER_FLAGS  "")
+set(CMAKE_SHARED_LINKER_FLAGS  "")
+set(CMAKE_STATIC_LINKER_FLAGS  "")
+set(CMAKE_EXE_LINKER_FLAGS_${CMAKE_BUILD_TYPE} "")
+set(CMAKE_MODULE_LINKER_FLAGS_${CMAKE_BUILD_TYPE}  "")
+set(CMAKE_SHARED_LINKER_FLAGS_${CMAKE_BUILD_TYPE}  "")
+set(CMAKE_STATIC_LINKER_FLAGS_${CMAKE_BUILD_TYPE}  "")
+
 
 set(SE_LIBS ${CMAKE_SOURCE_DIR}/lib)
 set(SE_ENGINE ${CMAKE_SOURCE_DIR}/engine)
