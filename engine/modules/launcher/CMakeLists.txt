@@ -31,7 +31,4 @@ set_target_properties(launcher PROPERTIES
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 
-target_link_libraries(launcher PUBLIC
-        tier0 tier1 tier2 tier3 vstdlib
-        ${SE_LIBS}/public/appframework.lib
-        )
+target_link_libraries(launcher PUBLIC tier0 tier1 tier2 tier3 vstdlib appframework)
