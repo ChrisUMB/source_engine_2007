@@ -4,6 +4,7 @@ add_library(bitmap STATIC ${SE_SOURCES})
 
 target_include_directories(bitmap PRIVATE ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${SE_PUBLIC}/mathlib
 
+        ${WINSDK_INCLUDE_DIRS}
         ${SE_LIBS}/dx9sdk/Include
         ${SE_LIBS}/x360xdk/include/win32/vs2005
         )

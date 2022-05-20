@@ -2,7 +2,7 @@ load_sources_file()
 add_library(choreoobjects STATIC ${SE_SOURCES})
 
 target_include_directories(choreoobjects PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1
-        ${SE_GAMES_COMMON}/shared/headers ../utils/common
+        ${SE_GAMES_COMMON}/shared/headers ../utils/common ${WINSDK_INCLUDE_DIRS}
         )
 
 target_compile_definitions(choreoobjects PRIVATE

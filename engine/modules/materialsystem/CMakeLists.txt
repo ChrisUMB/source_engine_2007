@@ -1,7 +1,7 @@
 load_sources_file()
 add_library(materialsystem SHARED ${SE_SOURCES})
 
-target_include_directories(materialsystem PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1)
+target_include_directories(materialsystem PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS})
 
 target_compile_definitions(materialsystem PRIVATE
         $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE DEFINE_MATERIALSYSTEM_INTERFACE MATERIALSYSTEM_EXPORTS PROTECTED_THINGS_ENABLE strncpy=use_Q_strncpy_instead _snprintf=use_Q_snprintf_instead fopen=dont_use_fopen>

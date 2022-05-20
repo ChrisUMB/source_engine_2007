@@ -1,7 +1,7 @@
 load_sources_file()
 add_library(tier3 STATIC ${SE_SOURCES})
 
-target_include_directories(tier3 PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${SE_GAMES_COMMON}/shared/headers)
+target_include_directories(tier3 PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${SE_GAMES_COMMON}/shared/headers ${WINSDK_INCLUDE_DIRS})
 
 target_compile_definitions(tier3 PRIVATE
         $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE>

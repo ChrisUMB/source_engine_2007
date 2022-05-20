@@ -1,7 +1,7 @@
 load_sources_file()
 add_library(shaderlib STATIC ${SE_SOURCES})
 
-target_include_directories(shaderlib PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ../materialsystem/headers)
+target_include_directories(shaderlib PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ../materialsystem/headers ${WINSDK_INCLUDE_DIRS})
 
 target_compile_definitions(shaderlib PRIVATE
         $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE fopen=dont_use_fopen FAST_MATERIALVAR_ACCESS>

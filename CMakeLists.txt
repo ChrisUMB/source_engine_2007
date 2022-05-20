@@ -1,8 +1,20 @@
 cmake_minimum_required(VERSION 3.22)
 cmake_policy(SET CMP0091 NEW)
 project(source_engine_2007)
-
 set(CMAKE_CXX_STANDARD 11)
+
+# TODO: Find WindowsSDK from https://github.com/rpavlik/cmake-modules/blob/main/FindWindowsSDK.cmake instead.
+set(WINSDK_INCLUDE_DIRS
+        "C:/Program Files (x86)/Windows Kits/8.1/Include"
+        "C:/Program Files (x86)/Windows Kits/8.1/Include/shared"
+        "C:/Program Files (x86)/Windows Kits/8.1/Include/um"
+        "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt"
+        )
+
+add_compile_definitions(
+        WINVER=0x600
+        _CRT_NO_VA_START_VALIDATION
+)
 
 # This clears out all cmake and MSVC defaults, hopefully.
 set(CMAKE_CXX_FLAGS "")
@@ -30,6 +42,7 @@ macro("load_sources_file")
     STRING(REPLACE "\${SE_GAMES}" "${SE_GAMES}" SE_SOURCES "${SE_SOURCES}")
     STRING(REPLACE "\${SE_GAMES_COMMON}" "${SE_GAMES_COMMON}" SE_SOURCES "${SE_SOURCES}")
 endmacro()
+
 
 add_subdirectory(engine/modules/launcher_main)
 add_subdirectory(engine/modules/tier0)
