@@ -1,38 +1,25 @@
-add_library(vtf STATIC
-        headers/cvtf.h
-        headers/s3tc_decode.h
+load_sources_file()
+add_library(vtf STATIC ${SE_SOURCES})
 
-        src/convert_x360.cpp
-        src/s3tc_decode.cpp
-        src/vtf.cpp
-        )
-
-target_include_directories(vtf PRIVATE
-        headers
-        ${SE_COMMON}
-        ${SE_PUBLIC}
-        ${SE_PUBLIC}/tier0
-        ${SE_PUBLIC}/tier1
-        ${CMAKE_SOURCE_DIR}/lib/dx9sdk/include
-        )
+target_include_directories(vtf PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${SE_WIN_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/lib/dx9sdk/include)
 
 target_compile_definitions(vtf PRIVATE
-        WIN32
-        _WIN32
-        NDEBUG
-        _LIB
-        _CRT_SECURE_NO_DEPRECATE
-        _CRT_NONSTDC_NO_DEPRECATE
+        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE fopen=dont_use_fopen>
+        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE fopen=dont_use_fopen>
+        )
+
+target_compile_options(vtf PRIVATE
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Wp64 /Z7 /TP /errorReport:prompt>
+        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
         )
 
 target_link_options(vtf PRIVATE
-        /NODEFAULTLIB:libc
-        /NODEFAULTLIB:libcd
-        /NODEFAULTLIB:libcmtd
+        $<$<CONFIG:Release>:/NOLOGO>
+        $<$<CONFIG:Debug>:/NOLOGO>
         )
 
 set_target_properties(vtf PROPERTIES
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/public/
-        MSVC_RUNTIME_LIBRARY "MultiThreaded"
+        OUTPUT_NAME vtf
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
+        MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
-

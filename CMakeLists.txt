@@ -6,6 +6,20 @@ project(source_engine_2007)
 
 set(CMAKE_CXX_STANDARD 11)
 
+# TODO: Find WindowsSDK from https://github.com/rpavlik/cmake-modules/blob/main/FindWindowsSDK.cmake instead.
+set(SE_WIN_INCLUDE_DIRS
+        "C:/Program Files (x86)/Windows Kits/8.1/Include"
+        "C:/Program Files (x86)/Windows Kits/8.1/Include/shared"
+        "C:/Program Files (x86)/Windows Kits/8.1/Include/um"
+        "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt"
+        )
+
+#include_directories("C:/Program Files (x86)/Windows Kits/8.1/Include")
+#include_directories("C:/Program Files (x86)/Windows Kits/8.1/Include/shared")
+#include_directories("C:/Program Files (x86)/Windows Kits/8.1/Include/um")
+#include_directories("C:/Program Files (x86)/Windows Kits/8.1/Include/winrt")
+#link_directories("C:/Program Files (x86)/Windows Kits/8.1/Lib/winv6.3/um/x86")
+
 #link_directories(${CMAKE_SOURCE_DIR}/lib/common ${CMAKE_SOURCE_DIR}/lib/public)
 
 #set_property(GLOBAL PROPERTY
@@ -37,6 +51,9 @@ macro("load_sources_file")
     STRING(REPLACE "\${SE_GAMES}" "${SE_GAMES}" SE_SOURCES "${SE_SOURCES}")
     STRING(REPLACE "\${SE_GAMES_COMMON}" "${SE_GAMES_COMMON}" SE_SOURCES "${SE_SOURCES}")
 endmacro()
+
+# Needed for msvc v120 I guess
+add_compile_definitions(WINVER=0x600)
 
 add_subdirectory(engine/modules/launcher_main)
 add_subdirectory(engine/modules/tier0)

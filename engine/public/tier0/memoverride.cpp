@@ -1169,11 +1169,14 @@ struct _is_ctype_compatible {
         int is_clike;
 };
 
-//typedef struct tagLC_ID {
-//	unsigned short wLanguage;
-//	unsigned short wCountry;
-//	unsigned short wCodePage;
-//} LC_ID, *LPLC_ID;
+//TODO: I don't know what I think I am doing.
+#if WINVER > 0x599
+typedef struct tagLC_ID {
+	unsigned short wLanguage;
+	unsigned short wCountry;
+	unsigned short wCodePage;
+} LC_ID, *LPLC_ID;
+#endif
 
 typedef struct setloc_struct {
     /* getqloc static variables */

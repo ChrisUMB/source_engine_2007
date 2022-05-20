@@ -9,19 +9,19 @@ target_compile_definitions(tier0 PRIVATE
         )
 
 target_compile_options(tier0 PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /MT /GS- /Gy /fp:fast /W4 /nologo /c /Wp64 /Zi /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /MTd /GS- /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Wp64 /Zi /TP /errorReport:prompt>
+        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
         )
 
 target_link_options(tier0 PRIVATE
         $<$<CONFIG:Release>:/INCREMENTAL:NO /NOLOGO /DLL /MANIFEST:NO /NODEFAULTLIB:libc,libcd,libcmtd /DEBUG /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86 /ERRORREPORT:PROMPT>
-        $<$<CONFIG:Debug>:/INCREMENTAL /NOLOGO /DLL /MANIFEST:NO /NODEFAULTLIB:libc,libcd,libcmt /DEBUG /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT>
+        $<$<CONFIG:Debug>:/INCREMENTAL /NOLOGO /DLL /MANIFEST:NO /NODEFAULTLIB:libc,libcd,libcmt /DEBUG /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT /FORCE:MULTIPLE>
         )
 
 set_target_properties(tier0 PROPERTIES
         OUTPUT_NAME tier0
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/public/
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 
