@@ -4,6 +4,8 @@
 //
 //=============================================================================//
 
+#include <cstdlib>
+
 #ifndef LERP_FUNCTIONS_H
 #define LERP_FUNCTIONS_H
 #ifdef _WIN32

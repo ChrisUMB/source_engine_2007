@@ -24,6 +24,7 @@
 #include "ai_hull.h"
 #include "ndebugoverlay.h"
 #include "ai_hint.h"
+#include <cstdlib>
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"

@@ -38,6 +38,7 @@
 #include "physics_prop_ragdoll.h"
 #include "soundent.h"
 #include "ammodef.h"
+#include <cstdlib>
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
