@@ -3,7 +3,7 @@ add_library(bitmap STATIC ${SE_SOURCES})
 
 
 target_include_directories(bitmap PRIVATE ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${SE_PUBLIC}/mathlib
-        ${SE_WIN_INCLUDE_DIRS}
+
         ${CMAKE_SOURCE_DIR}/lib/dx9sdk/Include
         ${CMAKE_SOURCE_DIR}/lib/x360xdk/include/win32/vs2005
         )

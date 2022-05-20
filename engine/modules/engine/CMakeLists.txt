@@ -7,7 +7,7 @@ load_sources_file()
 add_library(engine SHARED ${SE_SOURCES})
 
 target_include_directories(engine PRIVATE headers headers/audio headers/audio/private headers/audio/public
-        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${SE_WIN_INCLUDE_DIRS} ${SE_LIBS}/dx9sdk/include)
+        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1  ${SE_LIBS}/dx9sdk/include)
 
 target_compile_definitions(engine PRIVATE
         $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE USE_CONVARS VOICE_OVER_IP BUMPMAP __USEA3D _ADD_EAX_ ENGINE_DLL PROTECTED_THINGS_ENABLE fopen=dont_use_fopen>
@@ -21,7 +21,7 @@ target_compile_options(engine PRIVATE
 
 target_link_options(engine PRIVATE
         $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86 /ERRORREPORT:PROMPT >
-        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86 /FORCE:MULTIPLE>
+        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86>
         )
 
 set_target_properties(engine PROPERTIES
