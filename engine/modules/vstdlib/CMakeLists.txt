@@ -14,13 +14,20 @@ target_compile_options(vstdlib PRIVATE
         )
 
 target_link_options(vstdlib PRIVATE
-        $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86>
-        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86 /FORCE:MULTIPLE>
+        /NOLOGO /MANIFEST:NO /DEBUG /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
+        $<$<CONFIG:Release>:/INCREMENTAL:NO /OPT:REF /OPT:ICF>
+        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc,libcd,libcmt /FORCE:MULTIPLE>
+#        $<$<CONFIG:Release>:/NODEFAULTLIB:libc,libcd,libcmt /FORCE:MULTIPLE>
         )
 
 set_target_properties(vstdlib PROPERTIES
+        OUTPUT_NAME vstdlib
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
+#        MSVC_RUNTIME_LIBRARY MultiThreadedDebug
         )
 
-target_link_libraries(vstdlib PUBLIC tier0 tier1)
+target_link_libraries(
+        vstdlib PUBLIC tier0 tier1
+)

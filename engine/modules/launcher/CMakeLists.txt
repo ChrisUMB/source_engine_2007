@@ -20,22 +20,21 @@ target_compile_options(launcher PRIVATE
         )
 
 target_link_options(launcher PRIVATE
-#        $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /MACHINE:X86>
-#        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86>
-        /NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86 /FORCE:MULTIPLE
+        $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /MACHINE:X86>
+        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86>
+#        /NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86 /FORCE:MULTIPLE
         )
 
 set_target_properties(launcher PROPERTIES
         OUTPUT_NAME launcher
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
         ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
-#        MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
-        MSVC_RUNTIME_LIBRARY MultiThreadedDebug
+        MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
+#        MSVC_RUNTIME_LIBRARY MultiThreadedDebug
         )
 
 target_link_libraries(launcher PUBLIC
-        tier0 tier1 tier2 tier3 vstdlib
-        ${SE_LIBS}/public/appframework.lib
+        tier0 tier1 tier2 tier3 vstdlib appframework
         ${SE_LIBS}/dx9sdk/lib/dinput8.lib
         ${SE_LIBS}/dx9sdk/lib/ddraw.lib
         )

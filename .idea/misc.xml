@@ -3,6 +3,7 @@
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
   <component name="CidrRootsConfiguration">
     <sourceRoots>
+      <file path="$PROJECT_DIR$/engine/modules/appframework" />
       <file path="$PROJECT_DIR$/engine/modules/bitmap" />
       <file path="$PROJECT_DIR$/engine/modules/bzip2" />
       <file path="$PROJECT_DIR$/engine/modules/choreoobjects" />
@@ -13,6 +14,7 @@
       <file path="$PROJECT_DIR$/engine/modules/launcher_main" />
       <file path="$PROJECT_DIR$/engine/modules/materialsystem" />
       <file path="$PROJECT_DIR$/engine/modules/mathlib" />
+      <file path="$PROJECT_DIR$/engine/modules/matsys_controls" />
       <file path="$PROJECT_DIR$/engine/modules/particles" />
       <file path="$PROJECT_DIR$/engine/modules/shaderlib" />
       <file path="$PROJECT_DIR$/engine/modules/tier0" />
@@ -38,6 +40,7 @@
     </sourceRoots>
     <excludeRoots>
       <file path="$PROJECT_DIR$/build" />
+      <file path="$PROJECT_DIR$/lib/source-engine" />
       <file path="$PROJECT_DIR$/lib/x360xdk/lib/xbox" />
       <file path="$PROJECT_DIR$/run" />
     </excludeRoots>
