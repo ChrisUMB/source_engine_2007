@@ -15,11 +15,12 @@ target_compile_definitions(engine PRIVATE
         )
 
 target_compile_options(engine PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /arch:SSE /fp:fast /W4 /nologo /c /Wp64 /Zi /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /arch:SSE /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /arch:SSE /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
+        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /arch:SSE /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
         )
 
 target_link_options(engine PRIVATE
+        /DEBUG /Brepro
         $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86 /ERRORREPORT:PROMPT >
         $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86 /FORCE:MULTIPLE>
         )

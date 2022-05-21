@@ -75,12 +75,12 @@ const char *MakeModuleFileName()
 
 static void *AllocUnattributed( size_t nSize )
 {
-	static const char *pszOwner = MakeModuleFileName();
+//	static const char *pszOwner = MakeModuleFileName();
 
-	if ( !pszOwner )
+//	if ( !pszOwner )
 		return g_pMemAlloc->Alloc(nSize);
-	else
-		return g_pMemAlloc->Alloc(nSize, pszOwner, 0);
+//	else
+//		return g_pMemAlloc->Alloc(nSize, pszOwner, 0);
 }
 
 static void *ReallocUnattributed( void *pMem, size_t nSize )
@@ -169,8 +169,8 @@ void *_malloc_base( size_t nSize )
 
 void *_calloc_base( size_t nCount, size_t nSize )
 {
-	void *pMem = AllocUnattributed( nSize );
-	memset(pMem, 0, nSize);
+	void *pMem = AllocUnattributed( nCount * nSize );
+	memset(pMem, 0, nCount * nSize);
 	return pMem;
 }
 
@@ -181,8 +181,8 @@ void *_realloc_base( void *pMem, size_t nSize )
 
 void *_recalloc_base( void *pMem, size_t nCount, size_t nSize )
 {
-	void *pMemOut = ReallocUnattributed( pMem, nSize );
-	memset(pMemOut, 0, nSize);
+	void *pMemOut = ReallocUnattributed( pMem, nCount * nSize );
+	memset(pMemOut, 0, nCount * nSize);
 	return pMemOut;
 }
 
