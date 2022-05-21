@@ -32,6 +32,5 @@ set_target_properties(launcher PROPERTIES
         )
 
 target_link_libraries(launcher PUBLIC
-        tier0 tier1 tier2 tier3 vstdlib
-        ${SE_LIBS}/public/appframework.lib
+        tier0 tier1 tier2 tier3 vstdlib appframework
         )

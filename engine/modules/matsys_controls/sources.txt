@@ -1,0 +1,14 @@
+src/vtfpreviewpanel.cpp
+src/vtfpicker.cpp
+src/vmtpreviewpanel.cpp
+src/vmtpicker.cpp
+src/tgapreviewpanel.cpp
+src/QCGenerator.cpp
+src/proceduraltexturepanel.cpp
+src/picker.cpp
+src/matsyscontrols.cpp
+src/gamefiletreeview.cpp
+src/curveeditorpanel.cpp
+src/colorpickerpanel.cpp
+src/baseassetpicker.cpp
+src/assetpicker.cpp

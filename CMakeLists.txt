@@ -53,6 +53,8 @@ endmacro()
 
 
 add_subdirectory(engine/modules/launcher_main)
+add_subdirectory(engine/modules/appframework)
+add_subdirectory(engine/modules/matsys_controls)
 add_subdirectory(engine/modules/tier0)
 add_subdirectory(engine/modules/tier1)
 add_subdirectory(engine/modules/tier2)
