@@ -46,11 +46,11 @@ target_link_libraries(engine PUBLIC
         vstdlib
         appframework
         matsys_controls
+        jpeglib
 
         #TODO: Link directories.
         ${SE_LIBS}/common/vc7/ValidateNewValveCDKeyClient.lib
         ${SE_LIBS}/common/binkw32.lib
-        ${SE_LIBS}/common/jpeglib.lib
         ${SE_LIBS}/dx9sdk/lib/dsound.lib
         ${SE_LIBS}/dx9sdk/lib/dxguid.lib
 
