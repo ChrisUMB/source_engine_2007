@@ -9,15 +9,14 @@ target_compile_definitions(vstdlib PRIVATE
         )
 
 target_compile_options(vstdlib PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
         $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
         )
 
 target_link_options(vstdlib PRIVATE
-        /NOLOGO /MANIFEST:NO /DEBUG /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
+        /NOLOGO /MANIFEST:NO /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
         $<$<CONFIG:Release>:/INCREMENTAL:NO /OPT:REF /OPT:ICF>
-        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc,libcd,libcmt /FORCE:MULTIPLE>
-#        $<$<CONFIG:Release>:/NODEFAULTLIB:libc,libcd,libcmt /FORCE:MULTIPLE>
+        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc,libcd,libcmt>
         )
 
 set_target_properties(vstdlib PROPERTIES
@@ -25,7 +24,6 @@ set_target_properties(vstdlib PROPERTIES
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
         ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
-#        MSVC_RUNTIME_LIBRARY MultiThreadedDebug
         )
 
 target_link_libraries(
