@@ -9,14 +9,14 @@ target_compile_definitions(tier0 PRIVATE
         )
 
 target_compile_options(tier0 PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
         $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
         )
 
 target_link_options(tier0 PRIVATE
-        /NOLOGO /MANIFEST:NO /DLL /DEBUG /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
+        /NOLOGO /MANIFEST:NO /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
         $<$<CONFIG:Release>: /INCREMENTAL:NO /NODEFAULTLIB:libc,libcd,libcmtd /OPT:REF /OPT:ICF>
-        $<$<CONFIG:Debug>: /INCREMENTAL /NODEFAULTLIB:libc,libcd,libcmt>
+        $<$<CONFIG:Debug>: /DEBUG /INCREMENTAL /NODEFAULTLIB:libc,libcd,libcmt>
         )
 
 set_target_properties(tier0 PROPERTIES
