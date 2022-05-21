@@ -9,6 +9,7 @@
       <file path="$PROJECT_DIR$/engine/modules/choreoobjects" />
       <file path="$PROJECT_DIR$/engine/modules/dmxloader" />
       <file path="$PROJECT_DIR$/engine/modules/engine" />
+      <file path="$PROJECT_DIR$/engine/modules/jpeglib" />
       <file path="$PROJECT_DIR$/engine/modules/launcher" />
       <file path="$PROJECT_DIR$/engine/modules/launcher_main" />
       <file path="$PROJECT_DIR$/engine/modules/materialsystem" />
