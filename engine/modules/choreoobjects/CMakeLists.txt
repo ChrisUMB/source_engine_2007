@@ -11,12 +11,11 @@ target_compile_definitions(choreoobjects PRIVATE
         )
 
 target_compile_options(choreoobjects PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Z7 /TP /errorReport:prompt>
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
         $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
         )
 
 target_link_options(choreoobjects PRIVATE
-        /DEBUG /Brepro
         $<$<CONFIG:Release>:/NOLOGO>
         $<$<CONFIG:Debug>:/NOLOGO>
         )

@@ -15,7 +15,7 @@ target_compile_options(vstdlib PRIVATE
 
 target_link_options(vstdlib PRIVATE
         /NOLOGO /MANIFEST:NO /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
-        $<$<CONFIG:Release>:/INCREMENTAL:NO /OPT:REF /OPT:ICF>
+        $<$<CONFIG:Release>:/NODEFAULTLIB:libc,libcd,libcmtd /INCREMENTAL:NO /OPT:REF /OPT:ICF>
         $<$<CONFIG:Debug>:/NODEFAULTLIB:libc,libcd,libcmt>
         )
 

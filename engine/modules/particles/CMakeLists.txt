@@ -9,12 +9,11 @@ target_compile_definitions(particles PRIVATE
         )
 
 target_compile_options(particles PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Z7 /TP /errorReport:prompt>
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
         $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
         )
 
 target_link_options(particles PRIVATE
-        /DEBUG /Brepro
         $<$<CONFIG:Release>:/NOLOGO>
         $<$<CONFIG:Debug>:/NOLOGO>
         )

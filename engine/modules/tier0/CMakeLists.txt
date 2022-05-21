@@ -15,8 +15,8 @@ target_compile_options(tier0 PRIVATE
 
 target_link_options(tier0 PRIVATE
         /NOLOGO /MANIFEST:NO /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
-        $<$<CONFIG:Release>: /INCREMENTAL:NO /NODEFAULTLIB:libc,libcd,libcmtd /OPT:REF /OPT:ICF>
-        $<$<CONFIG:Debug>: /DEBUG /INCREMENTAL /NODEFAULTLIB:libc,libcd,libcmt>
+        $<$<CONFIG:Release>:/INCREMENTAL:NO /NODEFAULTLIB:libc,libcd,libcmtd /OPT:REF /OPT:ICF>
+        $<$<CONFIG:Debug>:/DEBUG /INCREMENTAL /NODEFAULTLIB:libc,libcd,libcmt>
         )
 
 set_target_properties(tier0 PROPERTIES

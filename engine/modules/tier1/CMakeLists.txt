@@ -8,12 +8,11 @@ target_compile_definitions(tier1 PRIVATE
         $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE TIER1_STATIC_LIB>)
 
 target_compile_options(tier1 PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Z7 /TP /errorReport:prompt>
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
         $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
         )
 
 target_link_options(tier1 PRIVATE
-        /DEBUG /Brepro
         $<$<CONFIG:Release>:/NOLOGO>
         $<$<CONFIG:Debug>:/NOLOGO>
         )
