@@ -28,4 +28,8 @@ set_target_properties(launcher PROPERTIES
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 
-target_link_libraries(launcher PUBLIC tier0 tier1 tier2 tier3 vstdlib appframework)
+target_link_libraries(launcher PUBLIC
+        tier0 tier1 tier2 tier3 vstdlib appframework
+        ${SE_LIBS}/dx9sdk/lib/dinput8.lib
+        ${SE_LIBS}/dx9sdk/lib/ddraw.lib
+        )

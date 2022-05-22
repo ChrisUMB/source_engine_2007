@@ -5,10 +5,10 @@ set(CMAKE_CXX_STANDARD 11)
 
 # TODO: Find WindowsSDK from https://github.com/rpavlik/cmake-modules/blob/main/FindWindowsSDK.cmake instead.
 set(WINSDK_INCLUDE_DIRS
-        "C:/Program Files (x86)/Windows Kits/8.1/Include"
-        "C:/Program Files (x86)/Windows Kits/8.1/Include/shared"
-        "C:/Program Files (x86)/Windows Kits/8.1/Include/um"
-        "C:/Program Files (x86)/Windows Kits/8.1/Include/winrt"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/winrt"
         )
 
 add_compile_definitions(
@@ -52,13 +52,13 @@ macro("load_sources_file")
 endmacro()
 
 add_subdirectory(engine/modules/launcher_main)
-add_subdirectory(engine/modules/appframework)
-add_subdirectory(engine/modules/matsys_controls)
-add_subdirectory(engine/modules/jpeglib)
 add_subdirectory(engine/modules/tier0)
 add_subdirectory(engine/modules/tier1)
 add_subdirectory(engine/modules/tier2)
 add_subdirectory(engine/modules/tier3)
+add_subdirectory(engine/modules/appframework)
+add_subdirectory(engine/modules/matsys_controls)
+add_subdirectory(engine/modules/jpeglib)
 add_subdirectory(engine/modules/bzip2)
 add_subdirectory(engine/modules/vtf)
 add_subdirectory(engine/modules/mathlib)

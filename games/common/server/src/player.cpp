@@ -66,6 +66,7 @@
 #include "fogcontroller.h"
 #include "gameinterface.h"
 #include "hl2orange.spa.h"
+#include <cstdlib>
 
 #ifdef HL2_DLL
 #include "combine_mine.h"

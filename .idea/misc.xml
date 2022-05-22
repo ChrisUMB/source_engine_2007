@@ -40,6 +40,7 @@
     </sourceRoots>
     <excludeRoots>
       <file path="$PROJECT_DIR$/build" />
+      <file path="$PROJECT_DIR$/lib/source-engine" />
       <file path="$PROJECT_DIR$/lib/x360xdk/lib/xbox" />
       <file path="$PROJECT_DIR$/run" />
     </excludeRoots>

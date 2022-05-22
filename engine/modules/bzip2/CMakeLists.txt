@@ -9,7 +9,6 @@ target_compile_definitions(bzip2 PRIVATE
         $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
 
-
 target_compile_options(bzip2 PRIVATE
         /GF /GS- /fp:fast /W4 /nologo /c /TC /errorReport:prompt
         $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
