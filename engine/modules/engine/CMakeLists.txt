@@ -1,8 +1,3 @@
-#[[
-This project creates the `engine.dll`
-]]
-
-
 load_sources_file()
 add_library(engine SHARED ${SE_SOURCES})
 
@@ -12,7 +7,6 @@ target_include_directories(engine PRIVATE headers headers/audio headers/audio/pr
 target_compile_definitions(engine PRIVATE
         WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE
         USE_CONVARS VOICE_OVER_IP BUMPMAP __USEA3D _ADD_EAX_ ENGINE_DLL PROTECTED_THINGS_ENABLE fopen=dont_use_fopen
-
         $<$<CONFIG:Release>:NDEBUG>
         $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
