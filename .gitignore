@@ -2,3 +2,5 @@
 /build/
 /build/*
 /lib/x360xdk/lib/xbox
+/.idea/
+/.idea/*
