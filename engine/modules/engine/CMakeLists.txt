@@ -10,18 +10,23 @@ target_include_directories(engine PRIVATE headers headers/audio headers/audio/pr
         ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1  ${SE_LIBS}/dx9sdk/include)
 
 target_compile_definitions(engine PRIVATE
-        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE USE_CONVARS VOICE_OVER_IP BUMPMAP __USEA3D _ADD_EAX_ ENGINE_DLL PROTECTED_THINGS_ENABLE fopen=dont_use_fopen>
-        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE USE_CONVARS VOICE_OVER_IP BUMPMAP __USEA3D _ADD_EAX_ ENGINE_DLL PROTECTED_THINGS_ENABLE fopen=dont_use_fopen>
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE
+        USE_CONVARS VOICE_OVER_IP BUMPMAP __USEA3D _ADD_EAX_ ENGINE_DLL PROTECTED_THINGS_ENABLE fopen=dont_use_fopen
+
+        $<$<CONFIG:Release>:NDEBUG>
+        $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
 
 target_compile_options(engine PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /arch:SSE /fp:fast /W4 /nologo /c /Wp64 /Zi /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /arch:SSE /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
+        /GF /GS- /arch:SSE /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
+        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
         )
 
 target_link_options(engine PRIVATE
-        $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86 /ERRORREPORT:PROMPT >
-        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86>
+        /NOLOGO /MANIFEST:NO /SUBSYSTEM:WINDOWS /MACHINE:X86
+        $<$<CONFIG:Release>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF /ERRORREPORT:PROMPT>
+        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
         )
 
 set_target_properties(engine PROPERTIES

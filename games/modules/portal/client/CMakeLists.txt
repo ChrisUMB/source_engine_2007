@@ -19,18 +19,24 @@ target_include_directories(cl_portal PRIVATE headers
         )
 
 target_compile_definitions(cl_portal PRIVATE
-        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE NO_STRING_T CLIENT_DLL VECTOR PROTECTED_THINGS_ENABLE fopen=dont_use_fopen strncpy=use_Q_strncpy_instead _snprintf=use_Q_snprintf_instead ENABLE_HTMLWINDOW PORTAL HL2_EPISODIC HL2_CLIENT_DLL>
-        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE NO_STRING_T CLIENT_DLL VECTOR PROTECTED_THINGS_ENABLE fopen=dont_use_fopen strncpy=use_Q_strncpy_instead _snprintf=use_Q_snprintf_instead ENABLE_HTMLWINDOW PORTAL HL2_EPISODIC HL2_CLIENT_DLL>
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE NO_STRING_T CLIENT_DLL VECTOR
+        PROTECTED_THINGS_ENABLE fopen=dont_use_fopen strncpy=use_Q_strncpy_instead _snprintf=use_Q_snprintf_instead
+        ENABLE_HTMLWINDOW PORTAL HL2_EPISODIC HL2_CLIENT_DLL
+
+        $<$<CONFIG:Release>:NDEBUG>
+        $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
 
 target_compile_options(cl_portal PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Wp64 /Zi /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /Gy /FD /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
+        /GF /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GS->
+        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /GS- /Zi>
         )
 
 target_link_options(cl_portal PRIVATE
-        $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86>
-        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86 /OPT:REF /OPT:ICF>
+        /NOLOGO /MANIFEST:NO /SUBSYSTEM:WINDOWS /MACHINE:X86
+        $<$<CONFIG:Release>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF>
+        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
         )
 
 set_target_properties(cl_portal PROPERTIES

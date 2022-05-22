@@ -4,18 +4,20 @@ add_library(dmxloader STATIC ${SE_SOURCES})
 target_include_directories(dmxloader PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1)
 
 target_compile_definitions(dmxloader PRIVATE
-        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE DMXLOADER_LIB>
-        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE DMXLOADER_LIB>
+        WIN32 _WIN32 _LIB _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE DMXLOADER_LIB
+        $<$<CONFIG:Release>:NDEBUG>
+        $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
 
 target_compile_options(dmxloader PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /Wp64 /Z7 /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Wp64 /ZI /TP /errorReport:prompt>
+        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
+        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
         )
 
 target_link_options(dmxloader PRIVATE
         $<$<CONFIG:Release>:/NOLOGO>
-        $<$<CONFIG:Debug>:/NOLOGO>
+        $<$<CONFIG:Debug>:/NOLOGO /DEBUG>
         )
 
 set_target_properties(dmxloader PROPERTIES

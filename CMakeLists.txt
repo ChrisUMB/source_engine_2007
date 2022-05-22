@@ -4,13 +4,6 @@ project(source_engine_2007)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# This clears out all cmake and MSVC defaults, hopefully.
-set(CMAKE_CXX_FLAGS "")
-set(CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE} "")
-# These two are most definitely unnecessary but I'd rather be safe than sorry.
-set(CMAKE_C_FLAGS "")
-set(CMAKE_C_FLAGS_${CMAKE_BUILD_TYPE} "")
-
 set(SE_LIBS ${CMAKE_SOURCE_DIR}/lib)
 set(SE_ENGINE ${CMAKE_SOURCE_DIR}/engine)
 set(SE_ENGINE_MODULES ${CMAKE_SOURCE_DIR}/engine/modules)
