@@ -51,7 +51,6 @@ macro("load_sources_file")
     STRING(REPLACE "\${SE_GAMES_COMMON}" "${SE_GAMES_COMMON}" SE_SOURCES "${SE_SOURCES}")
 endmacro()
 
-
 add_subdirectory(engine/modules/launcher_main)
 add_subdirectory(engine/modules/appframework)
 add_subdirectory(engine/modules/matsys_controls)
