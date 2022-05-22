@@ -4,19 +4,21 @@ add_library(tier0 SHARED ${SE_SOURCES})
 target_include_directories(tier0 PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS})
 
 target_compile_definitions(tier0 PRIVATE
-        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE TIER0_DLL_EXPORT>
-        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE TIER0_DLL_EXPORT>
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE TIER0_DLL_EXPORT
+        $<$<CONFIG:Release>:NDEBUG>
+        $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
 
 target_compile_options(tier0 PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
+        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
+        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
         )
 
 target_link_options(tier0 PRIVATE
-        /NOLOGO /MANIFEST:NO /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
-        $<$<CONFIG:Release>:/INCREMENTAL:NO /NODEFAULTLIB:libc,libcd,libcmtd /OPT:REF /OPT:ICF>
-        $<$<CONFIG:Debug>:/DEBUG /INCREMENTAL /NODEFAULTLIB:libc,libcd,libcmt>
+        /NOLOGO /DLL /MANIFEST:NO /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
+        $<$<CONFIG:Release>:/INCREMENTAL:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF>
+        $<$<CONFIG:Debug>:/INCREMENTAL /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
         )
 
 set_target_properties(tier0 PROPERTIES

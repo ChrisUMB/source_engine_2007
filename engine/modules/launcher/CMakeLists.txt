@@ -1,27 +1,24 @@
-#[[
-
-This project creates the `launcher.dll`, which is the library that launches source games.
-]]
-#
-
 load_sources_file()
 add_library(launcher SHARED ${SE_SOURCES})
 
 target_include_directories(launcher PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS})
 
 target_compile_definitions(launcher PRIVATE
-        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE LAUNCHERONLY>
-        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE LAUNCHERONLY>
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE LAUNCHERONLY
+        $<$<CONFIG:Release>:NDEBUG>
+        $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
 
 target_compile_options(launcher PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
+        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
+        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
         )
 
 target_link_options(launcher PRIVATE
-        $<$<CONFIG:Release>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /SUBSYSTEM:WINDOWS /MACHINE:X86>
-        $<$<CONFIG:Debug>:/NOLOGO /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /SUBSYSTEM:WINDOWS /MACHINE:X86>
+        /NOLOGO /MANIFEST:NO /SUBSYSTEM:WINDOWS /MACHINE:X86
+        $<$<CONFIG:Release>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF>
+        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
         )
 
 set_target_properties(launcher PROPERTIES

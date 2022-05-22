@@ -4,19 +4,21 @@ add_library(vstdlib SHARED ${SE_SOURCES})
 target_include_directories(vstdlib PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS})
 
 target_compile_definitions(vstdlib PRIVATE
-        $<$<CONFIG:Release>:WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE VSTDLIB_DLL_EXPORT>
-        $<$<CONFIG:Debug>:WIN32 _WIN32 _DEBUG DEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE VSTDLIB_DLL_EXPORT>
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE VSTDLIB_DLL_EXPORT
+        $<$<CONFIG:Release>:NDEBUG>
+        $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
 
 target_compile_options(vstdlib PRIVATE
-        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GF /FD /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt>
-        $<$<CONFIG:Debug>:/Od /GF /Gm /RTC1 /GS- /fp:fast /W4 /nologo /c /Zi /TP /errorReport:prompt>
+        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
+        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
         )
 
 target_link_options(vstdlib PRIVATE
-        /NOLOGO /MANIFEST:NO /DLL /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
-        $<$<CONFIG:Release>:/NODEFAULTLIB:libc,libcd,libcmtd /INCREMENTAL:NO /OPT:REF /OPT:ICF>
-        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc,libcd,libcmt>
+        /NOLOGO /MANIFEST:NO /SUBSYSTEM:WINDOWS /MACHINE:X86
+        $<$<CONFIG:Release>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF>
+        $<$<CONFIG:Debug>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
         )
 
 set_target_properties(vstdlib PROPERTIES
@@ -26,6 +28,4 @@ set_target_properties(vstdlib PROPERTIES
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 
-target_link_libraries(
-        vstdlib PUBLIC tier0 tier1
-)
+target_link_libraries(vstdlib PUBLIC tier0 tier1)
