@@ -1,0 +1,5 @@
+src/BitmapFont.cpp
+src/FontAmalgam.cpp
+src/FontEffects.cpp
+src/FontManager.cpp
+src/Win32Font.cpp
