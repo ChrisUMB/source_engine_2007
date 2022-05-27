@@ -1,5 +1,6 @@
+#TODO: This was done sloppy and quick, recheck everything to ensure it is correct.
 load_sources_file()
-add_library(vguimatsurface STATIC ${SE_SOURCES})
+add_library(vguimatsurface SHARED ${SE_SOURCES})
 
 target_include_directories(vguimatsurface PRIVATE headers
         ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS}

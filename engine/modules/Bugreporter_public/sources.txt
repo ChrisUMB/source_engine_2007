@@ -1,0 +1,4 @@
+${SE_PUBLIC}/tier0/memoverride.cpp
+${SE_PUBLIC}/blockingudpsocket.cpp
+${SE_UTILS}/bugreporter_public/bugreporter_public.cpp
+${SE_UTILS}/bugreporter_public/bugreporter_upload.cpp

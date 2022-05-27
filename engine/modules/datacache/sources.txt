@@ -1,0 +1,6 @@
+${SE_PUBLIC}/studio_virtualmodel.cpp
+${SE_PUBLIC}/studio.cpp
+${SE_PUBLIC}/tier0/memoverride.cpp
+${SE_COMMON}/studiobyteswap.cpp
+src/mdlcache.cpp
+src/datacache.cpp
