@@ -2678,10 +2678,10 @@ static void CommitSetScissorRect( D3DDeviceWrapper *pDevice, const DynamicState_
 		Assert( (desiredState.m_ScissorRect.left <= nWidth) && (desiredState.m_ScissorRect.bottom <= nHeight) &&
 			    ( desiredState.m_ScissorRect.top >= 0 ) && (desiredState.m_ScissorRect.left >= 0) );
 
-		clamp( desiredState.m_ScissorRect.right,  0, nWidth );
-		clamp( desiredState.m_ScissorRect.left,   0, nWidth );
-		clamp( desiredState.m_ScissorRect.top,    0, nHeight );
-		clamp( desiredState.m_ScissorRect.bottom, 0, nHeight );
+		seclamp( desiredState.m_ScissorRect.right,  0, nWidth );
+		seclamp( desiredState.m_ScissorRect.left,   0, nWidth );
+		seclamp( desiredState.m_ScissorRect.top,    0, nHeight );
+		seclamp( desiredState.m_ScissorRect.bottom, 0, nHeight );
 
 		Dx9Device()->SetScissorRect( &desiredState.m_ScissorRect );
 		currentState.m_ScissorRect = desiredState.m_ScissorRect;
@@ -11143,17 +11143,17 @@ IDirect3DSurface* CShaderAPIDx8::GetBackBufferImage( Rect_t *pSrcRect, Rect_t *p
 		RECT srcRect, destRect;
 		srcRect.left = pSrcRect->x; srcRect.right = pSrcRect->x + pSrcRect->width;
 		srcRect.top = pSrcRect->y; srcRect.bottom = pSrcRect->y + pSrcRect->height;
-		srcRect.left = clamp( srcRect.left, 0, (int)desc.Width );
-		srcRect.right = clamp( srcRect.right, 0, (int)desc.Width );
-		srcRect.top = clamp( srcRect.top, 0, (int)desc.Height );
-		srcRect.bottom = clamp( srcRect.bottom, 0, (int)desc.Height );
+		srcRect.left = seclamp( srcRect.left, 0, (int)desc.Width );
+		srcRect.right = seclamp( srcRect.right, 0, (int)desc.Width );
+		srcRect.top = seclamp( srcRect.top, 0, (int)desc.Height );
+		srcRect.bottom = seclamp( srcRect.bottom, 0, (int)desc.Height );
 
 		destRect.left = pDstRect->x ; destRect.right = pDstRect->x + pDstRect->width;
 		destRect.top = pDstRect->y; destRect.bottom = pDstRect->y + pDstRect->height;
-		destRect.left = clamp( destRect.left, 0, (int)desc.Width );
-		destRect.right = clamp( destRect.right, 0, (int)desc.Width );
-		destRect.top = clamp( destRect.top, 0, (int)desc.Height );
-		destRect.bottom = clamp( destRect.bottom, 0, (int)desc.Height );
+		destRect.left = seclamp( destRect.left, 0, (int)desc.Width );
+		destRect.right = seclamp( destRect.right, 0, (int)desc.Width );
+		destRect.top = seclamp( destRect.top, 0, (int)desc.Height );
+		destRect.bottom = seclamp( destRect.bottom, 0, (int)desc.Height );
 
 		hr = Dx9Device()->StretchRect( pRenderTarget, &srcRect, pTmpSurface, &destRect, filter );
 		if ( FAILED(hr) )
