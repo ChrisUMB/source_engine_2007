@@ -2,7 +2,7 @@ load_sources_file()
 add_library(Bugreporter_public SHARED ${SE_SOURCES})
 
 target_include_directories(Bugreporter_public PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1
-        ${SE_UTILS}/common
+        ${SE_UTILS}/common ${WINSDK_INCLUDE_DIRS}
         )
 
 target_compile_definitions(Bugreporter_public PRIVATE

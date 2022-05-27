@@ -742,9 +742,11 @@ void CStdioFile::FS_setbufsize( unsigned nBytes )
 	}
 	else
 	{
-		setvbuf( m_pFile, NULL, _IONBF,  0 );
+		setvbuf( m_pFile, NULL, _IONBF,  1 );
 		// hack to make microsoft stdio not always read one stray byte on odd sized files
-		m_pFile->_bufsiz = 1;
+//		m_pFile->_bufsiz = 1;
+
+
 	}
 #endif
 }

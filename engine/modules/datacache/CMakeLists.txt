@@ -1,7 +1,7 @@
 load_sources_file()
 add_library(datacache SHARED ${SE_SOURCES})
 
-target_include_directories(datacache PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1)
+target_include_directories(datacache PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS})
 
 target_compile_definitions(datacache PRIVATE
         WIN32
