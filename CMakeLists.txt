@@ -84,6 +84,7 @@ add_subdirectory(engine/modules/Bugreporter_public)
 add_subdirectory(engine/modules/Bugreporter_text)
 add_subdirectory(engine/modules/datacache)
 add_subdirectory(engine/modules/FileSystem_Stdio)
+add_subdirectory(engine/modules/shaderapidx9)
 
 add_subdirectory(engine/modules/launcher)
 add_subdirectory(engine/modules/engine)
