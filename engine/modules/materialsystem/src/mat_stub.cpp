@@ -479,7 +479,7 @@ public:
 
 	virtual bool HasProjectedBumpEnv() const		{ return false; }
 	virtual bool SupportsSpheremapping() const		{ return false; }
-	virtual bool NeedsAAseclamp() const				{ return false; }
+	virtual bool NeedsAAClamp() const				{ return false; }
 	virtual bool HasFastZReject() const				{ return false; }
 	virtual bool NeedsATICentroidHack() const		{ return false; }
 	virtual bool SupportsColorOnSecondStream() const{ return false; }
