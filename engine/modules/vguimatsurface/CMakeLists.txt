@@ -2,7 +2,7 @@ load_sources_file()
 add_library(vguimatsurface STATIC ${SE_SOURCES})
 
 target_include_directories(vguimatsurface PRIVATE headers
-        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1
+        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS}
         ../vgui2/headers
 
         )

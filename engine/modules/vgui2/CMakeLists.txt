@@ -2,7 +2,7 @@ load_sources_file()
 add_library(vgui2 SHARED ${SE_SOURCES})
 
 target_include_directories(vgui2 PRIVATE headers
-        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1
+        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS}
         )
 
 target_compile_definitions(vgui2 PRIVATE
