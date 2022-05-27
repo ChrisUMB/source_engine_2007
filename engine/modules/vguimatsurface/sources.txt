@@ -1,0 +1,7 @@
+src/Clip2D.cpp
+src/Cursor.cpp
+src/FontTextureCache.cpp
+src/Input.cpp
+src/MatSystemSurface.cpp
+src/memorybitmap.cpp
+src/TextureDictionary.cpp
