@@ -1,0 +1,9 @@
+${SE_PUBLIC}/tier0/memoverride.cpp
+${SE_PUBLIC}/kevvaluescompiler.cpp
+${SE_PUBLIC}/zip_utils.cpp
+
+src/QueuedLoader.cpp
+src/filetracker.cpp
+src/filesystem_stdio.cpp
+src/filesystem_async.cpp
+src/basefilesystem.cpp
