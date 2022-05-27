@@ -96,7 +96,6 @@ bool WriteMiniDumpUsingExceptionInfo(
 			pch = _T("unknown");
 		}
 
-		
 		// can't use the normal string functions since we're in tier0
 		tchar rgchFileName[MAX_PATH];
 		_sntprintf( rgchFileName, sizeof(rgchFileName) / sizeof(tchar),

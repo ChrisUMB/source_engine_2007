@@ -3,7 +3,6 @@ cmake_policy(SET CMP0091 NEW)
 project(source_engine_2007)
 set(CMAKE_CXX_STANDARD 11)
 
-# TODO: Find WindowsSDK from https://github.com/rpavlik/cmake-modules/blob/main/FindWindowsSDK.cmake instead.
 set(WINSDK_INCLUDE_DIRS
         "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0"
         "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared"
@@ -14,6 +13,7 @@ set(WINSDK_INCLUDE_DIRS
 add_compile_definitions(
         WINVER=0x600
         _CRT_NO_VA_START_VALIDATION
+        _HAS_AUTO_PTR_ETC
 )
 
 # This clears out all cmake and MSVC defaults, hopefully. Doesn't seem to ACTUALLY work, to be honest... :(

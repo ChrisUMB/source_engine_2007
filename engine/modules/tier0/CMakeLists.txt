@@ -10,9 +10,9 @@ target_compile_definitions(tier0 PRIVATE
         )
 
 target_compile_options(tier0 PRIVATE
-        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt /std:c++17
         $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
-        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
+        $<$<CONFIG:Debug>:/Od /RTC1 /Zi>
         )
 
 target_link_options(tier0 PRIVATE

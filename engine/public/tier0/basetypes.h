@@ -106,6 +106,9 @@ typedef int BOOL;
 typedef int qboolean;
 typedef unsigned long ULONG;
 typedef unsigned char BYTE;
+
+//cxx20-patch
+// byte now exists within std::byte
 typedef unsigned char byte;
 typedef unsigned short word;
 
