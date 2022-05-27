@@ -190,7 +190,7 @@ inline CUtlDataEnvelope::operator void *() const
 //-----------------------------------------------------------------------------
 
 template <typename T>
-inline CUtlEnvelope<T>::CUtlEnvelope( const T *pData, int nElems = 1  )
+inline CUtlEnvelope<T>::CUtlEnvelope( const T *pData, int nElems)
 	: CUtlDataEnvelope( pData, sizeof(T) * nElems )
 {
 }

@@ -10,7 +10,7 @@ target_compile_definitions(mathlib PRIVATE
         )
 
 target_compile_options(mathlib PRIVATE
-        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt /std:c++17
         $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
         $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
         )
