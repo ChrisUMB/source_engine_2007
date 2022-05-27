@@ -103,7 +103,7 @@ public:
 			}
 
 			// Then we clamp to the min/max values the server has set.
-			return clamp( flCmdRate, sv_mincmdrate.GetFloat(), sv_maxcmdrate.GetFloat() );
+			return seclamp( flCmdRate, sv_mincmdrate.GetFloat(), sv_maxcmdrate.GetFloat() );
 		}
 		else
 		{
@@ -140,7 +140,7 @@ public:
 		// This cvar only takes effect on the server anyway, and this is done there too,
 		// but we have this here so they'll get the **note thing telling them the value 
 		// isn't functioning the way they set it.		
-		return clamp( GetBaseFloatValue(), sv_minupdaterate.GetFloat(), sv_maxupdaterate.GetFloat() );
+		return seclamp( GetBaseFloatValue(), sv_minupdaterate.GetFloat(), sv_maxupdaterate.GetFloat() );
 	}
 };
 

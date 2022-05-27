@@ -2405,7 +2405,7 @@ bool MIX_ScaleChannelVolume( paintbuffer_t *ppaint, channel_t *pChannel, int vol
 
 	scale = scale * (1/cone);
 
-	scale = clamp( scale, 0.0f, 1.0f );
+	scale = seclamp( scale, 0.0f, 1.0f );
 
 	// pan between facing and facing away buffers
 
@@ -2477,7 +2477,7 @@ bool MIX_ScaleChannelVolume( paintbuffer_t *ppaint, channel_t *pChannel, int vol
 
 	for (i = 0; i < CCHANVOLUMES; i++)
 	{
-		volume[i] = clamp(volume[i], 0, 255);
+		volume[i] = seclamp(volume[i], 0, 255);
 
 		if (volume[i])
 			fzerovolume = false;

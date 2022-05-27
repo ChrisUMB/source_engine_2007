@@ -1280,7 +1280,7 @@ float C_BaseEntity::HealthFraction() const
 		return 1.0f;
 
 	float flFraction = (float)GetHealth() / (float)GetMaxHealth();
-	flFraction = clamp( flFraction, 0.0f, 1.0f );
+	flFraction = seclamp( flFraction, 0.0f, 1.0f );
 	return flFraction;
 }
 
@@ -3372,7 +3372,7 @@ void C_BaseEntity::ComputeFxBlend( void )
 		
 	}
 
-	blend = clamp( blend, 0, 255 );
+	blend = seclamp( blend, 0, 255 );
 
 	// Look for client-side fades
 	unsigned char nFadeAlpha = GetClientSideFade();
@@ -3381,7 +3381,7 @@ void C_BaseEntity::ComputeFxBlend( void )
 		float flBlend = blend / 255.0f;
 		float flFade = nFadeAlpha / 255.0f;
 		blend = (int)( flBlend * flFade * 255.0f + 0.5f );
-		blend = clamp( blend, 0, 255 );
+		blend = seclamp( blend, 0, 255 );
 	}
 
 	m_nRenderFXBlend = blend;

@@ -214,12 +214,12 @@ void C_PropVehicleChoreoGeneric::UpdateViewAngles( C_BasePlayer *pLocalPlayer, C
 
 	// Limit the yaw.
 	float flAngleDiff = AngleDiff( pCmd->viewangles.y, vehicleEyeAngles.y );
-	flAngleDiff = clamp( flAngleDiff, m_vehicleView.flYawMin, m_vehicleView.flYawMax );
+	flAngleDiff = seclamp( flAngleDiff, m_vehicleView.flYawMin, m_vehicleView.flYawMax );
 	pCmd->viewangles.y = vehicleEyeAngles.y + flAngleDiff;
 
 	// Limit the pitch -- don't let them look down into the empty pod!
 	flAngleDiff = AngleDiff( pCmd->viewangles.x, vehicleEyeAngles.x );
-	flAngleDiff = clamp( flAngleDiff, m_vehicleView.flPitchMin, m_vehicleView.flPitchMax );
+	flAngleDiff = seclamp( flAngleDiff, m_vehicleView.flPitchMin, m_vehicleView.flPitchMax );
 	pCmd->viewangles.x = vehicleEyeAngles.x + flAngleDiff;
 }
 

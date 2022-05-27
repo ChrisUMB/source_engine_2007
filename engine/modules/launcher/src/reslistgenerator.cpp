@@ -498,7 +498,7 @@ bool CResListGenerator::InitCommandFile( char const *pchGameDir, char const *pch
 
 	m_bActive = m_WorkItems.Count() > 0;
 	
-	m_nCurrentWorkItem = clamp( m_nCurrentWorkItem, 0, m_WorkItems.Count() - 1 );
+	m_nCurrentWorkItem = seclamp( m_nCurrentWorkItem, 0, m_WorkItems.Count() - 1 );
 
 	bool bCollate = CommandLine()->CheckParm( "-collate" ) ? true : false;
 	if ( bCollate )

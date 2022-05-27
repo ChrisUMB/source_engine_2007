@@ -231,7 +231,7 @@ void FX_TracerSound( const Vector &start, const Vector &end, int iTracerType )
 
 			float s, t;
 			IntersectRayWithRay( bullet, listener, s, t );
-			t = clamp( t, 0, 1 );
+			t = seclamp( t, 0, 1 );
 			vecListenOrigin.z -= t * LISTENER_HEIGHT;
 		}
 		break;

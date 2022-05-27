@@ -323,7 +323,7 @@ void DrawSegs( int noise_divisions, float *prgNoise, const model_t* spritemodel,
 	float fadeFraction = fadeLength/ delta.Length();
 	
 	// BUGBUG: This code generates NANs when fadeFraction is zero! REVIST!
-	fadeFraction = clamp(fadeFraction,1e-6,1);
+	fadeFraction = seclamp(fadeFraction,1e-6,1);
 
 	// Choose two vectors that are perpendicular to the beam
 	Vector perp1;
@@ -525,7 +525,7 @@ void DrawTeslaSegs( int noise_divisions, float *prgNoise, const model_t* spritem
 	float fadeFraction = fadeLength/ delta.Length();
 	
 	// BUGBUG: This code generates NANs when fadeFraction is zero! REVIST!
-	fadeFraction = clamp(fadeFraction,1e-6,1);
+	fadeFraction = seclamp(fadeFraction,1e-6,1);
 
 	Vector perp;
 	ComputeBeamPerpendicular( delta, &perp );
@@ -1402,9 +1402,9 @@ void DrawBeamFollow( const model_t* spritemodel, BeamTrail_t* pHead, int frame, 
 	unsigned char nColor[3];
 
 	VectorScale( color, fraction, scaledColor );
-	nColor[0] = (unsigned char)clamp( (int)(scaledColor[0] * 255.0f), 0, 255 );
-	nColor[1] = (unsigned char)clamp( (int)(scaledColor[1] * 255.0f), 0, 255 );
-	nColor[2] = (unsigned char)clamp( (int)(scaledColor[2] * 255.0f), 0, 255 );
+	nColor[0] = (unsigned char)seclamp( (int)(scaledColor[0] * 255.0f), 0, 255 );
+	nColor[1] = (unsigned char)seclamp( (int)(scaledColor[1] * 255.0f), 0, 255 );
+	nColor[2] = (unsigned char)seclamp( (int)(scaledColor[2] * 255.0f), 0, 255 );
 	
 	// need to count the segments
 	int count = 0;
@@ -1454,9 +1454,9 @@ void DrawBeamFollow( const model_t* spritemodel, BeamTrail_t* pHead, int frame, 
 		{
 			fraction = (pHead->die - gpGlobals->curtime) * div;
 			VectorScale( color, fraction, scaledColor );
-			nColor[0] = (unsigned char)clamp( (int)(scaledColor[0] * 255.0f), 0, 255 );
-			nColor[1] = (unsigned char)clamp( (int)(scaledColor[1] * 255.0f), 0, 255 );
-			nColor[2] = (unsigned char)clamp( (int)(scaledColor[2] * 255.0f), 0, 255 );
+			nColor[0] = (unsigned char)seclamp( (int)(scaledColor[0] * 255.0f), 0, 255 );
+			nColor[1] = (unsigned char)seclamp( (int)(scaledColor[1] * 255.0f), 0, 255 );
+			nColor[2] = (unsigned char)seclamp( (int)(scaledColor[2] * 255.0f), 0, 255 );
 		}
 		else
 		{

@@ -1025,7 +1025,7 @@ void CFourWheelVehiclePhysics::SteeringTurnAnalog( float carSpeed, const vehicle
 #if 0
 	float flSteeringRate = STEERING_BASE_RATE;
 
-	float factor = clamp( fabs( sidemove ) / STICK_EXTENTS, 0.0f, 1.0f );
+	float factor = seclamp( fabs( sidemove ) / STICK_EXTENTS, 0.0f, 1.0f );
 
 	factor *= 30;
 	flSteeringRate *= log( factor );
@@ -1182,7 +1182,7 @@ void CFourWheelVehiclePhysics::UpdateDriverControls( CUserCmd *cmd, float flFram
 	{
 		float flAnalogThrottle = cmd->forwardmove / STICK_EXTENTS;
 
-		flAnalogThrottle = clamp( flAnalogThrottle, 0.25f, 1.0f );
+		flAnalogThrottle = seclamp( flAnalogThrottle, 0.25f, 1.0f );
 
 		bThrottle = true;
 		if ( m_controls.throttle < 0 )
@@ -1232,7 +1232,7 @@ void CFourWheelVehiclePhysics::UpdateDriverControls( CUserCmd *cmd, float flFram
 	{
 		float flAnalogBrake = fabs(cmd->forwardmove / STICK_EXTENTS);
 
-		flAnalogBrake = clamp( flAnalogBrake, 0.25f, 1.0f );
+		flAnalogBrake = seclamp( flAnalogBrake, 0.25f, 1.0f );
 
 		bThrottle = true;
 		if ( m_controls.throttle > 0 )
@@ -1385,7 +1385,7 @@ void CFourWheelVehiclePhysics::UpdateDriverControls( CUserCmd *cmd, float flFram
 		m_bLastThrottle = false;
 	}
 
-	float flSpeedPercentage = clamp( m_nSpeed / m_flMaxSpeed, 0, 1 );
+	float flSpeedPercentage = seclamp( m_nSpeed / m_flMaxSpeed, 0, 1 );
 	vbs_sound_update_t params;
 	params.Defaults();
 	params.bReverse = (m_controls.throttle < 0);

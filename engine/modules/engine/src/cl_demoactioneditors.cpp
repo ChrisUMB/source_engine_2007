@@ -486,10 +486,10 @@ bool CBaseActionScreenFadeStartDialog::OnSaveChanges( void )
 	m_pColor->GetText( sz, sizeof( sz ) );
 	if ( 4 == sscanf( sz, "%i %i %i %i", &rr, &gg, &bb, &aa ) )
 	{
-		rr = clamp( rr, 0, 255 );
-		gg = clamp( gg, 0, 255 );
-		bb = clamp( bb, 0, 255 );
-		aa = clamp( aa, 0, 255 );
+		rr = seclamp( rr, 0, 255 );
+		gg = seclamp( gg, 0, 255 );
+		bb = seclamp( bb, 0, 255 );
+		aa = seclamp( aa, 0, 255 );
 
 		if ( rr != r || gg != g || bb != b || aa != a )
 		{

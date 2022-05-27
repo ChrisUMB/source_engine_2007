@@ -460,7 +460,7 @@ bool COverlayMgr::FadeOverlayFragment( moverlay_t *pOverlay, moverlayfragment_t 
 		if ( ( flFadeDistMinSq >= 0 ) && ( flLength2 > flFadeDistMinSq ) )
 		{
 			flAlpha = pOverlay->m_flInvFadeRangeSq * ( flFadeDistMaxSq - flLength2 );
-			flAlpha = clamp( flAlpha, 0.0f, 1.0f );
+			flAlpha = seclamp( flAlpha, 0.0f, 1.0f );
 			bInRange = true;
 		}
 		else
@@ -1394,8 +1394,8 @@ void COverlayMgr::Disp_PostClipFragment( CDispInfo *pDisp, CMeshReader *pReader,
 			vecTmpUV.x = pDispFragment->m_aPrimVerts[iVert].pos.x;
 			vecTmpUV.y = pDispFragment->m_aPrimVerts[iVert].pos.y;
 
-			vecTmpUV.x = clamp( vecTmpUV.x, 0.0f, 1.0f );
-			vecTmpUV.y = clamp( vecTmpUV.y, 0.0f, 1.0f );
+			vecTmpUV.x = seclamp( vecTmpUV.x, 0.0f, 1.0f );
+			vecTmpUV.y = seclamp( vecTmpUV.y, 0.0f, 1.0f );
 
 			Overlay_DispUVToWorld( pDisp, pReader, vecTmpUV, pFragment->m_aPrimVerts[iVert].pos, surfaceFrag );
 

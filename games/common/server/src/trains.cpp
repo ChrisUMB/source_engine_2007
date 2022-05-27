@@ -1458,7 +1458,7 @@ void CFuncTrackTrain::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TY
 //-----------------------------------------------------------------------------
 void CFuncTrackTrain::InputSetSpeedReal( inputdata_t &inputdata )
 {
-	SetSpeed( clamp( inputdata.value.Float(), 0, m_maxSpeed ) );
+	SetSpeed( seclamp( inputdata.value.Float(), 0, m_maxSpeed ) );
 }
 
 
@@ -1468,7 +1468,7 @@ void CFuncTrackTrain::InputSetSpeedReal( inputdata_t &inputdata )
 //-----------------------------------------------------------------------------
 void CFuncTrackTrain::InputSetSpeed( inputdata_t &inputdata )
 {
-	float flScale = clamp( inputdata.value.Float(), 0, 1 );
+	float flScale = seclamp( inputdata.value.Float(), 0, 1 );
 	SetSpeed( m_maxSpeed * flScale );
 }
 
@@ -1484,7 +1484,7 @@ void CFuncTrackTrain::InputSetSpeedDir( inputdata_t &inputdata )
 	float newSpeed = inputdata.value.Float();
 	SetDirForward( newSpeed >= 0 );
 	newSpeed = fabs(newSpeed);
-	float flScale = clamp( newSpeed, 0, 1 );
+	float flScale = seclamp( newSpeed, 0, 1 );
 	SetSpeed( m_maxSpeed * flScale );
 }
 
@@ -1699,11 +1699,11 @@ void CFuncTrackTrain::SoundUpdate( void )
 	float flSpeedRatio = 0;
 	if ( HasSpawnFlags( SF_TRACKTRAIN_USE_MAXSPEED_FOR_PITCH ) )
 	{
-		flSpeedRatio = clamp( fabs( m_flSpeed ) / m_maxSpeed, 0, 1 );
+		flSpeedRatio = seclamp( fabs( m_flSpeed ) / m_maxSpeed, 0, 1 );
 	}
 	else
 	{
-		flSpeedRatio = clamp( fabs( m_flSpeed ) / TRAIN_MAXSPEED, 0, 1 );
+		flSpeedRatio = seclamp( fabs( m_flSpeed ) / TRAIN_MAXSPEED, 0, 1 );
 	}
 
 	float flpitch = RemapVal( flSpeedRatio, 0, 1, m_nMoveSoundMinPitch, m_nMoveSoundMaxPitch );

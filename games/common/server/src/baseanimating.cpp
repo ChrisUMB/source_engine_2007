@@ -385,12 +385,12 @@ float CBaseAnimating::GetAnimTimeInterval( void ) const
 	if (m_flAnimTime < gpGlobals->curtime)
 	{
 		// estimate what it'll be this frame
-		flInterval = clamp( gpGlobals->curtime - m_flAnimTime, 0, MAX_ANIMTIME_INTERVAL );
+		flInterval = seclamp( gpGlobals->curtime - m_flAnimTime, 0, MAX_ANIMTIME_INTERVAL );
 	}
 	else
 	{
 		// report actual
-		flInterval = clamp( m_flAnimTime - m_flPrevAnimTime, 0, MAX_ANIMTIME_INTERVAL );
+		flInterval = seclamp( m_flAnimTime - m_flPrevAnimTime, 0, MAX_ANIMTIME_INTERVAL );
 	}
 	return flInterval;
 }
@@ -483,7 +483,7 @@ void CBaseAnimating::StudioFrameAdvance()
 
 	// Time since last animation
 	float flInterval = gpGlobals->curtime - m_flAnimTime;
-	flInterval = clamp( flInterval, 0, MAX_ANIMTIME_INTERVAL );
+	flInterval = seclamp( flInterval, 0, MAX_ANIMTIME_INTERVAL );
 
 	//Msg( "%i %s interval %f\n", entindex(), GetClassname(), flInterval );
 	if (flInterval <= 0.001)
@@ -1521,9 +1521,9 @@ void CBaseAnimating::UpdateStepOrigin()
 				m_flEstIkFloor = m_flEstIkFloor * 0.2 + m_flIKGroundMinHeight * 0.8;
 
 				// don't let heigth difference between min and max exceed step height
-				float bias = clamp( (m_flIKGroundMaxHeight - m_flIKGroundMinHeight) - height, 0, height );
+				float bias = seclamp( (m_flIKGroundMaxHeight - m_flIKGroundMinHeight) - height, 0, height );
 				// save off reasonable offset
-				m_flEstIkOffset = clamp( m_flEstIkFloor - GetAbsOrigin().z, -height + bias, 0.0f );
+				m_flEstIkOffset = seclamp( m_flEstIkFloor - GetAbsOrigin().z, -height + bias, 0.0f );
 				return;
 			}
 		}
@@ -3285,7 +3285,7 @@ void CBaseAnimating::UpdateModelWidthScale()
 	Assert( dt > 0.0f );
 
 	float frac = ( gpGlobals->curtime - mvs->m_flModelWidthScaleStartTime ) / dt;
-	frac = clamp( frac, 0.0f, 1.0f );
+	frac = seclamp( frac, 0.0f, 1.0f );
 
 	if ( gpGlobals->curtime >= mvs->m_flModelWidthScaleFinishTime )
 	{

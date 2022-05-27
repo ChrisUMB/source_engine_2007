@@ -3926,7 +3926,7 @@ void CNPC_AttackHelicopter::ComputeVelocity( const Vector &vecTargetPosition,
 			// Strongly constrain to an n unit pipe around the current path
 			// by damping out all impulse forces that would push us further from the pipe
 			float flAmount = (flDistFromPath - flMaxDistFromSegment) / 200.0f;
-			flAmount = clamp( flAmount, 0, 1 );
+			flAmount = seclamp( flAmount, 0, 1 );
 			VectorMA( *pVecAccel, flAmount * 200.0f, vecDelta, *pVecAccel );
 		}
 	}
@@ -4038,8 +4038,8 @@ void CNPC_AttackHelicopter::ComputeAngularVelocity( const Vector &vecGoalUp, con
 		goalPitch *= 0.75f;
 
 		// clamp goal orientations
-		goalPitch = clamp( goalPitch, -30, 45 );
-		goalRoll = clamp( goalRoll, -45, 45 );
+		goalPitch = seclamp( goalPitch, -30, 45 );
+		goalRoll = seclamp( goalRoll, -45, 45 );
 
 		// calc angular accel needed to hit goal pitch in dt time.
 		float dt = 0.6;
@@ -4047,10 +4047,10 @@ void CNPC_AttackHelicopter::ComputeAngularVelocity( const Vector &vecGoalUp, con
 		goalAngAccel.y = 2.0 * (AngleDiff( goalYaw, AngleNormalize( GetAbsAngles().y ) ) - GetLocalAngularVelocity().y * dt) / (dt * dt);
 		goalAngAccel.z = 2.0 * (AngleDiff( goalRoll, AngleNormalize( GetAbsAngles().z ) ) - GetLocalAngularVelocity().z * dt) / (dt * dt);
 
-		goalAngAccel.x = clamp( goalAngAccel.x, -300, 300 );
+		goalAngAccel.x = seclamp( goalAngAccel.x, -300, 300 );
 		//goalAngAccel.y = clamp( goalAngAccel.y, -60, 60 );
-		goalAngAccel.y = clamp( goalAngAccel.y, -120, 120 );
-		goalAngAccel.z = clamp( goalAngAccel.z, -300, 300 );
+		goalAngAccel.y = seclamp( goalAngAccel.y, -120, 120 );
+		goalAngAccel.z = seclamp( goalAngAccel.z, -300, 300 );
 	}
 	else
 	{
@@ -4066,9 +4066,9 @@ void CNPC_AttackHelicopter::ComputeAngularVelocity( const Vector &vecGoalUp, con
 	angAccelAccel.y = (goalAngAccel.y - m_vecAngAcceleration.y) / dt;
 	angAccelAccel.z = (goalAngAccel.z - m_vecAngAcceleration.z) / dt;
 
-	angAccelAccel.x = clamp( angAccelAccel.x, -1000, 1000 );
-	angAccelAccel.y = clamp( angAccelAccel.y, -1000, 1000 );
-	angAccelAccel.z = clamp( angAccelAccel.z, -1000, 1000 );
+	angAccelAccel.x = seclamp( angAccelAccel.x, -1000, 1000 );
+	angAccelAccel.y = seclamp( angAccelAccel.y, -1000, 1000 );
+	angAccelAccel.z = seclamp( angAccelAccel.z, -1000, 1000 );
 
 	// DevMsg( "pitch %6.1f (%6.1f:%6.1f)  ", goalPitch, GetLocalAngles().x, m_vecAngVelocity.x );
 	// DevMsg( "roll %6.1f (%6.1f:%6.1f) : ", goalRoll, GetLocalAngles().z, m_vecAngVelocity.z );
@@ -4079,7 +4079,7 @@ void CNPC_AttackHelicopter::ComputeAngularVelocity( const Vector &vecGoalUp, con
 
 	QAngle angVel = GetLocalAngularVelocity();
 	angVel += m_vecAngAcceleration * 0.1;
-	angVel.y = clamp( angVel.y, -120, 120 );
+	angVel.y = seclamp( angVel.y, -120, 120 );
 
 	// Fix up pitch and yaw to tend toward small values
 	if ( m_lifeState == LIFE_DYING && GetCrashPoint() == NULL )
@@ -4092,7 +4092,7 @@ void CNPC_AttackHelicopter::ComputeAngularVelocity( const Vector &vecGoalUp, con
 
 	SetLocalAngularVelocity( angVel );
 
-	float flAmt = clamp( angVel.y, -30, 30 ); 
+	float flAmt = seclamp( angVel.y, -30, 30 );
 	float flRudderPose = RemapVal( flAmt, -30, 30, 45, -45 );
 	SetPoseParameter( "rudder", flRudderPose );
 }

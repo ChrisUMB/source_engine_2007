@@ -689,7 +689,7 @@ public:
 			return;
 
 		float frac = RemapVal( gpGlobals->curtime, m_parentTime, m_parentTime+ATTACH_INTERP_TIME, 0, 1 );
-		frac = clamp( frac, 0, 1 );
+		frac = seclamp( frac, 0, 1 );
 		// interpolate offset over some time
 		Vector offset = m_vecOffset * (1-frac);
 

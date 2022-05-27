@@ -1228,13 +1228,13 @@ void CNPC_CombineDropship::Flight( void )
 				// Strongly constrain to an n unit pipe around the current path
 				// by damping out all impulse forces that would push us further from the pipe
 				float flAmount = (flDistFromPath - 200) / 200.0f;
-				flAmount = clamp( flAmount, 0, 1 );
+				flAmount = seclamp( flAmount, 0, 1 );
 				VectorMA( accel, flAmount * 200.0f, vecDelta, accel );
 			}
 		}
 
 		// don't fall faster than 0.2G or climb faster than 2G
-		accel.z = clamp( accel.z, 384 * 0.2, 384 * 2.0 );
+		accel.z = seclamp( accel.z, 384 * 0.2, 384 * 2.0 );
 
 		Vector goalUp = accel;
 		VectorNormalize( goalUp );
@@ -1245,8 +1245,8 @@ void CNPC_CombineDropship::Flight( void )
 		float goalRoll = RAD2DEG( asin( DotProduct( right, goalUp ) ) );
 
 		// clamp goal orientations
-		goalPitch = clamp( goalPitch, -45, 60 );
-		goalRoll = clamp( goalRoll, -45, 45 );
+		goalPitch = seclamp( goalPitch, -45, 60 );
+		goalRoll = seclamp( goalRoll, -45, 45 );
 
 		// calc angular accel needed to hit goal pitch in dt time.
 		dt = 0.6;
@@ -1255,10 +1255,10 @@ void CNPC_CombineDropship::Flight( void )
 		goalAngAccel.y = 2.0 * (AngleDiff( goalYaw, AngleNormalize( GetLocalAngles().y ) ) - GetLocalAngularVelocity().y * dt) / (dt * dt);
 		goalAngAccel.z = 2.0 * (AngleDiff( goalRoll, AngleNormalize( GetLocalAngles().z ) ) - GetLocalAngularVelocity().z * dt) / (dt * dt);
 
-		goalAngAccel.x = clamp( goalAngAccel.x, -300, 300 );
+		goalAngAccel.x = seclamp( goalAngAccel.x, -300, 300 );
 		//goalAngAccel.y = clamp( goalAngAccel.y, -60, 60 );
-		goalAngAccel.y = clamp( goalAngAccel.y, -120, 120 );
-		goalAngAccel.z = clamp( goalAngAccel.z, -300, 300 );
+		goalAngAccel.y = seclamp( goalAngAccel.y, -120, 120 );
+		goalAngAccel.z = seclamp( goalAngAccel.z, -300, 300 );
 
 		// limit angular accel changes to simulate mechanical response times
 		dt = 0.1;
@@ -1267,9 +1267,9 @@ void CNPC_CombineDropship::Flight( void )
 		angAccelAccel.y = (goalAngAccel.y - m_vecAngAcceleration.y) / dt;
 		angAccelAccel.z = (goalAngAccel.z - m_vecAngAcceleration.z) / dt;
 
-		angAccelAccel.x = clamp( angAccelAccel.x, -1000, 1000 );
-		angAccelAccel.y = clamp( angAccelAccel.y, -1000, 1000 );
-		angAccelAccel.z = clamp( angAccelAccel.z, -1000, 1000 );
+		angAccelAccel.x = seclamp( angAccelAccel.x, -1000, 1000 );
+		angAccelAccel.y = seclamp( angAccelAccel.y, -1000, 1000 );
+		angAccelAccel.z = seclamp( angAccelAccel.z, -1000, 1000 );
 
 		m_vecAngAcceleration += angAccelAccel * 0.1;
 
@@ -1286,7 +1286,7 @@ void CNPC_CombineDropship::Flight( void )
 
 		//angVel.y = clamp( angVel.y, -60, 60 );
 		//angVel.y = clamp( angVel.y, -120, 120 );
-		angVel.y = clamp( angVel.y, -120, 120 );
+		angVel.y = seclamp( angVel.y, -120, 120 );
 
 		SetLocalAngularVelocity( angVel );
 
@@ -1550,7 +1550,7 @@ void CNPC_CombineDropship::UpdateRotorWashVolume()
 	if (pPlayer)
 	{
 		float flDist = pPlayer->GetAbsOrigin().DistTo( GetAbsOrigin() );
-		flDist = clamp( flDist, DROPSHIP_NEAR_SOUND_MIN_DISTANCE, DROPSHIP_NEAR_SOUND_MAX_DISTANCE );
+		flDist = seclamp( flDist, DROPSHIP_NEAR_SOUND_MIN_DISTANCE, DROPSHIP_NEAR_SOUND_MAX_DISTANCE );
 		flNearFactor = RemapVal( flDist, DROPSHIP_NEAR_SOUND_MIN_DISTANCE, DROPSHIP_NEAR_SOUND_MAX_DISTANCE, 1.0f, 0.0f );
 	}
 

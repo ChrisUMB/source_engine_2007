@@ -563,7 +563,7 @@ float S_GetMasterVolume( void )
 	float scale = 1.0f;
 	if ( soundfade.percent != 0 )
 	{
-		scale = clamp( (float)soundfade.percent / 100.0f, 0.0f, 1.0f );
+		scale = seclamp( (float)soundfade.percent / 100.0f, 0.0f, 1.0f );
 		scale = 1.0f - scale;
 	}
 	return volume.GetFloat() * scale;
@@ -1451,8 +1451,8 @@ void S_SpatializeChannel( int volume[CCHANVOLUMES/2], int master_vol, const Vect
 	scale = gain * lscale / 2;
 	volume[IFRONT_LEFT] = (int) (master_vol * scale);
 
-	volume[IFRONT_RIGHT] = clamp( volume[IFRONT_RIGHT], 0, 255 );
-	volume[IFRONT_LEFT] = clamp( volume[IFRONT_LEFT], 0, 255 );
+	volume[IFRONT_RIGHT] = seclamp( volume[IFRONT_RIGHT], 0, 255 );
+	volume[IFRONT_LEFT] = seclamp( volume[IFRONT_LEFT], 0, 255 );
 
 }
 
@@ -1642,7 +1642,7 @@ float SND_GetDspMix( channel_t *pchannel, int idist)
 	
 	// dist: 0->(max - min)
 
-	dist = clamp( dist, dist_min, dist_max ) - dist_min;
+	dist = seclamp( dist, dist_min, dist_max ) - dist_min;
 
 	// dist: 0->1.0
 
@@ -1680,7 +1680,7 @@ float SND_GetDistanceMix( channel_t *pchannel, int idist)
 	
 	// dist 0->(max - min)
 
-	dist = clamp( dist, DVAR_DIST_MIN, DVAR_DIST_MAX ) - DVAR_DIST_MIN;
+	dist = seclamp( dist, DVAR_DIST_MIN, DVAR_DIST_MAX ) - DVAR_DIST_MIN;
 
 	// dist 0->1.0
 
@@ -1830,7 +1830,7 @@ void SND_GetDopplerPoints( channel_t *pChannel, QAngle &source_angles, Vector &v
 	
 	// dist varies 0->1
 
-	dist = clamp(dist, DOPPLER_DIST_MIN, DOPPLER_DIST_MAX);
+	dist = seclamp(dist, DOPPLER_DIST_MIN, DOPPLER_DIST_MAX);
 	dist = (dist - DOPPLER_DIST_MIN) / (DOPPLER_DIST_MAX - DOPPLER_DIST_MIN);
 
 	// pitch varies from max to min
@@ -1926,7 +1926,7 @@ float SND_GetGain( channel_t *ch, bool fplayersound, bool fmusicsound, bool floo
 		float flGoldsrcDistMult = flAttenuation / sound_nominal_clip_dist;
 		dist *= flGoldsrcDistMult;
 		float flReturnValue = 1.0f - dist;
-		flReturnValue = clamp( flReturnValue, 0, 1 );
+		flReturnValue = seclamp( flReturnValue, 0, 1 );
 		return flReturnValue;
 	}
 	else
@@ -3634,7 +3634,7 @@ bool DAS_UpdateRoomSize( das_room_t *proom )
 	// store surface data
 
 	proom->dist[iwall]		= surfdata.dist;
-	proom->reflect[iwall]	= clamp(surfdata.reflectivity, 0.0, 1.0);
+	proom->reflect[iwall]	= seclamp(surfdata.reflectivity, 0.0, 1.0);
 	proom->skyhits[iwall]	= bskyhit ? 0.1 : 0.0;
 	proom->hit[iwall]		= surfdata.hit;
 	proom->norm[iwall]		= surfdata.norm;
@@ -4152,7 +4152,7 @@ void RemapPlayerOrMusicVols(  channel_t *ch, int volumes[CCHANVOLUMES/2], bool f
 		pvol_dist = (fplayersound ? vol_dist_player : vol_dist_music);
 
 		for (k = 0; k < 2; k++)
-			volumes[k] = clamp((int)(vol_total * pvol_dist[k]), 0, 255);
+			volumes[k] = seclamp((int)(vol_total * pvol_dist[k]), 0, 255);
 
 		return;
 	}
@@ -4184,7 +4184,7 @@ void RemapPlayerOrMusicVols(  channel_t *ch, int volumes[CCHANVOLUMES/2], bool f
 		}
 
 		for (k = 0; k < 5; k++)
-			volumes[k] = clamp((int)(vol_total * pvol_dist[k]), 0, 255);
+			volumes[k] = seclamp((int)(vol_total * pvol_dist[k]), 0, 255);
 
 		return;
 	}
@@ -4200,7 +4200,7 @@ void RemapPlayerOrMusicVols(  channel_t *ch, int volumes[CCHANVOLUMES/2], bool f
 		pvol_dist = (g_AudioDevice->IsSurroundCenter() ? vol_dist5 : vol_dist4);
 
 		for (k = 0; k < 5; k++)
-			volumes[k] = clamp((int)(vol_total * pvol_dist[k]), 0, 255);
+			volumes[k] = seclamp((int)(vol_total * pvol_dist[k]), 0, 255);
 
 		return;
 	}
@@ -4812,7 +4812,7 @@ void ChannelSetVol( channel_t *pch, int ivol, int vol )
 {
 	Assert(ivol < CCHANVOLUMES);
 	
-	pch->fvolume[ivol] = (float)(clamp(vol, 0, 255));	
+	pch->fvolume[ivol] = (float)(seclamp(vol, 0, 255));
 
 	pch->fvolume_target[ivol] = pch->fvolume[ivol];
 	pch->fvolume_inc[ivol] = 0.0;
@@ -4847,7 +4847,7 @@ void ChannelSetVolTarget( channel_t *pch, int ivol, int volume_target )
 {
 	float frametime = g_pSoundServices->GetHostFrametime();
 	float speed;
-	float vol_target = (float)(clamp(volume_target, 0, 255));
+	float vol_target = (float)(seclamp(volume_target, 0, 255));
 	float vol_current;
 
 	Assert(ivol < CCHANVOLUMES);
@@ -4877,7 +4877,7 @@ void ChannelSetVolTarget( channel_t *pch, int ivol, int volume_target )
 
 	// make sure we never increment by more than +/- VOL_INCR_MAX volume units per frame
 	
-	speed = clamp(speed, -VOL_INCR_MAX, VOL_INCR_MAX);
+	speed = seclamp(speed, -VOL_INCR_MAX, VOL_INCR_MAX);
 
 	pch->fvolume_inc[ivol] = speed;	
 }
@@ -5715,7 +5715,7 @@ bool S_IsSoundStillPlaying( int guid )
 void S_SetVolumeByGuid( int guid, float fvol )
 {
 	channel_t *pChannel = S_FindChannelByGuid( guid );
-	pChannel->master_vol = 255.0f * clamp( fvol, 0.0f, 1.0f );
+	pChannel->master_vol = 255.0f * seclamp( fvol, 0.0f, 1.0f );
 }
 
 //-----------------------------------------------------------------------------
@@ -5901,7 +5901,7 @@ void S_UpdateSoundFade(void)
 
 	// Spline it.
 	f = SimpleSpline( f );
-	f = clamp( f, 0.0f, 1.0f );
+	f = seclamp( f, 0.0f, 1.0f );
 
 	soundfade.percent = soundfade.initial_percent * f;
 }
@@ -5925,7 +5925,7 @@ static void S_UpdateVoiceDuck( int voiceChannelCount, int voiceChannelMaxVolume,
 	float duckTarget = 1.0;
 	if ( voiceChannelCount > 0 )
 	{
-		voiceChannelMaxVolume = clamp(voiceChannelMaxVolume, 0, 255);
+		voiceChannelMaxVolume = seclamp(voiceChannelMaxVolume, 0, 255);
 		
 		// duckTarget = RemapVal( voiceChannelMaxVolume, 0, 255, 1.0, volume_when_ducked );
 	
@@ -7369,8 +7369,8 @@ void MXR_DebugGraphMixVolumes( debug_showvols_t *groupvols, int cgroups)
 		float vol3 = 0.0;
 		int cbars;
 
-		vol1 = clamp(vol, 0.0, 0.7);
-		vol2 = clamp(vol, 0.0, 0.95);
+		vol1 = seclamp(vol, 0.0, 0.7);
+		vol2 = seclamp(vol, 0.0, 0.95);
 		vol3 = vol;
 
 		flXposBar = flXpos + MXR_DEBUG_GREENSTART;
@@ -7383,7 +7383,7 @@ void MXR_DebugGraphMixVolumes( debug_showvols_t *groupvols, int cgroups)
 			Q_memset(bartext, 0, sizeof(bartext));
 
 			cbars = (int)((float)vol1 * (float)MXR_DEBUG_VOLSCALE);
-			cbars = clamp(cbars, 0, MXR_DEBUG_VOLSCALE*3-1);
+			cbars = seclamp(cbars, 0, MXR_DEBUG_VOLSCALE*3-1);
 			Q_memset(bartext, MXR_DEBUG_CHAR, cbars);
 
 			CDebugOverlay::AddScreenTextOverlay(flXposBar, flYpos, duration, rb, gb, bb,ab,  bartext);
@@ -7397,7 +7397,7 @@ void MXR_DebugGraphMixVolumes( debug_showvols_t *groupvols, int cgroups)
 			Q_memset(bartext, 0, sizeof(bartext));
 
 			cbars = (int)((float)vol2 * (float)MXR_DEBUG_VOLSCALE);
-			cbars = clamp(cbars, 0, MXR_DEBUG_VOLSCALE*3-1);
+			cbars = seclamp(cbars, 0, MXR_DEBUG_VOLSCALE*3-1);
 			Q_memset(bartext, MXR_DEBUG_CHAR, cbars);
 
 			CDebugOverlay::AddScreenTextOverlay(flXposBar, flYpos, duration, rb, gb, bb,ab,  bartext);
@@ -7411,7 +7411,7 @@ void MXR_DebugGraphMixVolumes( debug_showvols_t *groupvols, int cgroups)
 			Q_memset(bartext, 0, sizeof(bartext));
 
 			cbars = (int)((float)vol3 * (float)MXR_DEBUG_VOLSCALE);
-			cbars = clamp(cbars, 0, MXR_DEBUG_VOLSCALE*3-1);
+			cbars = seclamp(cbars, 0, MXR_DEBUG_VOLSCALE*3-1);
 			Q_memset(bartext, MXR_DEBUG_CHAR, cbars);
 
 			CDebugOverlay::AddScreenTextOverlay(flXposBar, flYpos, duration, rb, gb, bb,ab,  bartext);

@@ -263,10 +263,10 @@ void SharedVehicleViewSmoothing(CBasePlayer *pPlayer,
 
 		// Forward integrate to determine the elapsed time in this entry/exit anim.
 		frac = ( gpGlobals->curtime - pData->flEnterExitStartTime ) / pData->flEnterExitDuration;
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		flFracFOV = ( gpGlobals->curtime - pData->flEnterExitStartTime ) / ( pData->flEnterExitDuration * 0.85f );
-		flFracFOV = clamp( flFracFOV, 0.0f, 1.0f );
+		flFracFOV = seclamp( flFracFOV, 0.0f, 1.0f );
 
 		//Msg("Frac: %f\n", frac );
 
@@ -327,7 +327,7 @@ void SharedVehicleViewSmoothing(CBasePlayer *pPlayer,
 	// If we're playing an entry or exit animation...
 	if ( bRunningAnim || pData->bRunningEnterExit )
 	{
-		float flSplineFrac = clamp( SimpleSpline( frac ), 0, 1 );
+		float flSplineFrac = seclamp( SimpleSpline( frac ), 0, 1 );
 
 		// Blend out the error between the player's initial eye angles and the animation's initial
 		// eye angles over the duration of the animation. 

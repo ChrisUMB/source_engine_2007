@@ -385,13 +385,13 @@ bool CAI_BaseActor::ProcessSceneEvent( CSceneEventInfo *info, CChoreoScene *scen
 			info->m_bIsMoving = IsMoving();
 
 			// Msg("%f : %f - %f\n", scene->GetTime(), event->GetStartTime(), event->GetEndTime() );
-			float flTime = clamp( scene->GetTime(), event->GetStartTime(), event->GetEndTime() - 0.1 );
+			float flTime = seclamp( scene->GetTime(), event->GetStartTime(), event->GetEndTime() - 0.1 );
 			float intensity = event->GetIntensity( flTime );
 
 			// clamp in-ramp to 0.5 seconds
 			float flDuration = scene->GetTime() - event->GetStartTime();
 			float flMaxIntensity = flDuration < 0.5f ? SimpleSpline( flDuration / 0.5f ) : 1.0f;
-			intensity = clamp( intensity, 0.0f, flMaxIntensity );
+			intensity = seclamp( intensity, 0.0f, flMaxIntensity );
 
 			if (bInScene && info->m_bIsMoving)
 			{
@@ -613,7 +613,7 @@ bool CAI_BaseActor::RandomFaceFlex( CSceneEventInfo *info, CChoreoScene *scene, 
 			float delta = (m_flextarget[i] - weight) / random->RandomFloat( 2.0, 4.0 );
 			weight = weight + delta * intensity;
 		}
-		weight = clamp( weight, 0.0f, 1.0f );
+		weight = seclamp( weight, 0.0f, 1.0f );
 		SetFlexWeight( i, weight );
 	}
 
@@ -824,7 +824,7 @@ float CAI_BaseActor::HeadTargetValidity(const Vector &lookTargetPos)
 	// only look if target is within +-135 degrees
 	// scale 1..-0.707 == 1..1,  -.707..-1 == 1..0
 	// 	X * b + b = 1 == 1 / (X + 1) = b, 3.4142
-	float flInterest = clamp( 3.4142 + 3.4142 * dotPr, 0, 1 );
+	float flInterest = seclamp( 3.4142 + 3.4142 * dotPr, 0, 1 );
 
 	// stop looking when point too close 
 	if (flDist < MAX_FULL_LOOK_TARGET_DIST)
@@ -993,12 +993,12 @@ void CAI_BaseActor::UpdateHeadControl( const Vector &vHeadTarget, float flHeadIn
 		Vector vTargetLocal;
 		VectorNormalize( vTargetDir );
 		VectorIRotate( vTargetDir, forwardToWorld, vTargetLocal );
-		vTargetLocal.z *= clamp( vTargetLocal.x, 0.1, 1.0 );
+		vTargetLocal.z *= seclamp( vTargetLocal.x, 0.1, 1.0 );
 		VectorNormalize( vTargetLocal );
 		VectorRotate( vTargetLocal, forwardToWorld, vTargetDir );
 
 		// clamp local influence when target is behind the head
-		flHeadInfluence = flHeadInfluence * clamp( vTargetLocal.x * 2.0 + 2.0, 0.0, 1.0 );
+		flHeadInfluence = flHeadInfluence * seclamp( vTargetLocal.x * 2.0 + 2.0, 0.0, 1.0 );
 	}
 
 	Studio_AlignIKMatrix( targetXform, vTargetDir );

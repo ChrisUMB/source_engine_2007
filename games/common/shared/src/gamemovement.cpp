@@ -1220,14 +1220,14 @@ void CGameMovement::DecayPunchAngle( void )
 		// torsional spring
 		// UNDONE: Per-axis spring constant?
 		float springForceMagnitude = PUNCH_SPRING_CONSTANT * gpGlobals->frametime;
-		springForceMagnitude = clamp(springForceMagnitude, 0, 2 );
+		springForceMagnitude = seclamp(springForceMagnitude, 0, 2 );
 		player->m_Local.m_vecPunchAngleVel -= player->m_Local.m_vecPunchAngle * springForceMagnitude;
 
 		// don't wrap around
 		player->m_Local.m_vecPunchAngle.Init( 
-			clamp(player->m_Local.m_vecPunchAngle->x, -89, 89 ), 
-			clamp(player->m_Local.m_vecPunchAngle->y, -179, 179 ),
-			clamp(player->m_Local.m_vecPunchAngle->z, -89, 89 ) );
+			seclamp(player->m_Local.m_vecPunchAngle->x, -89, 89 ),
+			seclamp(player->m_Local.m_vecPunchAngle->y, -179, 179 ),
+			seclamp(player->m_Local.m_vecPunchAngle->z, -89, 89 ) );
 	}
 	else
 	{
@@ -1400,7 +1400,7 @@ void CGameMovement::WaterMove( void )
 	{
 		// exaggerate upward movement along forward as well
 		float upwardMovememnt = mv->m_flForwardMove * forward.z * 2;
-		upwardMovememnt = clamp( upwardMovememnt, 0, mv->m_flClientMaxSpeed );
+		upwardMovememnt = seclamp( upwardMovememnt, 0, mv->m_flClientMaxSpeed );
 		wishvel[2] += mv->m_flUpMove + upwardMovememnt;
 	}
 

@@ -236,7 +236,7 @@ void CSprite::Spawn( void )
 		DevMsg( "LEVEL DESIGN ERROR: Sprite %s with bad scale %f [0..%f]\n", GetDebugName(), m_flSpriteScale, MAX_SPRITE_SCALE );
 #endif
 #endif
-		scale = clamp( m_flSpriteScale, 0, MAX_SPRITE_SCALE );
+		scale = seclamp( m_flSpriteScale, 0, MAX_SPRITE_SCALE );
 	}
 
 	//Set our state
@@ -605,19 +605,19 @@ void CSprite::InputShowSprite( inputdata_t &inputdata )
 
 void CSprite::InputColorRedValue( inputdata_t &inputdata )
 {
-	int nNewColor = clamp( inputdata.value.Float(), 0, 255 );
+	int nNewColor = seclamp( inputdata.value.Float(), 0, 255 );
 	SetColor( nNewColor, m_clrRender->g, m_clrRender->b );
 }
 
 void CSprite::InputColorGreenValue( inputdata_t &inputdata )
 {
-	int nNewColor = clamp( inputdata.value.Float(), 0, 255 );
+	int nNewColor = seclamp( inputdata.value.Float(), 0, 255 );
 	SetColor( m_clrRender->r, nNewColor, m_clrRender->b );
 }
 
 void CSprite::InputColorBlueValue( inputdata_t &inputdata )
 {
-	int nNewColor = clamp( inputdata.value.Float(), 0, 255 );
+	int nNewColor = seclamp( inputdata.value.Float(), 0, 255 );
 	SetColor( m_clrRender->r, m_clrRender->g, nNewColor );
 }
 

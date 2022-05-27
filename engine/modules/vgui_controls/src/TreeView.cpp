@@ -2505,8 +2505,8 @@ void TreeView::EnableExpandTreeOnLeftClick( bool bEnable )
 
 int TreeView::FindItemUnderMouse( int mx, int my )
 {
-	mx = clamp( mx, 0, GetWide() - 1 );
-	my = clamp( my, 0, GetTall() - 1 );
+	mx = seclamp( mx, 0, GetWide() - 1 );
+	my = seclamp( my, 0, GetTall() - 1 );
 	if ( mx >= TREE_INDENT_AMOUNT )
 	{
 		// Find what's under this position

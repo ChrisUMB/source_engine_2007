@@ -1202,7 +1202,7 @@ bool CAI_PassengerBehavior::DoTransitionMovement( void )
 		Vector vecIdealPos;
 		QAngle vecIdealAngles;
 		float flNextCycle = GetNextCycleForInterval( GetOuter()->GetSequence(), flInterval );
-		flNextCycle = clamp( flNextCycle, 0.0f, 1.0f );
+		flNextCycle = seclamp( flNextCycle, 0.0f, 1.0f );
 		GetTransitionAnimationIdeal( flNextCycle, m_vecTargetPosition, m_vecTargetAngles, &vecIdealPos, &vecIdealAngles );
 
 		// Get the amount of error to blend out

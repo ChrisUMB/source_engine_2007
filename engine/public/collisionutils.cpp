@@ -130,7 +130,7 @@ float IntersectRayWithTriangle( const Ray_t& ray,
 	if ((t < -boxt) || (t > 1.0f + boxt))
 		return -1.0f;
 
-	return clamp( t, 0, 1 );
+	return seclamp( t, 0, 1 );
 }
 
 //-----------------------------------------------------------------------------

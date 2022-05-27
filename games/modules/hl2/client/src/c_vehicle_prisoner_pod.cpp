@@ -207,12 +207,12 @@ void C_PropVehiclePrisonerPod::UpdateViewAngles( C_BasePlayer *pLocalPlayer, CUs
 
 	// Limit the yaw.
 	float flAngleDiff = AngleDiff( pCmd->viewangles.y, vehicleEyeAngles.y );
-	flAngleDiff = clamp( flAngleDiff, POD_VIEW_YAW_MIN, POD_VIEW_YAW_MAX );
+	flAngleDiff = seclamp( flAngleDiff, POD_VIEW_YAW_MIN, POD_VIEW_YAW_MAX );
 	pCmd->viewangles.y = vehicleEyeAngles.y + flAngleDiff;
 
 	// Limit the pitch -- don't let them look down into the empty pod!
 	flAngleDiff = AngleDiff( pCmd->viewangles.x, vehicleEyeAngles.x );
-	flAngleDiff = clamp( flAngleDiff, POD_VIEW_PITCH_MIN, POD_VIEW_PITCH_MAX );
+	flAngleDiff = seclamp( flAngleDiff, POD_VIEW_PITCH_MIN, POD_VIEW_PITCH_MAX );
 	pCmd->viewangles.x = vehicleEyeAngles.x + flAngleDiff;
 }
 

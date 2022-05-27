@@ -1225,7 +1225,7 @@ void CL_TakeJpeg(const char *name, int quality)
 	
 	cl_takesnapshot = true;
 	cl_takejpeg = true;
-	cl_jpegquality = clamp( quality, 1, 100 );
+	cl_jpegquality = seclamp( quality, 1, 100 );
 
 	if ( name != NULL )
 	{
@@ -1513,7 +1513,7 @@ CON_COMMAND_F( startmovie, "Start recording movie frames.", FCVAR_DONTRECORD )
 			}
 			if ( !Q_stricmp( args[ i ], "jpeg_quality" ) )
 			{
-				jpeg_quality = clamp( Q_atoi( args[ ++i ] ), 1, 100 );
+				jpeg_quality = seclamp( Q_atoi( args[ ++i ] ), 1, 100 );
 			}
 			if ( !Q_stricmp( args[ i ], "wav" ) )
 			{
@@ -1826,11 +1826,11 @@ void CL_SendMove( void )
 
 	// Determine number of backup commands to send along
 	int cl_cmdbackup = 2;
-	moveMsg.m_nBackupCommands = clamp( cl_cmdbackup, 0, MAX_BACKUP_COMMANDS );
+	moveMsg.m_nBackupCommands = seclamp( cl_cmdbackup, 0, MAX_BACKUP_COMMANDS );
 
 	// How many real new commands have queued up
 	moveMsg.m_nNewCommands = 1 + cl.chokedcommands;
-	moveMsg.m_nNewCommands = clamp( moveMsg.m_nNewCommands, 0, MAX_NEW_COMMANDS );
+	moveMsg.m_nNewCommands = seclamp( moveMsg.m_nNewCommands, 0, MAX_NEW_COMMANDS );
 
 	int numcmds = moveMsg.m_nNewCommands + moveMsg.m_nBackupCommands;
 
@@ -1967,7 +1967,7 @@ void CL_Move(float accumulated_extra_samples, bool bFinalTick )
 		// use full update rate when active
 		float commandInterval = 1.0f / cl_cmdrate->GetFloat();
 		float maxDelta = min ( host_state.interval_per_tick, commandInterval );
-        float delta = clamp( net_time - cl.m_flNextCmdTime, 0.0f, maxDelta );
+        float delta = seclamp( net_time - cl.m_flNextCmdTime, 0.0f, maxDelta );
 		cl.m_flNextCmdTime = net_time + commandInterval - delta;
 	}
 	else
@@ -1992,7 +1992,7 @@ void CL_LatchInterpolationAmount()
 	float flInterp = 0.0f;
 	if ( flClientInterpolationAmount > 0.001 )
 	{
-		flInterp = clamp( dt / flClientInterpolationAmount, 0.0f, 3.0f );
+		flInterp = seclamp( dt / flClientInterpolationAmount, 0.0f, 3.0f );
 	}
 	cl.m_NetChannel->SetInterpolationAmount( flInterp );
 }
@@ -2499,7 +2499,7 @@ void CL_Init (void)
 
 	if (Q_strlen(szRate) > 0)
 	{
-		cl_rate->SetValue( clamp( Q_atoi(szRate), MIN_RATE, MAX_RATE) );
+		cl_rate->SetValue( seclamp( Q_atoi(szRate), MIN_RATE, MAX_RATE) );
 	}
 	
 	CL_InitLanguageCvar();

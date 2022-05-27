@@ -2559,7 +2559,7 @@ float CNPC_RollerMine::RollingSpeed()
 		AngularImpulse angVel;
 		pPhysics->GetVelocity( NULL, &angVel );
 		float rollingSpeed = angVel.Length() - 90;
-		rollingSpeed = clamp( rollingSpeed, 1, MAX_ROLLING_SPEED );
+		rollingSpeed = seclamp( rollingSpeed, 1, MAX_ROLLING_SPEED );
 		rollingSpeed *= (1/MAX_ROLLING_SPEED);
 		return rollingSpeed;
 	}
@@ -2686,7 +2686,7 @@ void CNPC_RollerMine::UpdatePingSound()
 		if ( pEnemy )
 		{
 			pingSpeed = EnemyDistance( pEnemy );
-			pingSpeed = clamp( pingSpeed, 1, ROLLERMINE_OPEN_THRESHOLD );
+			pingSpeed = seclamp( pingSpeed, 1, ROLLERMINE_OPEN_THRESHOLD );
 			pingSpeed *= (1.0f/ROLLERMINE_OPEN_THRESHOLD);
 		}
 	}

@@ -208,7 +208,7 @@ void Shader_DecalDrawPoly( CDecalVert *v, IMaterial *pMaterial, SurfaceHandle_t 
 			fadeval = 1.0 - (cl.GetTime() - pdecal->fadeStartTime) / pdecal->fadeDuration;
 		}
 
-		fadeval = clamp( fadeval, 0.0f, 1.0f );
+		fadeval = seclamp( fadeval, 0.0f, 1.0f );
 		color[3] = (byte) (255 * fadeval);
 	}
 
@@ -1911,7 +1911,7 @@ void R_DrawDecalsAllImmediate_Gathered( IMatRenderContext *pRenderContext, decal
 				flFadeValue = 1.0 - ( cl.GetTime() - pDecal->fadeStartTime ) / pDecal->fadeDuration;
 			}
 
-			flFadeValue = clamp( flFadeValue, 0.0f, 1.0f );
+			flFadeValue = seclamp( flFadeValue, 0.0f, 1.0f );
 
 			color[3] = ( byte )( 255 * flFadeValue );
 		}
@@ -2052,7 +2052,7 @@ void R_DrawDecalsAllImmediate( IMatRenderContext *pRenderContext, int iGroup, in
 						flFadeValue = 1.0 - ( cl.GetTime() - pDecal->fadeStartTime ) / pDecal->fadeDuration;
 					}
 					
-					flFadeValue = clamp( flFadeValue, 0.0f, 1.0f );
+					flFadeValue = seclamp( flFadeValue, 0.0f, 1.0f );
 					
 					color[3] = ( byte )( 255 * flFadeValue );
 				}
@@ -2367,7 +2367,7 @@ void R_DrawDecalsAll_Gathered( IMatRenderContext *pRenderContext, decal_t **ppDe
 				flFadeValue = 1.0 - ( cl.GetTime() - pDecal->fadeStartTime ) / pDecal->fadeDuration;
 			}
 
-			flFadeValue = clamp( flFadeValue, 0.0f, 1.0f );
+			flFadeValue = seclamp( flFadeValue, 0.0f, 1.0f );
 
 			color[3] = ( byte )( 255 * flFadeValue );
 		}
@@ -2605,7 +2605,7 @@ void R_DrawDecalsAll( IMatRenderContext *pRenderContext, int iGroup, int iTreeTy
 						flFadeValue = 1.0 - ( cl.GetTime() - pDecal->fadeStartTime ) / pDecal->fadeDuration;
 					}
 					
-					flFadeValue = clamp( flFadeValue, 0.0f, 1.0f );
+					flFadeValue = seclamp( flFadeValue, 0.0f, 1.0f );
 					
 					color[3] = ( byte )( 255 * flFadeValue );
 				}

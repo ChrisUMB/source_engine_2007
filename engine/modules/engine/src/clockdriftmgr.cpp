@@ -38,7 +38,7 @@ ConVar cl_clock_correction_adjustment_max_offset( "cl_clock_correction_adjustmen
 // returns how much correction we'd like to apply per second (in seconds).
 static float GetClockAdjustmentAmount( float flCurDiffInMS )
 {
-	flCurDiffInMS = clamp( flCurDiffInMS, cl_clock_correction_adjustment_min_offset.GetFloat(), cl_clock_correction_adjustment_max_offset.GetFloat() );
+	flCurDiffInMS = seclamp( flCurDiffInMS, cl_clock_correction_adjustment_min_offset.GetFloat(), cl_clock_correction_adjustment_max_offset.GetFloat() );
 
 	float flReturnValue = RemapVal( flCurDiffInMS,
 		cl_clock_correction_adjustment_min_offset.GetFloat(), cl_clock_correction_adjustment_max_offset.GetFloat(),

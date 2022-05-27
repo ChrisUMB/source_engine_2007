@@ -1987,7 +1987,7 @@ void CSceneEntity::DoThink( float frametime )
 
 	// catch bad pitch shifting from old save games
 	Assert( m_fPitch >= SCENE_MIN_PITCH && m_fPitch <= SCENE_MAX_PITCH );
-	m_fPitch = clamp( m_fPitch, SCENE_MIN_PITCH, SCENE_MAX_PITCH );
+	m_fPitch = seclamp( m_fPitch, SCENE_MIN_PITCH, SCENE_MAX_PITCH );
 
 	if ( m_bPaused )
 	{
@@ -2714,7 +2714,7 @@ void CSceneEntity::CancelPlayback( void )
 
 void CSceneEntity::PitchShiftPlayback( float fPitch )
 {
-	fPitch = clamp( fPitch, SCENE_MIN_PITCH, SCENE_MAX_PITCH );
+	fPitch = seclamp( fPitch, SCENE_MIN_PITCH, SCENE_MAX_PITCH );
 
 	m_fPitch = fPitch;
 
@@ -4674,7 +4674,7 @@ void CInstancedSceneEntity::DoThink( float frametime )
 
 	// catch bad pitch shifting from old save games
 	Assert( m_fPitch >= SCENE_MIN_PITCH && m_fPitch <= SCENE_MAX_PITCH );
-	m_fPitch = clamp( m_fPitch, SCENE_MIN_PITCH, SCENE_MAX_PITCH );
+	m_fPitch = seclamp( m_fPitch, SCENE_MIN_PITCH, SCENE_MAX_PITCH );
 
 	if ( m_bPaused )
 	{

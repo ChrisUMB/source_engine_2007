@@ -90,7 +90,7 @@ void CPupilProxy::OnBind( C_BaseEntity *pBaseEntity )
 
 	// Compute the intensity...
 	float flIntensity = ( 0.299f * color[0] + 0.587f * color[1] + 0.114f * color[2] ) * 0.5;
-	flIntensity = clamp( flIntensity, 0, 1 );
+	flIntensity = seclamp( flIntensity, 0, 1 );
 	float flLastIntensity = m_pLightingVar->GetFloatValue( );
 	if ( flIntensity > flLastIntensity )
 	{
@@ -110,7 +110,7 @@ void CPupilProxy::OnBind( C_BaseEntity *pBaseEntity )
 	}
 
 	int nFrame = nFrameCount * flIntensity;
-	nFrame = clamp( nFrame, 0, nFrameCount - 1 );
+	nFrame = seclamp( nFrame, 0, nFrameCount - 1 );
 
 	m_pAnimatedTextureFrameNumVar->SetIntValue( nFrame );
 	m_pLightingVar->SetFloatValue( flIntensity );

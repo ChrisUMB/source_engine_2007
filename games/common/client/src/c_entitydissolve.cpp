@@ -377,7 +377,7 @@ void C_EntityDissolve::DoSparks( mstudiohitboxset_t *set, matrix3x4_t *hitboxbon
 		return;
 
 	float dt = m_flStartTime + m_flFadeOutStart - gpGlobals->curtime;
-	dt = clamp( dt, 0.0f, m_flFadeOutStart );
+	dt = seclamp( dt, 0.0f, m_flFadeOutStart );
 	
 	float flNextTime;
 	if (m_nDissolveType == ENTITY_DISSOLVE_ELECTRICAL)
@@ -611,7 +611,7 @@ int C_EntityDissolve::DrawModel( int flags )
 	vecSkew = CurrentViewForward() * ( 8.0f - ( ( 1.0f - fadePerc ) * 32.0f ) );
 
 	float spriteScale = ( ( gpGlobals->curtime - m_flStartTime ) / m_flFadeOutLength );
-	spriteScale = clamp( spriteScale, 0.75f, 1.0f );
+	spriteScale = seclamp( spriteScale, 0.75f, 1.0f );
 
 	// Cache off this material reference
 	if ( g_Material_Spark == NULL )
@@ -641,7 +641,7 @@ int C_EntityDissolve::DrawModel( int flags )
 		yDir = yvec;
 		float yScale = VectorNormalize( yDir ) * 0.75f;
 
-		int numParticles = clamp( 3.0f * fadePerc, 0, 3 );
+		int numParticles = seclamp( 3.0f * fadePerc, 0, 3 );
 
 		int iTempParts = 2;
 

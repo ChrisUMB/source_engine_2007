@@ -1007,12 +1007,12 @@ MaterialFogMode_t CMatQueuedRenderContext::GetFogMode( void )
 
 void CMatQueuedRenderContext::FogColor3f( float r, float g, float b )
 {
-	FogColor3ub( clamp( (int)(r * 255.0f), 0, 255 ), clamp( (int)(g * 255.0f), 0, 255 ), clamp( (int)(b * 255.0f), 0, 255 ) );
+	FogColor3ub( seclamp( (int)(r * 255.0f), 0, 255 ), seclamp( (int)(g * 255.0f), 0, 255 ), seclamp( (int)(b * 255.0f), 0, 255 ) );
 }
 
 void CMatQueuedRenderContext::FogColor3fv( float const* rgb )
 {
-	FogColor3ub( clamp( (int)(rgb[0] * 255.0f), 0, 255 ), clamp( (int)(rgb[1] * 255.0f), 0, 255 ), clamp( (int)(rgb[2] * 255.0f), 0, 255 ) );
+	FogColor3ub( seclamp( (int)(rgb[0] * 255.0f), 0, 255 ), seclamp( (int)(rgb[1] * 255.0f), 0, 255 ), seclamp( (int)(rgb[2] * 255.0f), 0, 255 ) );
 }
 
 void CMatQueuedRenderContext::FogColor3ub( unsigned char r, unsigned char g, unsigned char b )

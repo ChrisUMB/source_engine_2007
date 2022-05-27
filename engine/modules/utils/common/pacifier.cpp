@@ -25,7 +25,7 @@ void StartPacifier( char const *pPrefix )
 void UpdatePacifier( float flPercent )
 {
 	int iCur = (int)(flPercent * 40.0f);
-	iCur = clamp( iCur, g_LastPacifierDrawn, 40 );
+	iCur = seclamp( iCur, g_LastPacifierDrawn, 40 );
 	
 	if( iCur != g_LastPacifierDrawn && !g_bPacifierSuppressed )
 	{

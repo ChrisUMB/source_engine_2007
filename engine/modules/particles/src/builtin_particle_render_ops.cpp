@@ -1830,11 +1830,11 @@ void C_OP_RenderRope::RenderUnsorted( CParticleCollection *pParticles, void *pCo
 			for( int iSubdiv = 1; iSubdiv < m_nSubdivCount; ++iSubdiv )
 			{
 				subDivSeg.m_vColor += vecColorInc;
-				subDivSeg.m_vColor.x = clamp( subDivSeg.m_vColor.x, 0.0f, 1.0f );
-				subDivSeg.m_vColor.y = clamp( subDivSeg.m_vColor.y, 0.0f, 1.0f );
-				subDivSeg.m_vColor.z = clamp( subDivSeg.m_vColor.z, 0.0f, 1.0f );
+				subDivSeg.m_vColor.x = seclamp( subDivSeg.m_vColor.x, 0.0f, 1.0f );
+				subDivSeg.m_vColor.y = seclamp( subDivSeg.m_vColor.y, 0.0f, 1.0f );
+				subDivSeg.m_vColor.z = seclamp( subDivSeg.m_vColor.z, 0.0f, 1.0f );
 				subDivSeg.m_flAlpha += flAlphaInc;
-				subDivSeg.m_flAlpha = clamp( subDivSeg.m_flAlpha, 0.0f, 1.0f );
+				subDivSeg.m_flAlpha = seclamp( subDivSeg.m_flAlpha, 0.0f, 1.0f );
 				subDivSeg.m_flTexCoord += flTexcoordInc;
 				subDivSeg.m_flWidth += flWidthInc;
 

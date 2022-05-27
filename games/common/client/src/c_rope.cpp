@@ -640,7 +640,7 @@ void CRopeManager::RenderSolidRopes( IMatRenderContext *pRenderContext, IMateria
 					rope_solid_minalpha.GetFloat(),
 					rope_solid_maxalpha.GetFloat() );
 				
-				pSeg->m_flAlpha = clamp( pSeg->m_flAlpha, 0.0f, 1.0f );
+				pSeg->m_flAlpha = seclamp( pSeg->m_flAlpha, 0.0f, 1.0f );
 				
 				beamSegment.NextSeg( &m_aSegmentCache[iSegmentCache].m_Segments[iSegment] );
 			}
@@ -988,7 +988,7 @@ C_RopeKeyframe* C_RopeKeyframe::Create(
 	pRope->m_iStartAttachment = iStartAttachment;
 	pRope->m_iEndAttachment = iEndAttachment;
 	pRope->m_Width = ropeWidth;
-	pRope->m_nSegments = clamp( numSegments, 2, ROPE_MAX_SEGMENTS );
+	pRope->m_nSegments = seclamp( numSegments, 2, ROPE_MAX_SEGMENTS );
 	pRope->m_RopeFlags = ropeFlags;
 
 	pRope->FinishInit( pMaterialName );
@@ -1209,7 +1209,7 @@ void C_RopeKeyframe::FinishInit( const char *pMaterialName )
 		m_pBackMaterial->GetMappingWidth();
 	
 	// Init rope physics.
-	m_nSegments = clamp( m_nSegments, 2, ROPE_MAX_SEGMENTS );
+	m_nSegments = seclamp( m_nSegments, 2, ROPE_MAX_SEGMENTS );
 	m_RopePhysics.SetNumNodes( m_nSegments );
 
 	SetCollisionBounds( Vector( -10, -10, -10 ), Vector( 10, 10, 10 ) );

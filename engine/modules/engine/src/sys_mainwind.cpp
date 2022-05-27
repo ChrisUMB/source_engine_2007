@@ -418,7 +418,7 @@ void VCR_HandlePlaybackMessages(
 			g_bShowVCRPlaybackDisplay = !g_bShowVCRPlaybackDisplay;
 		}
 
-		g_iVCRPlaybackSleepInterval = clamp( g_iVCRPlaybackSleepInterval, 0, 500 );
+		g_iVCRPlaybackSleepInterval = seclamp( g_iVCRPlaybackSleepInterval, 0, 500 );
 	}
 }
 

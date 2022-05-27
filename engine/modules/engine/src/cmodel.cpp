@@ -1779,13 +1779,13 @@ void CM_RayLeafnums_r( const Ray_t &ray, CCollisionBSPData *pBSPData, int iNode,
 	}
 
 	// Move up to the node
-	flFrac1 = clamp( flFrac1, 0.0f, 1.0f );
+	flFrac1 = seclamp( flFrac1, 0.0f, 1.0f );
 	flMid = p1f + ( p2f - p1f ) * flFrac1;
 	VectorLerp( vecPoint1, vecPoint2, flFrac1, vecMid );
 	CM_RayLeafnums_r( ray, pBSPData, pNode->children[nSide], p1f, flMid, vecPoint1, vecMid, pLeafList, nMaxLeafCount, nLeafCount );
 
 	// Go past the node
-	flFrac2 = clamp( flFrac2, 0.0f, 1.0f );
+	flFrac2 = seclamp( flFrac2, 0.0f, 1.0f );
 	flMid = p1f + ( p2f - p1f ) * flFrac2;
 	VectorLerp( vecPoint1, vecPoint2, flFrac2, vecMid );
 	CM_RayLeafnums_r( ray, pBSPData, pNode->children[nSide^1], flMid, p2f, vecMid, vecPoint2, pLeafList, nMaxLeafCount, nLeafCount );
@@ -1907,14 +1907,14 @@ static void FASTCALL CM_RecursiveHullCheckImpl( TraceInfo_t *pTraceInfo, int num
 	}
 
 	// move up to the node
-	frac = clamp( frac, 0, 1 );
+	frac = seclamp( frac, 0, 1 );
 	midf = p1f + (p2f - p1f)*frac;
 	VectorLerp( p1, p2, frac, mid );
 
 	CM_RecursiveHullCheckImpl<IS_POINT>(pTraceInfo, node->children[side], p1f, midf, p1, mid);
 
 	// go past the node
-	frac2 = clamp( frac2, 0, 1 );
+	frac2 = seclamp( frac2, 0, 1 );
 	midf = p1f + (p2f - p1f)*frac2;
 	VectorLerp( p1, p2, frac2, mid );
 

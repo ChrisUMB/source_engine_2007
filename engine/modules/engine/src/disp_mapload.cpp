@@ -311,7 +311,7 @@ void FillStaticBuffer(
 		
 		float flAlpha = ( ( CCoreDispInfo * )pCoreDisp )->GetAlpha( i );
 		flAlpha *= ( 1.0f / 255.0f );
-		flAlpha = clamp( flAlpha, 0.0f, 1.0f );
+		flAlpha = seclamp( flAlpha, 0.0f, 1.0f );
 		builder.Color4f( 1.0f, 1.0f, 1.0f, flAlpha );
 		
 		if( nLightmaps > 1 )

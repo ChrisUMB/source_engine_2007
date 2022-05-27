@@ -245,7 +245,7 @@ void C_HLTVCamera::CalcChaseCamView( Vector& eyeOrigin, QAngle& eyeAngles, float
 		cameraAngles.y = angle.y;
 		
 		NormalizeAngles( cameraAngles );
-		cameraAngles.x = clamp( cameraAngles.x, -60, 60 );
+		cameraAngles.x = seclamp( cameraAngles.x, -60, 60 );
 
 		SmoothCameraAngle( cameraAngles );
 	}
@@ -815,7 +815,7 @@ void C_HLTVCamera::SmoothCameraAngle( QAngle& targetAngle )
 	{
 		float deltaTime = gpGlobals->realtime - m_flLastAngleUpdateTime;
 
-		deltaTime = clamp( deltaTime*m_flInertia, 0.01, 1);
+		deltaTime = seclamp( deltaTime*m_flInertia, 0.01, 1);
 
 		InterpolateAngles( m_aCamAngle, targetAngle, m_aCamAngle, deltaTime );
 	}

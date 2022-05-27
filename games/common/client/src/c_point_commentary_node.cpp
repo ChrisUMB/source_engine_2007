@@ -392,7 +392,7 @@ void CHudCommentary::ApplySchemeSettings( vgui::IScheme *pScheme )
 void CHudCommentary::Paint()
 {
 	float flDuration = (m_flEndTime - m_flStartTime);
-	float flPercentage = clamp( ( gpGlobals->curtime - m_flStartTime ) / flDuration, 0, 1 );
+	float flPercentage = seclamp( ( gpGlobals->curtime - m_flStartTime ) / flDuration, 0, 1 );
 
 	if ( !m_hActiveNode )
 	{

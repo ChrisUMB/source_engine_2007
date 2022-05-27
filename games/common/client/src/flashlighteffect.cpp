@@ -282,7 +282,7 @@ void CFlashlightEffect::UpdateLightNew(const Vector &vecPos, const Vector &vecFo
 				flScale = SimpleSplineRemapVal( flBatteryPower, 10.0f, 4.8f, 1.0f, 0.0f );
 			}
 			
-			flScale = clamp( flScale, 0.0f, 1.0f );
+			flScale = seclamp( flScale, 0.0f, 1.0f );
 
 			if ( flScale < 0.35f )
 			{

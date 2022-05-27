@@ -919,7 +919,7 @@ void CDemoSmootherPanel::DrawDebuggingInfo(  int frame, float elapsed )
 
 	int useframe = frame;
 
-	useframe = clamp( useframe, 0, c - 1 );
+	useframe = seclamp( useframe, 0, c - 1 );
 	if ( useframe < c )
 	{
 		p = &m_Smoothing.smooth[ useframe ];
@@ -957,8 +957,8 @@ void CDemoSmootherPanel::OnSelect()
 	if ( c < 2 )
 		return;
 
-	start = clamp( start, 0, c - 1 );
-	end = clamp( end, 0, c - 1 );
+	start = seclamp( start, 0, c - 1 );
+	end = seclamp( end, 0, c - 1 );
 
 	if ( start >= end )
 		return;
@@ -1149,7 +1149,7 @@ bool CDemoSmootherPanel::GetInterpolatedOriginAndAngles( bool readonly, Vector& 
 
 			float frac = (float)( time - TICKS_TO_TIME(startsample->frametick) ) / dt;
 
-			frac = clamp( frac, 0.0f, 1.0f );
+			frac = seclamp( frac, 0.0f, 1.0f );
 
 			// Compute render origin/angles
 			Vector renderOrigin;
@@ -1227,7 +1227,7 @@ void CDemoSmootherPanel::OnStep( bool forward )
 	int c = m_Smoothing.smooth.Count();
 
 	SetLastFrame( false, m_nPreviewLastFrame + ( forward ? 1 : -1 ) );
-	SetLastFrame( false, clamp( m_nPreviewLastFrame, max( m_nSelection[ 0 ] - 10, 0 ), min( m_nSelection[ 1 ] + 10, c - 1 ) ) );
+	SetLastFrame( false, seclamp( m_nPreviewLastFrame, max( m_nSelection[ 0 ] - 10, 0 ), min( m_nSelection[ 1 ] + 10, c - 1 ) ) );
 	m_fPreviewCurrentTime = TICKS_TO_TIME( GetTickForFrame( m_nPreviewLastFrame ) );
 }
 
@@ -1452,7 +1452,7 @@ void CDemoSmootherPanel::PerformLinearInterpolatedAngleSmoothing( int startframe
 		int elapsed = p->frametick - pstart->frametick;
 		float frac = (float)elapsed / (float)dt;
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		p->info.flags |= FDEMO_USE_ANGLES2;
 
@@ -1516,7 +1516,7 @@ void CDemoSmootherPanel::OnLinearInterpolateOriginBasedOnEndpoints( void )
 		float elapsed = p->frametick - pstart->frametick;
 		float frac = elapsed / (float)dt;
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		p->info.flags |= FDEMO_USE_ORIGIN2;
 
@@ -1562,7 +1562,7 @@ demosmoothing_t *CDemoSmootherPanel::GetCurrent( void )
 	if ( c < 1 )
 		return NULL;
 
-	int frame = clamp( m_nPreviewLastFrame, 0, c - 1 );
+	int frame = seclamp( m_nPreviewLastFrame, 0, c - 1 );
 
 	return &m_Smoothing.smooth[ frame ];
 }
@@ -1639,8 +1639,8 @@ void CDemoSmootherPanel::FindSpanningPoints( int tick, CUtlVector< demosmoothing
 	next = i;
 	prev = i - 1;
 
-	next = clamp( next, 0, c - 1 );
-	prev = clamp( prev, 0, c - 1 );
+	next = seclamp( next, 0, c - 1 );
+	prev = seclamp( prev, 0, c - 1 );
 }
 
 void CDemoSmootherPanel::OnSplineSampleOrigin( void )
@@ -1694,7 +1694,7 @@ void CDemoSmootherPanel::OnSplineSampleOrigin( void )
 			frac = (float)( p->frametick - current->frametick ) / dt;
 		}
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		Vector splined;
 
@@ -1755,7 +1755,7 @@ void CDemoSmootherPanel::OnSplineSampleAngles( void )
 			frac = (float)( p->frametick - current->frametick ) / dt;
 		}
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		frac = SimpleSpline( frac );
 
@@ -1823,7 +1823,7 @@ void CDemoSmootherPanel::OnLookAtPoints( bool spline )
 			frac = (float)( p->frametick - current->frametick ) / dt;
 		}
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		Vector splined;
 
@@ -2283,7 +2283,7 @@ void CDemoSmootherPanel::DrawTargetSpline()
 			frac = (float)( p->frametick - current->frametick ) / dt;
 		}
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		Vector splined;
 
@@ -2349,7 +2349,7 @@ void CDemoSmootherPanel::DrawKeySpline()
 			frac = (float)( p->frametick - current->frametick ) / dt;
 		}
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		Vector splined;
 
@@ -2506,7 +2506,7 @@ void CDemoSmootherPanel::OnOriginEaseCurve( EASEFUNC easefunc )
 		// Apply ease function
 		frac = (*easefunc)( frac );
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		p->info.flags |= FDEMO_USE_ORIGIN2;
 

@@ -2113,7 +2113,7 @@ void CResponseSystem::ParseOneResponse( const char *responseGroupName, ResponseG
 		{
 			ParseToken();
 			rp->flags |= AI_ResponseParams::RG_ODDS;
-			rp->odds = clamp( atoi( token ), 0, 100 );
+			rp->odds = seclamp( atoi( token ), 0, 100 );
 			continue;
 		}
 		
@@ -2293,7 +2293,7 @@ void CResponseSystem::ParseResponse( void )
 		{
 			ParseToken();
 			rp->flags |= AI_ResponseParams::RG_ODDS;
-			rp->odds = clamp( atoi( token ), 0, 100 );
+			rp->odds = seclamp( atoi( token ), 0, 100 );
 			continue;
 		}
 		

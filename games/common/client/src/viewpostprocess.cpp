@@ -1,4 +1,4 @@
-//========== Copyright © 2005, Valve Corporation, All rights reserved. ==========
+//========== Copyright ?© 2005, Valve Corporation, All rights reserved. ==========
 //
 // Purpose:
 //
@@ -2146,7 +2146,7 @@ void DoImageSpaceMotionBlur( const CViewSetup &view, int x, int y, int w, int h 
 				g_vMotionBlurValues[2] = 0.0f;
 
 			// Scale and bias values after time adjustment
-			g_vMotionBlurValues[2] = clamp( ( fabs( g_vMotionBlurValues[2] ) - flMotionBlurFallingMin ) / ( flMotionBlurFallingMax - flMotionBlurFallingMin ), 0.0f, 1.0f ) * ( g_vMotionBlurValues[2] >= 0.0f ? 1.0f : -1.0f );
+			g_vMotionBlurValues[2] = seclamp( ( fabs( g_vMotionBlurValues[2] ) - flMotionBlurFallingMin ) / ( flMotionBlurFallingMax - flMotionBlurFallingMin ), 0.0f, 1.0f ) * ( g_vMotionBlurValues[2] >= 0.0f ? 1.0f : -1.0f );
 			g_vMotionBlurValues[2] /= 30.0f; // To counter-adjust for time adjustment above
 
 			//=================//
@@ -2165,7 +2165,7 @@ void DoImageSpaceMotionBlur( const CViewSetup &view, int x, int y, int w, int h 
 				float flSlowFps = 30.0f;
 				float flFastFps = 50.0f;
 				float flCurrentFps = ( flTimeElapsed > 0.0f ) ? ( 1.0f / flTimeElapsed ) : 0.0f;
-				float flDampenFactor = clamp( ( ( flCurrentFps - flSlowFps ) / ( flFastFps - flSlowFps ) ), 0.0f, 1.0f );
+				float flDampenFactor = seclamp( ( ( flCurrentFps - flSlowFps ) / ( flFastFps - flSlowFps ) ), 0.0f, 1.0f );
 
 				//engine->Con_NPrintf( 4, "gpGlobals->realtime %.2f  gpGlobals->curtime %.2f", gpGlobals->realtime, gpGlobals->curtime );
 				//engine->Con_NPrintf( 5, "flCurrentFps %.2f", flCurrentFps );

@@ -1133,7 +1133,7 @@ void CModelRender::SnapCurrentLightingState( ModelInstance_t &inst, LightingStat
 void CModelRender::TimeAverageAmbientLight( LightingState_t &actualLightingState, 
 										   ModelInstance_t &inst, float flAttenFactor, LightingState_t *pLightingState, const Vector *pLightingOrigin )
 {
-	flAttenFactor = clamp( flAttenFactor, 0, 1 );   // don't need this but alex is a coward
+	flAttenFactor = seclamp( flAttenFactor, 0, 1 );   // don't need this but alex is a coward
 	Vector vecDelta;
 	for ( int i = 0; i < 6; ++i )
 	{
@@ -1168,9 +1168,9 @@ void CModelRender::TimeAverageAmbientLight( LightingState_t &actualLightingState
 			Assert( inst.m_CurrentLightingState.r_boxcolor[i][nComp] <= AMBIENT_MAX );
 		}
 #endif
-		inst.m_CurrentLightingState.r_boxcolor[i].x = clamp( inst.m_CurrentLightingState.r_boxcolor[i].x, 0, AMBIENT_MAX );
-		inst.m_CurrentLightingState.r_boxcolor[i].y = clamp( inst.m_CurrentLightingState.r_boxcolor[i].y, 0, AMBIENT_MAX );
-		inst.m_CurrentLightingState.r_boxcolor[i].z = clamp( inst.m_CurrentLightingState.r_boxcolor[i].z, 0, AMBIENT_MAX );
+		inst.m_CurrentLightingState.r_boxcolor[i].x = seclamp( inst.m_CurrentLightingState.r_boxcolor[i].x, 0, AMBIENT_MAX );
+		inst.m_CurrentLightingState.r_boxcolor[i].y = seclamp( inst.m_CurrentLightingState.r_boxcolor[i].y, 0, AMBIENT_MAX );
+		inst.m_CurrentLightingState.r_boxcolor[i].z = seclamp( inst.m_CurrentLightingState.r_boxcolor[i].z, 0, AMBIENT_MAX );
 	}
 	memcpy( &actualLightingState.r_boxcolor, &inst.m_CurrentLightingState.r_boxcolor, sizeof(inst.m_CurrentLightingState.r_boxcolor) );
 }
@@ -1836,7 +1836,7 @@ void DrawModelDebugOverlay( const DrawModelInfo_t& info, const DrawModelResults_
 	float alpha = 1;
 	if( r_drawmodelstatsoverlaydistance.GetFloat() == 1 )
 	{
-		alpha = 1.f - clamp( CurrentViewOrigin().DistTo( origin ) / r_drawmodelstatsoverlaydistance.GetFloat(), 0, 1.f );
+		alpha = 1.f - seclamp( CurrentViewOrigin().DistTo( origin ) / r_drawmodelstatsoverlaydistance.GetFloat(), 0, 1.f );
 	}
 	else
 	{
@@ -2820,7 +2820,7 @@ int CModelRender::DrawStaticPropArrayFast( StaticPropRenderInfo_t *pProps, int c
 		for ( int i = 0; i < objectList.Count(); i++ )
 		{
 			const rmodel_t &model = modelList[objectList[i].modelIndex];
-			objectList[i].lod = clamp(forcedLodSetting, model.pStudioHWData->m_RootLOD, model.lodCount-1);
+			objectList[i].lod = seclamp(forcedLodSetting, model.pStudioHWData->m_RootLOD, model.lodCount-1);
 		}
 	}
 	// UNDONE: Don't sort if rendering transparent objects - for now this isn't called in the transparent case

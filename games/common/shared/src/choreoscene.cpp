@@ -1296,7 +1296,7 @@ void CChoreoScene::ParseFPS( void )
 	m_pTokenizer->GetToken( true );
 	m_nSceneFPS = atoi( m_pTokenizer->CurrentToken() );
 	// Clamp to valid range
-	m_nSceneFPS = clamp( m_nSceneFPS, MIN_SCENE_FPS, MAX_SCENE_FPS);
+	m_nSceneFPS = seclamp( m_nSceneFPS, MIN_SCENE_FPS, MAX_SCENE_FPS);
 }
 
 

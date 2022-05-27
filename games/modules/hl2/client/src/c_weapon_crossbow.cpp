@@ -88,7 +88,7 @@ int C_CrossbowBolt::DrawModel( int flags )
 		Vector	vecDir = GetAbsOrigin() - m_vecLastOrigin;
 		float	speed = VectorNormalize( vecDir );
 		
-		speed = clamp( speed, 0, 32 );
+		speed = seclamp( speed, 0, 32 );
 		
 		if ( speed > 0 )
 		{

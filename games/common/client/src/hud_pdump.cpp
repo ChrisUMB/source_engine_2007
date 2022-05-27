@@ -261,7 +261,7 @@ void CPDumpPanel::Paint()
 	int numcols = ScreenWidth() / columnwidth;
 	int i;
 
-	numcols = clamp( numcols, 1, 5 );
+	numcols = seclamp( numcols, 1, 5 );
 
 	for ( i = 0; i < numcols; i++ )
 	{

@@ -623,7 +623,8 @@ template <class T> FORCEINLINE T AVG(T a, T b)
 //
 // Returns a clamped value in the range [min, max].
 //
-#define clamp(val, min, max) (((val) > (max)) ? (max) : (((val) < (min)) ? (min) : (val)))
+
+#define seclamp(val, min, max) (((val) > (max)) ? (max) : (((val) < (min)) ? (min) : (val)))
 
 inline float Sign( float x )
 {

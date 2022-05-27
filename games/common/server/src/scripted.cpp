@@ -865,7 +865,7 @@ void CAI_ScriptedSequence::SynchronizeSequence( CAI_BaseNPC *pNPC )
 
 	// Msg("%.2f \"%s\"  %s : %f (%f): interval %f\n", gpGlobals->curtime, GetEntityName().ToCStr(), pNPC->GetClassname(), pNPC->m_flAnimTime.Get(), m_startTime, flInterval );
 	//Assert( flInterval >= 0.0 && flInterval <= 0.15 );
-	flInterval = clamp( flInterval, 0, 0.15 );
+	flInterval = seclamp( flInterval, 0, 0.15 );
 
 	if (flInterval == 0)
 		return;

@@ -2343,7 +2343,7 @@ void CBaseServer::WriteTempEntities( CBaseClient *client, CFrameSnapshot *pCurre
 
 void CBaseServer::SetMaxClients( int number )
 {
-	m_nMaxclients = clamp( number, 1, ABSOLUTE_PLAYER_LIMIT );
+	m_nMaxclients = seclamp( number, 1, ABSOLUTE_PLAYER_LIMIT );
 }
 
 struct convar_tags_t

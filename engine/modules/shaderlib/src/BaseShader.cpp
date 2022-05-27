@@ -561,7 +561,7 @@ float CBaseShader::GetAlpha( IMaterialVar** ppParams )
 		return 1.0f;
 
 	float flAlpha = ppParams[ALPHA]->GetFloatValue();
-	return clamp( flAlpha, 0.0f, 1.0f );
+	return seclamp( flAlpha, 0.0f, 1.0f );
 }
 
 
@@ -591,15 +591,15 @@ void CBaseShader::SetColorState( int colorVar, bool setAlpha )
 		
 		if ( !g_pHardwareConfig->SupportsPixelShaders_1_4() )		// Clamp 0..1 for ps_1_1 and below
 		{
-			color[0] = clamp( color[0], 0.0f, 1.0f );
-			color[1] = clamp( color[1], 0.0f, 1.0f );
-			color[2] = clamp( color[2], 0.0f, 1.0f );
+			color[0] = seclamp( color[0], 0.0f, 1.0f );
+			color[1] = seclamp( color[1], 0.0f, 1.0f );
+			color[2] = seclamp( color[2], 0.0f, 1.0f );
 		}
 		else if ( !g_pHardwareConfig->SupportsPixelShaders_2_0() ) 	// Clamp 0..8 for ps_1_4
 		{
-			color[0] = clamp( color[0], 0.0f, 8.0f );
-			color[1] = clamp( color[1], 0.0f, 8.0f );
-			color[2] = clamp( color[2], 0.0f, 8.0f );
+			color[0] = seclamp( color[0], 0.0f, 8.0f );
+			color[1] = seclamp( color[1], 0.0f, 8.0f );
+			color[2] = seclamp( color[2], 0.0f, 8.0f );
 		}
 	}
 	ApplyColor2Factor( color );

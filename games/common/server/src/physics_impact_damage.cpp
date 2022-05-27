@@ -453,7 +453,7 @@ float CalculatePhysicsImpactDamage( int index, gamevcollisionevent_t *pEvent, co
 
 	if ( !pEvent->pObjects[otherIndex]->IsStatic() && otherMass < table.smallMassMax && table.smallMassCap > 0 )
 	{
-		damage = clamp( damage, 0, table.smallMassCap );
+		damage = seclamp( damage, 0, table.smallMassCap );
 	}
 
 	return damage;

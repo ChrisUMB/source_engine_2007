@@ -388,7 +388,7 @@ public:
 				{
 					f = ( time_since_start - fadeintimehidden ) / fadeintime;
 				}
-				f = clamp( f, 0.0f, 1.0f );
+				f = seclamp( f, 0.0f, 1.0f );
 				return f;
 			}
 			
@@ -399,7 +399,7 @@ public:
 			time_until_end < fadeouttime )
 		{
 			float f = time_until_end / fadeouttime;
-			f = clamp( f, 0.0f, 1.0f );
+			f = seclamp( f, 0.0f, 1.0f );
 			return f;
 		}
 
@@ -1067,11 +1067,11 @@ void CHudCloseCaption::Paint( void )
 
 		float dt = m_flGoalHeightFinishTime - m_flGoalHeightStartTime;
 		float frac = ( gpGlobals->curtime - m_flGoalHeightStartTime ) / dt;
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 		int newHeight = m_nCurrentHeight + (int)( frac * togo );
 		m_nCurrentHeight = newHeight;
 		float newAlpha = m_flCurrentAlpha + frac * alphatogo;
-		m_flCurrentAlpha = clamp( newAlpha, 0.0f, 1.0f );
+		m_flCurrentAlpha = seclamp( newAlpha, 0.0f, 1.0f );
 	}
 	else
 	{
@@ -1150,7 +1150,7 @@ void CHudCloseCaption::Paint( void )
  			float flCurMove = item->GetInitialLifeSpan() - item->GetTimeToLive();
  			int iHeightToMove = 0;
 
- 			int iLinesToMove = clamp( floor( flCurMove / flMoveDelta ), 0, units );
+ 			int iLinesToMove = seclamp( floor( flCurMove / flMoveDelta ), 0, units );
 			if ( iLinesToMove )
 			{
  				int iCurrentLineHeight = 0;
@@ -1177,12 +1177,12 @@ void CHudCloseCaption::Paint( void )
 
 					// Fade out quickly
 					float flFadeTime = (gpGlobals->curtime - wu->GetFadeStart()) /  CAPTION_PAN_FADE_TIME;
-					flFadeLineAlpha = clamp( 1.0 - flFadeTime, 0, 1 );
+					flFadeLineAlpha = seclamp( 1.0 - flFadeTime, 0, 1 );
 				}
 				else if ( flTimePostMove < (CAPTION_PAN_FADE_TIME+CAPTION_PAN_SLIDE_TIME) )
 				{
 					flTimePostMove -= CAPTION_PAN_FADE_TIME;
- 					float flSlideTime = clamp( flTimePostMove / 0.25, 0, 1 );
+ 					float flSlideTime = seclamp( flTimePostMove / 0.25, 0, 1 );
  					iHeightToMove += ceil((iCurrentLineHeight - iHeightToMove) * flSlideTime);
 				}
 				else
@@ -2387,7 +2387,7 @@ bool CHudCloseCaption::AddAsyncWork( const char *tokenstream, bool bIsStream, fl
 void CHudCloseCaption::ProcessSentenceCaptionStream( const char *tokenstream )
 {
 	float interval = cc_sentencecaptionnorepeat.GetFloat();
-	interval = clamp( interval, 0.1f, 60.0f );
+	interval = seclamp( interval, 0.1f, 60.0f );
 
 	// The first token from the stream is the name of the sentence
 	char tokenname[ 512 ];

@@ -1976,7 +1976,7 @@ void C_INIT_CreationNoise::InitNewParticlesScalar(
 
 		if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & (1 << m_nFieldOutput ) )
 		{
-			flInitialNoise = clamp(flInitialNoise, 0.0f, 1.0f );
+			flInitialNoise = seclamp(flInitialNoise, 0.0f, 1.0f );
 		}
 
 		*( pAttr ) = flInitialNoise;
@@ -2246,8 +2246,8 @@ void C_INIT_RemapScalar::InitNewParticlesScalar(
 	float flMax=m_flOutputMax;
 	if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & ( 1 << m_nFieldOutput ) )
 	{
-		flMin = clamp(m_flOutputMin, 0.0f, 1.0f );
-		flMax = clamp(m_flOutputMax, 0.0f, 1.0f );
+		flMin = seclamp(m_flOutputMin, 0.0f, 1.0f );
+		flMax = seclamp(m_flOutputMax, 0.0f, 1.0f );
 	}
 
 	// FIXME: SSE-ize
@@ -2475,7 +2475,7 @@ void C_INIT_AgeNoise::InitNewParticlesScalar(
 		float flInitialNoise = ( ValueBase + ( ValueScale * flNoise ) );
 
 
-		flInitialNoise = clamp(flInitialNoise, 0.0f, 1.0f );
+		flInitialNoise = seclamp(flInitialNoise, 0.0f, 1.0f );
 		flInitialNoise *= *pLifespan;
 
 		*( pAttr ) = *pCreationTime - flInitialNoise;
@@ -3454,8 +3454,8 @@ void C_INIT_RemapCPtoScalar::InitNewParticlesScalar(
 	float flMax=m_flOutputMax;
 	if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & ( 1 << m_nFieldOutput ) )
 	{
-		flMin = clamp(m_flOutputMin, 0.0f, 1.0f );
-		flMax = clamp(m_flOutputMax, 0.0f, 1.0f );
+		flMin = seclamp(m_flOutputMin, 0.0f, 1.0f );
+		flMax = seclamp(m_flOutputMax, 0.0f, 1.0f );
 	}
 	Vector vecControlPoint;
 	float *ct = pParticles->GetFloatAttributePtrForWrite( PARTICLE_ATTRIBUTE_CREATION_TIME, start_p );
@@ -3847,8 +3847,8 @@ void C_INIT_DistanceToCPInit::InitNewParticlesScalar(
 	float flMax=m_flOutputMax;
 	if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & ( 1 << m_nFieldOutput ) )
 	{
-		flMin = clamp(m_flOutputMin, 0.0f, 1.0f );
-		flMax = clamp(m_flOutputMax, 0.0f, 1.0f );
+		flMin = seclamp(m_flOutputMin, 0.0f, 1.0f );
+		flMax = seclamp(m_flOutputMax, 0.0f, 1.0f );
 	}
 	Vector vecControlPoint1 = pParticles->GetControlPointAtCurrentTime( m_nStartCP );
 

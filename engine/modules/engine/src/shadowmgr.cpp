@@ -2721,10 +2721,10 @@ bool ScreenSpaceRectFromPoints( IMatRenderContext *pRenderContext, Vector vClipp
 	*nRight  = ((fMaxX * 0.5f + 0.5f) * (float) nWidth ) + 1;
 	*nBottom = ((fMaxY * 0.5f + 0.5f) * (float) nHeight) + 1;  
 
-	*nLeft   = clamp( *nLeft,   0, nWidth  );						// Clamp to render target dimensions
-	*nTop    = clamp( *nTop,    0, nHeight );
-	*nRight  = clamp( *nRight,  0, nWidth  );
-	*nBottom = clamp( *nBottom, 0, nHeight );
+	*nLeft   = seclamp( *nLeft,   0, nWidth  );						// Clamp to render target dimensions
+	*nTop    = seclamp( *nTop,    0, nHeight );
+	*nRight  = seclamp( *nRight,  0, nWidth  );
+	*nBottom = seclamp( *nBottom, 0, nHeight );
 
 	Assert( (*nLeft <= *nRight) && (*nTop <= *nBottom) );
 

@@ -2400,7 +2400,7 @@ void CServerGameClients::ClientSettingsChanged( edict_t *pEdict )
 	static const ConVar *pMinUpdateRate = g_pCVar->FindVar( "sv_minupdaterate" );
 	static const ConVar *pMaxUpdateRate = g_pCVar->FindVar( "sv_maxupdaterate" );
 	if ( pMinUpdateRate && pMaxUpdateRate )
-		player->m_nUpdateRate = (int)clamp( player->m_nUpdateRate, pMinUpdateRate->GetFloat(), pMaxUpdateRate->GetFloat() );
+		player->m_nUpdateRate = (int)seclamp( player->m_nUpdateRate, pMinUpdateRate->GetFloat(), pMaxUpdateRate->GetFloat() );
 
 	bool useInterpolation = Q_atoi( QUICKGETCVARVALUE("cl_interpolate") ) != 0;
 	if ( useInterpolation )
@@ -2414,7 +2414,7 @@ void CServerGameClients::ClientSettingsChanged( edict_t *pEdict )
 		static const ConVar *pMax = g_pCVar->FindVar( "sv_client_max_interp_ratio" );
 		if ( pMin && pMax && pMin->GetFloat() != -1 )
 		{
-			flLerpRatio = clamp( flLerpRatio, pMin->GetFloat(), pMax->GetFloat() );
+			flLerpRatio = seclamp( flLerpRatio, pMin->GetFloat(), pMax->GetFloat() );
 		}
 		else
 		{

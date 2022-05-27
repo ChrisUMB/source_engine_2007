@@ -509,8 +509,8 @@ void CInput::AccumulateMouse( void )
 	{
 		int ox, oy;
 		GetMousePos( ox, oy );
-		ox = clamp( ox, 0, w - 1 );
-		oy = clamp( oy, 0, h - 1 );
+		ox = seclamp( ox, 0, w - 1 );
+		oy = seclamp( oy, 0, h - 1 );
 		SetMousePos( ox, oy );
 	}
 

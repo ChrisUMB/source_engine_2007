@@ -367,7 +367,7 @@ void CBaseProp::DrawDebugGeometryOverlays( void )
 		{
 			// Remap health to green brightness
 			float flG = RemapVal( m_iHealth, 0, 100, 64, 255 );
-			flG = clamp( flG, 0, 255 );
+			flG = seclamp( flG, 0, 255 );
 			NDebugOverlay::EntityBounds(this, 0, flG, 0, 0, 0 );
 		}
 	}
@@ -1155,7 +1155,7 @@ int CBreakableProp::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 	int ret = BaseClass::OnTakeDamage( info );
 
 	// Output the new health as a percentage of max health [0..1]
-	float flRatio = clamp( (float)m_iHealth / (float)m_iMaxHealth, 0, 1 );
+	float flRatio = seclamp( (float)m_iHealth / (float)m_iMaxHealth, 0, 1 );
 	m_OnHealthChanged.Set( flRatio, info.GetAttacker(), this );
 	m_OnTakeDamage.FireOutput( info.GetAttacker(), this );
 
@@ -1235,7 +1235,7 @@ bool CBreakableProp::UpdateHealth( int iNewHealth, CBaseEntity *pActivator )
 		}
 
 		// Output the new health as a percentage of max health [0..1]
-		float flRatio = clamp( (float)m_iHealth / (float)m_iMaxHealth, 0, 1 );
+		float flRatio = seclamp( (float)m_iHealth / (float)m_iMaxHealth, 0, 1 );
 		m_OnHealthChanged.Set( flRatio, pActivator, this );
 
 		if ( m_iHealth <= 0 )

@@ -671,7 +671,7 @@ void RichText::CalculateFade( TRenderState &renderState )
 				float frac = ( m_FormatStream[renderState.formatStreamIndex].fade.flFadeStartTime -  system()->GetCurrentTime() ) / m_FormatStream[renderState.formatStreamIndex].fade.flFadeLength;
 
 				int alpha = frac * m_FormatStream[renderState.formatStreamIndex].fade.iOriginalAlpha;
-				alpha = clamp( alpha, 0, m_FormatStream[renderState.formatStreamIndex].fade.iOriginalAlpha );
+				alpha = seclamp( alpha, 0, m_FormatStream[renderState.formatStreamIndex].fade.iOriginalAlpha );
 
 				renderState.textColor.SetColor( renderState.textColor.r(), renderState.textColor.g(), renderState.textColor.b(), alpha );
 			}

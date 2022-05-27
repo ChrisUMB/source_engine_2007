@@ -1089,7 +1089,7 @@ void CCollisionEvent::FluidStartTouch( IPhysicsObject *pObject, IPhysicsFluidCon
 	float dragScale = pFluid->GetDensity() * physenv->GetSimulationTimestep();
 	normal = -normal;
 	float linearScale = 0.5f * DotProduct( unitVel, normal ) * pObject->CalculateLinearDrag( normal ) * dragScale;
-	linearScale = clamp( linearScale, 0.0f, 1.0f );
+	linearScale = seclamp( linearScale, 0.0f, 1.0f );
 	vel *= -linearScale;
 
 	// UNDONE: Figure out how much of the surface area has crossed the water surface and scale angScale by that
@@ -1097,7 +1097,7 @@ void CCollisionEvent::FluidStartTouch( IPhysicsObject *pObject, IPhysicsFluidCon
 	Vector rotAxis = angVel;
 	VectorNormalize(rotAxis);
 	float angScale = 0.25f * pObject->CalculateAngularDrag( angVel ) * dragScale;
-	angScale = clamp( angScale, 0.0f, 1.0f );
+	angScale = seclamp( angScale, 0.0f, 1.0f );
 	angVel *= -angScale;
 	
 	// compute the splash before we modify the velocity
@@ -1607,7 +1607,7 @@ CON_COMMAND( physics_budget, "Times the cost of each active object" )
 
 			float elapsed = end - start;
 			float avgTime = lastTime - elapsed;
-			times[i] = clamp( avgTime, 0.00001f, 1.0f );
+			times[i] = seclamp( avgTime, 0.00001f, 1.0f );
 			totalTime += times[i];
 			lastTime = elapsed;
  		}
@@ -2217,7 +2217,7 @@ void CCollisionEvent::RestoreDamageInflictorState( IPhysicsObject *pInflictor )
 			{
 				float otherMass = state.otherMassMax > 0 ? state.otherMassMax : 1;
 				float massRatio = inflictorMass / otherMass;
-				massRatio = clamp( massRatio, 0.1f, 10.0f );
+				massRatio = seclamp( massRatio, 0.1f, 10.0f );
 				if ( massRatio < 1 )
 				{
 					velocityBlend = RemapVal( massRatio, 0.1, 1, 0, 0.5 );
@@ -2589,7 +2589,7 @@ void PhysCollisionScreenShake( gamevcollisionevent_t *pEvent, int index )
 	if ( mass >= VPHYSICS_LARGE_OBJECT_MASS && pEvent->pObjects[otherIndex]->IsStatic() && 
 		!(pEvent->pObjects[index]->GetGameFlags() & FVPHYSICS_PENETRATING) )
 	{
-		mass = clamp(mass, VPHYSICS_LARGE_OBJECT_MASS, 2000);
+		mass = seclamp(mass, VPHYSICS_LARGE_OBJECT_MASS, 2000);
 		if ( pEvent->collisionSpeed > 30 && pEvent->deltaCollisionTime > 0.25f )
 		{
 			Vector vecPos;
@@ -2671,7 +2671,7 @@ void PhysFrictionSound( CBaseEntity *pEntity, IPhysicsObject *pObject, const cha
 	
 	// cut out the quiet sounds
 	// UNDONE: Separate threshold for starting a sound vs. continuing?
-	flVolume = clamp( flVolume, 0.0f, 1.0f );
+	flVolume = seclamp( flVolume, 0.0f, 1.0f );
 	if ( flVolume > (1.0f/128.0f) )
 	{
 		friction_t *pFriction = g_Collisions.FindFriction( pEntity );

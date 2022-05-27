@@ -4031,8 +4031,8 @@ END_DATADESC()
 void CTriggerImpact::Spawn( void )
 {	
 	// Clamp date in case user made an error
-	m_flNoise = clamp(m_flNoise,0,1);
-	m_flViewkick = clamp(m_flViewkick,0,1);
+	m_flNoise = seclamp(m_flNoise,0,1);
+	m_flViewkick = seclamp(m_flViewkick,0,1);
 
 	// Always start disabled
 	m_bDisabled = true;

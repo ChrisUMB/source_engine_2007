@@ -1893,8 +1893,8 @@ void SurfComputeLightmapCoordinate( SurfaceCtx_t const& ctx, SurfaceHandle_t sur
 //	CheckTexCoord( uv.x );
 //	CheckTexCoord( uv.y );
 #endif
-	uv.x = clamp(uv.x, 0.0f, 1.0f);
-	uv.y = clamp(uv.y, 0.0f, 1.0f);
+	uv.x = seclamp(uv.x, 0.0f, 1.0f);
+	uv.y = seclamp(uv.y, 0.0f, 1.0f);
 }
 
 

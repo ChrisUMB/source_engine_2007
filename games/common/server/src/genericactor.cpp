@@ -269,7 +269,7 @@ void CFlextalkActor::SetFlexTarget( LocalFlexController_t flexnum, float value )
 	if (1 || random->RandomFloat( 0.0, 1.0 ) < 0.2)
 	{
 		value2 = random->RandomFloat( value - 0.2, value + 0.2 );
-		value2 = clamp( value2, 0.0, 1.0 );
+		value2 = seclamp( value2, 0.0, 1.0 );
 	}
 
 
@@ -412,7 +412,7 @@ void CFlextalkActor::ProcessSceneEvents( void )
 			{
 				weight = weight + (m_flextarget[i] - weight) / random->RandomFloat( 2.0, 4.0 );
 			}
-			weight = clamp( weight, 0.0f, 1.0f );
+			weight = seclamp( weight, 0.0f, 1.0f );
 			SetFlexWeight( i, weight );
 		}
 

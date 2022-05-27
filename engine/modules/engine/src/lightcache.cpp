@@ -1130,7 +1130,7 @@ static float LightIntensityAndDirectionInBox( dworldlight_t* pLight,
 				vecClosestPoint.Init();
 				for ( int i = 0; i < 3; ++i )
 				{
-					vecClosestPoint[i] = clamp( pLight->origin[i], mins[i], maxs[i] );
+					vecClosestPoint[i] = seclamp( pLight->origin[i], mins[i], maxs[i] );
 				}
 
 				vecClosestPoint -= pLight->origin;

@@ -240,7 +240,7 @@ void CPhysicsCannister::CannisterActivate( CBaseEntity *pActivator, const Vector
 	m_pJet->SetParent( this );
 
 	float extra = m_thruster.m_thrust * (1/5000.f);
-	extra = clamp( extra, 0, 1 );
+	extra = seclamp( extra, 0, 1 );
 
 	m_pJet->m_SpreadSpeed = 15 * m_thruster.m_thrust * 0.001;
 	m_pJet->m_Speed = 128 + 100 * extra;

@@ -502,9 +502,9 @@ void C_SteamJet::UpdateLightingRamp()
 			pRamp->y += (m_clrRender->g/255.0f);
 			pRamp->z += (m_clrRender->b/255.0f);
 
-			pRamp->x = clamp( pRamp->x, 0.0f, 1.0f );
-			pRamp->y = clamp( pRamp->y, 0.0f, 1.0f );
-			pRamp->z = clamp( pRamp->z, 0.0f, 1.0f );
+			pRamp->x = seclamp( pRamp->x, 0.0f, 1.0f );
+			pRamp->y = seclamp( pRamp->y, 0.0f, 1.0f );
+			pRamp->z = seclamp( pRamp->z, 0.0f, 1.0f );
 		}
 		else
 		{

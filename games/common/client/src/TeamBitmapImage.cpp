@@ -95,7 +95,7 @@ bool CTeamBitmapImage::Init( vgui::Panel *pParent, KeyValues* pInitData, C_BaseE
 //-----------------------------------------------------------------------------
 void CTeamBitmapImage::SetAlpha( float alpha )
 {
-	m_Alpha = clamp( alpha, 0.0f, 1.0f );
+	m_Alpha = seclamp( alpha, 0.0f, 1.0f );
 }
 
 

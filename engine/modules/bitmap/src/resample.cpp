@@ -191,7 +191,7 @@ static void GenerateNiceFilter( float wratio, float hratio, float dratio, int ke
 //-----------------------------------------------------------------------------
 // Resample an image
 //-----------------------------------------------------------------------------
-static inline unsigned char Clamp( float x )
+static inline unsigned char clamp( float x )
 {
 	int idx = (int)(x + 0.5f);
 	if (idx < 0) idx = 0;
@@ -234,7 +234,7 @@ public:
 	static inline int ActualX( int x, const ResampleInfo_t &info )
 	{
 		if ( info.m_nFlags & RESAMPLE_CLAMPS )
-			return clamp( x, 0, info.m_nSrcWidth - 1 );
+			return seclamp( x, 0, info.m_nSrcWidth - 1 );
 
 		// This works since info.m_nSrcWidth is a power of two.
 		// Even for negative #s!
@@ -244,7 +244,7 @@ public:
 	static inline int ActualY( int y, const ResampleInfo_t &info )
 	{
 		if ( info.m_nFlags & RESAMPLE_CLAMPT )
-			return clamp( y, 0, info.m_nSrcHeight - 1 );
+			return seclamp( y, 0, info.m_nSrcHeight - 1 );
 
 		// This works since info.m_nSrcHeight is a power of two.
 		// Even for negative #s!
@@ -254,7 +254,7 @@ public:
 	static inline int ActualZ( int z, const ResampleInfo_t &info )
 	{
 		if ( info.m_nFlags & RESAMPLE_CLAMPU )
-			return clamp( z, 0, info.m_nSrcDepth - 1 );
+			return seclamp( z, 0, info.m_nSrcDepth - 1 );
 
 		// This works since info.m_nSrcDepth is a power of two.
 		// Even for negative #s!
@@ -480,7 +480,7 @@ public:
 					if( type == KERNEL_NORMALMAP )
 					{
 						for ( int ch = 0; ch < 4; ++ ch )
-							info.m_pDest[ dstPixel + ch ] = Clamp( info.m_flColorGoal[ch] + ( info.m_flColorScale[ch] * ( total[ch] - info.m_flColorGoal[ch] ) ) );
+							info.m_pDest[ dstPixel + ch ] = clamp( info.m_flColorGoal[ch] + ( info.m_flColorScale[ch] * ( total[ch] - info.m_flColorGoal[ch] ) ) );
 					}
 					else if ( type == KERNEL_ALPHATEST )
 					{
@@ -488,16 +488,16 @@ public:
 						float flAlpha = ( total[3] >= flAlphaThreshhold ) ? 255 : 0; 
 
 						for ( int ch = 0; ch < 3; ++ ch )
-							info.m_pDest[ dstPixel + ch ] = Clamp( 255.0f * pow( ( info.m_flColorGoal[ch] + ( info.m_flColorScale[ch] * ( ( total[ch] > 0 ? total[ch] : 0 ) - info.m_flColorGoal[ch] ) ) ) / 255.0f, invDstGamma ) );
-						info.m_pDest[ dstPixel + 3 ] = Clamp( flAlpha );
+							info.m_pDest[ dstPixel + ch ] = clamp( 255.0f * pow( ( info.m_flColorGoal[ch] + ( info.m_flColorScale[ch] * ( ( total[ch] > 0 ? total[ch] : 0 ) - info.m_flColorGoal[ch] ) ) ) / 255.0f, invDstGamma ) );
+						info.m_pDest[ dstPixel + 3 ] = clamp( flAlpha );
 
 						AddAlphaToAlphaResult( kernel, info, startX, startY, startZ, flAlpha, pAlphaResult );
 					}
 					else
 					{
 						for ( int ch = 0; ch < 3; ++ ch )
-							info.m_pDest[ dstPixel + ch ] = Clamp( 255.0f * pow( ( info.m_flColorGoal[ch] + ( info.m_flColorScale[ch] * ( ( total[ch] > 0 ? total[ch] : 0 ) - info.m_flColorGoal[ch] ) ) ) / 255.0f, invDstGamma ) );
-						info.m_pDest[ dstPixel + 3 ] = Clamp( info.m_flColorGoal[3] + ( info.m_flColorScale[3] * ( total[3] - info.m_flColorGoal[3] ) ) );
+							info.m_pDest[ dstPixel + ch ] = clamp( 255.0f * pow( ( info.m_flColorGoal[ch] + ( info.m_flColorScale[ch] * ( ( total[ch] > 0 ? total[ch] : 0 ) - info.m_flColorGoal[ch] ) ) ) / 255.0f, invDstGamma ) );
+						info.m_pDest[ dstPixel + 3 ] = clamp( info.m_flColorGoal[3] + ( info.m_flColorScale[3] * ( total[3] - info.m_flColorGoal[3] ) ) );
 					}
 				}
 			}

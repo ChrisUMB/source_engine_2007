@@ -105,7 +105,7 @@ void CEnvMicrophone::Spawn(void)
 		m_flSensitivity = 10;
 	}
 
-	m_flSmoothFactor = clamp(m_flSmoothFactor, 0, 0.9);
+	m_flSmoothFactor = seclamp(m_flSmoothFactor, 0, 0.9);
 
 	if (!m_bDisabled)
 	{
@@ -278,7 +278,7 @@ bool CEnvMicrophone::CanHearSound(CSound *pSound, float &flVolume)
 	if (flDistance <= pSound->Volume() * m_flSensitivity)
 	{
 		flVolume = 1 - (flDistance / (pSound->Volume() * m_flSensitivity));
-		flVolume = clamp(flVolume, 0, 1);
+		flVolume = seclamp(flVolume, 0, 1);
 		return true;
 	}
 

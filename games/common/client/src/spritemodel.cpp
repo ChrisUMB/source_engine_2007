@@ -35,10 +35,10 @@ static bool giScissorTest = false;
 //-----------------------------------------------------------------------------
 void EnableScissorTest( int x, int y, int width, int height )
 {
-	x = clamp( x, 0, ScreenWidth() );
-	y = clamp( y, 0, ScreenHeight() );
-	width = clamp( width, 0, ScreenWidth() - x );
-	height = clamp( height, 0, ScreenHeight() - y );
+	x = seclamp( x, 0, ScreenWidth() );
+	y = seclamp( y, 0, ScreenHeight() );
+	width = seclamp( width, 0, ScreenWidth() - x );
+	height = seclamp( height, 0, ScreenHeight() - y );
 
 	scissor_x = x;
 	scissor_width = width;

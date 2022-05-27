@@ -217,7 +217,7 @@ CRopeKeyframe* CRopeKeyframe::Create(
 
 	pRet->SetMaterial( pMaterialName );
 	pRet->m_Width = ropeWidth;
-	pRet->m_nSegments = clamp( numSegments, 2, ROPE_MAX_SEGMENTS );
+	pRet->m_nSegments = seclamp( numSegments, 2, ROPE_MAX_SEGMENTS );
 
 	return pRet;
 }
@@ -252,7 +252,7 @@ CRopeKeyframe* CRopeKeyframe::CreateWithSecondPointDetached(
 	pRet->SetMaterial( pMaterialName );
 	pRet->m_RopeLength = ropeLength;
 	pRet->m_Width = ropeWidth;
-	pRet->m_nSegments = clamp( numSegments, 2, ROPE_MAX_SEGMENTS );
+	pRet->m_nSegments = seclamp( numSegments, 2, ROPE_MAX_SEGMENTS );
 
 	return pRet;
 }
@@ -323,7 +323,7 @@ void CRopeKeyframe::Init()
 	SetLocalAngles( vec3_angle );
 	RecalculateLength();
 
-	m_nSegments = clamp( m_nSegments, 2, ROPE_MAX_SEGMENTS );
+	m_nSegments = seclamp( m_nSegments, 2, ROPE_MAX_SEGMENTS );
 
 	UpdateBBox( true );
 

@@ -512,9 +512,9 @@ void CInput::CAM_Think( void )
 		idealAngles[ YAW ] += 360;
 
 	// clamp pitch, yaw and dist...
-	idealAngles[ PITCH ] = clamp( idealAngles[ PITCH ], c_minpitch.GetFloat(), c_maxpitch.GetFloat() );
-	idealAngles[ YAW ]   = clamp( idealAngles[ YAW ], c_minyaw.GetFloat(), c_maxyaw.GetFloat() );
-	idealAngles[ DIST ]  = clamp( idealAngles[ DIST ], c_mindistance.GetFloat(), c_maxdistance.GetFloat() );
+	idealAngles[ PITCH ] = seclamp( idealAngles[ PITCH ], c_minpitch.GetFloat(), c_maxpitch.GetFloat() );
+	idealAngles[ YAW ]   = seclamp( idealAngles[ YAW ], c_minyaw.GetFloat(), c_maxyaw.GetFloat() );
+	idealAngles[ DIST ]  = seclamp( idealAngles[ DIST ], c_mindistance.GetFloat(), c_maxdistance.GetFloat() );
 
 	// update ideal angles
 	cam_idealpitch.SetValue( idealAngles[ PITCH ] );

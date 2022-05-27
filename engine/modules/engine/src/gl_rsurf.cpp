@@ -5212,14 +5212,14 @@ static bool EnumerateLeavesAlongExtrudedRay_R( mnode_t *node, Ray_t const& ray,
 	}
 
 	// move up to the node
-	frac = clamp( frac, 0, 1 );
+	frac = seclamp( frac, 0, 1 );
 	float midf = start + (end - start)*frac;
 	bool ret = EnumerateLeavesAlongExtrudedRay_R( node->children[side], ray, start, midf, pEnum, context );
 	if (!ret)
 		return ret;
 
 	// go past the node
-	frac2 = clamp( frac2, 0, 1 );
+	frac2 = seclamp( frac2, 0, 1 );
 	midf = start + (end - start)*frac2;
 	return EnumerateLeavesAlongExtrudedRay_R( node->children[!side], ray, midf, end, pEnum, context );
 }

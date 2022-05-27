@@ -96,7 +96,7 @@ float PixelVisibility_DrawProxy( IMatRenderContext *pRenderContext, OcclusionQue
 	{
 		// compute the ratio of the area not clipped by the frustum to total area
 		ratio = areaClipped / area;
-		ratio = clamp(ratio, 0.0f, 1.0f);
+		ratio = seclamp(ratio, 0.0f, 1.0f);
 	}
 
 	pRenderContext->BeginOcclusionQueryDrawing( queryHandle );

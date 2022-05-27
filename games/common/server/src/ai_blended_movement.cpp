@@ -309,7 +309,7 @@ void CAI_BlendedMotor::SetMoveScriptAnim( float flNewSpeed )
 	if (flWeight < 0.0)
 	{
 		m_flCurrRate = flNewSpeed / GetIdealSpeed();
-		m_flCurrRate = clamp( m_flCurrRate, 0.0, 1.0 );
+		m_flCurrRate = seclamp( m_flCurrRate, 0.0, 1.0 );
 		SetPlaybackRate( m_flCurrRate );
 		flWeight = 0.0;
 	}
@@ -1054,7 +1054,7 @@ void CAI_BlendedMotor::BuildVelocityScript( const AILocalMoveGoal_t &move )
 		}
 
 		m_flPredictiveSpeedAdjust = 1.1 - fabs( flDelta );
-		m_flPredictiveSpeedAdjust = clamp( m_flPredictiveSpeedAdjust, (flHeight > 0.0) ? 0.5 : 0.8, 1.0 );
+		m_flPredictiveSpeedAdjust = seclamp( m_flPredictiveSpeedAdjust, (flHeight > 0.0) ? 0.5 : 0.8, 1.0 );
 
 		/*
 		if ((GetOuter()->m_debugOverlays & OVERLAY_NPC_SELECTED_BIT))
@@ -1080,7 +1080,7 @@ void CAI_BlendedMotor::BuildVelocityScript( const AILocalMoveGoal_t &move )
 		}
 
 		float newSpeedAdjust = 1.1 - fabs( flDelta );
-		newSpeedAdjust = clamp( newSpeedAdjust, (flHeight > 0.0) ? 0.5 : 0.8, 1.0 );
+		newSpeedAdjust = seclamp( newSpeedAdjust, (flHeight > 0.0) ? 0.5 : 0.8, 1.0 );
 
 		// debounce speed adjust
 		if (newSpeedAdjust < m_flReactiveSpeedAdjust)
@@ -1173,7 +1173,7 @@ void CAI_BlendedMotor::BuildVelocityScript( const AILocalMoveGoal_t &move )
 					float dot = (DotProduct( d1, d2 ) + 0.2);
 					if (dot > 0)
 					{
-						dot = clamp( dot, 0.0f, 1.0f );
+						dot = seclamp( dot, 0.0f, 1.0f );
 						script.flMaxVelocity = idealVelocity * dot;
 					}
 					else
@@ -1299,7 +1299,7 @@ void CAI_BlendedMotor::BuildVelocityScript( const AILocalMoveGoal_t &move )
 		VectorNormalize( d2 );
 
 		float dot = (DotProduct( d1, d2 ) + MIN_STEER_DOT);
-		dot = clamp( dot, 0.0f, 1.0f );
+		dot = seclamp( dot, 0.0f, 1.0f );
 		m_scriptMove[0].flMaxVelocity = m_scriptMove[0].flMaxVelocity * dot;
 	}
 
@@ -1743,7 +1743,7 @@ bool CAI_BlendedMotor::AddTurnGesture( float flYD )
 			float diff = fabs( flYD );
 			float speed = (diff / (turnCompletion * actualDuration / rate)) * 0.1;
 
-			speed = clamp( speed, 15, 35 );
+			speed = seclamp( speed, 15, 35 );
 			speed = min( speed, diff );
 
 			actualDuration = (diff / (turnCompletion * speed)) * 0.1 ;

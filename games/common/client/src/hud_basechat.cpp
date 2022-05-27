@@ -243,7 +243,7 @@ void CBaseHudChatLine::PerformFadeout( void )
 
 		frac = cos( frac );
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		frac *= (1.0f-frac1);
 
@@ -255,7 +255,7 @@ void CBaseHudChatLine::PerformFadeout( void )
 	
 		// Draw a right facing triangle in red, faded out over time
 		int alpha = 63 + 192 * (1.0f - frac1 );
-		alpha = clamp( alpha, 0, 255 );
+		alpha = seclamp( alpha, 0, 255 );
 
 		wchar_t wbuf[4096];
 		GetText(0, wbuf, sizeof(wbuf));
@@ -270,7 +270,7 @@ void CBaseHudChatLine::PerformFadeout( void )
 		float frac = ( m_flExpireTime - curtime ) / CHATLINE_FADE_TIME;
 
 		int alpha = frac * 255;
-		alpha = clamp( alpha, 0, 255 );
+		alpha = seclamp( alpha, 0, 255 );
 
 		wchar_t wbuf[4096];
 		GetText(0, wbuf, sizeof(wbuf));
@@ -1211,7 +1211,7 @@ void CBaseHudChat::FadeChatHistory( void )
 	float frac = ( m_flHistoryFadeTime -  gpGlobals->curtime ) / CHAT_HISTORY_FADE_TIME;
 
 	int alpha = frac * CHAT_HISTORY_ALPHA;
-	alpha = clamp( alpha, 0, CHAT_HISTORY_ALPHA );
+	alpha = seclamp( alpha, 0, CHAT_HISTORY_ALPHA );
 
 	if ( alpha >= 0 )
 	{

@@ -230,8 +230,8 @@ bool ConvertImageFormatEx(
 					float flSrgbGamma = float( *( pRGB[j] ) ) / 255.0f;
 					float fl360Gamma = SrgbGammaTo360Gamma( flSrgbGamma );
 
-					fl360Gamma = clamp( fl360Gamma, 0.0f, 1.0f );
-					*( pRGB[j] ) = ( unsigned char ) ( clamp( ( ( fl360Gamma * 255.0f ) + 0.5f ), 0.0f, 255.0f ) );
+					fl360Gamma = seclamp( fl360Gamma, 0.0f, 1.0f );
+					*( pRGB[j] ) = ( unsigned char ) ( seclamp( ( ( fl360Gamma * 255.0f ) + 0.5f ), 0.0f, 255.0f ) );
 				}
 			}
 		}
@@ -304,9 +304,9 @@ bool ConvertImageFormatEx(
 						float flSrgbGamma = *pFlValue;
 						float fl360Gamma = SrgbGammaTo360Gamma( flSrgbGamma );
 
-						fl360Gamma = clamp( fl360Gamma, 0.0f, 1.0f );
-						//*p8BitValue = ( unsigned char ) ( clamp( ( ( fl360Gamma * 255.0f ) + 0.5f ), 0.0f, 255.0f ) );
-						*p8BitValue = ( unsigned char ) ( clamp( ( ( fl360Gamma * 255.0f ) ), 0.0f, 255.0f ) );
+						fl360Gamma = seclamp( fl360Gamma, 0.0f, 1.0f );
+						//*p8BitValue = ( unsigned char ) ( seclamp( ( ( fl360Gamma * 255.0f ) + 0.5f ), 0.0f, 255.0f ) );
+						*p8BitValue = ( unsigned char ) ( seclamp( ( ( fl360Gamma * 255.0f ) ), 0.0f, 255.0f ) );
 					}
 				}
 

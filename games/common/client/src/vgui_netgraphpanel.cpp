@@ -916,7 +916,7 @@ void CNetGraphPanel::GraphGetXY( vrect_t *rect, int width, int *x, int *y )
 		*x = rect->x + ( rect->width - 10 - width ) / 2;
 		break;
 	default:
-		*x = rect->x + clamp( XRES( net_graphpos.GetInt() ), 5, rect->width - width - 5 );
+		*x = rect->x + seclamp( XRES( net_graphpos.GetInt() ), 5, rect->width - width - 5 );
 	}
 
 	*y = rect->y+rect->height - LERP_HEIGHT - 5;

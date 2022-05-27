@@ -4628,7 +4628,7 @@ void DoQuatInterpBone(
 		{
 			float dot = fabs( QuaternionDotProduct( pProc->pTrigger( i )->trigger, src ) );
 			// FIXME: a fast acos should be acceptable
-			dot = clamp( dot, -1, 1 );
+			dot = seclamp( dot, -1, 1 );
 			weight[i] = 1 - (2 * acos( dot ) * pProc->pTrigger( i )->inv_tolerance );
 			weight[i] = max( 0, weight[i] );
 			scale += weight[i];

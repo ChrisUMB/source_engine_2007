@@ -969,13 +969,13 @@ void C_ParticleSmokeGrenade::CleanupToolRecordingState( KeyValues *msg )
 
 		KeyValues *pColor = pInitializers->FindKey( "DmeRandomInterpolatedColorInitializer", true );
 		Color c1( 
-			clamp( m_MinColor.x * 255.0f, 0, 255 ),
-			clamp( m_MinColor.y * 255.0f, 0, 255 ),
-			clamp( m_MinColor.z * 255.0f, 0, 255 ), 255 );
+			seclamp( m_MinColor.x * 255.0f, 0, 255 ),
+			seclamp( m_MinColor.y * 255.0f, 0, 255 ),
+			seclamp( m_MinColor.z * 255.0f, 0, 255 ), 255 );
 		Color c2( 
-			clamp( m_MaxColor.x * 255.0f, 0, 255 ),
-			clamp( m_MaxColor.y * 255.0f, 0, 255 ),
-			clamp( m_MaxColor.z * 255.0f, 0, 255 ), 255 );
+			seclamp( m_MaxColor.x * 255.0f, 0, 255 ),
+			seclamp( m_MaxColor.y * 255.0f, 0, 255 ),
+			seclamp( m_MaxColor.z * 255.0f, 0, 255 ), 255 );
 		pColor->SetColor( "color1", c1 );
 		pColor->SetColor( "color2", c2 );
 

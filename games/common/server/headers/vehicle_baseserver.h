@@ -255,7 +255,7 @@ public:
 	virtual void			PlaySound( vehiclesound iSound );
 	virtual void			StopSound( vehiclesound iSound );
 	virtual void 			RecalculateSoundGear( vbs_sound_update_t &params );
-	void					SetVehicleVolume( float flVolume ) { m_flVehicleVolume = clamp( flVolume, 0.0, 1.0 ); }
+	void					SetVehicleVolume( float flVolume ) { m_flVehicleVolume = seclamp( flVolume, 0.0, 1.0 ); }
 
 	// Rumble
 	virtual void			StartEngineRumble();

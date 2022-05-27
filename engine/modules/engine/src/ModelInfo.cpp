@@ -780,7 +780,7 @@ inline unsigned char CModelInfoClient::ComputeScreenFade( const Vector &vecAbsOr
 		if ( (fade.m_flMaxScreenWidth >= 0) && (flPixelWidth < fade.m_flMaxScreenWidth) )
 		{
 			int nAlpha = fade.m_flFalloffFactor * (flPixelWidth - fade.m_flMinScreenWidth);
-			alpha = clamp( nAlpha, 0, 255 );
+			alpha = seclamp( nAlpha, 0, 255 );
 		}
 		else
 		{

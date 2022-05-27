@@ -3034,7 +3034,7 @@ void CBasePlayer::AdjustPlayerTimeBase( int simulation_ticks )
 	}
 	else // multiplayer
 	{
-		float flCorrectionSeconds = clamp( sv_clockcorrection_msecs.GetFloat() / 1000.0f, 0.0f, 1.0f );
+		float flCorrectionSeconds = seclamp( sv_clockcorrection_msecs.GetFloat() / 1000.0f, 0.0f, 1.0f );
 		int nCorrectionTicks = TIME_TO_TICKS( flCorrectionSeconds );
 
 		// Set the target tick flCorrectionSeconds (rounded to ticks) ahead in the future. this way the client can
@@ -3993,12 +3993,12 @@ void CBasePlayer::UpdateGeigerCounter( void )
 	m_flgeigerDelay = gpGlobals->curtime + GEIGERDELAY;
 		
 	// send range to radition source to client
-	range = (byte) clamp(m_flgeigerRange / 4, 0, 255);
+	range = (byte) seclamp(m_flgeigerRange / 4, 0, 255);
 
 	// This is to make sure you aren't driven crazy by geiger while in the airboat
 	if ( IsInAVehicle() )
 	{
-		range = clamp( (int)range * 4, 0, 255 );
+		range = seclamp( (int)range * 4, 0, 255 );
 	}
 
 	if (range != m_igeigerRangePrev)
@@ -6343,7 +6343,7 @@ bool CBasePlayer::ClientCommand( const CCommand &args )
 		int nRecip = entindex();
 		if ( args.ArgC() >= 2 )
 		{
-			nRecip = clamp( Q_atoi( args.Arg( 1 ) ), 1, gpGlobals->maxClients );
+			nRecip = seclamp( Q_atoi( args.Arg( 1 ) ), 1, gpGlobals->maxClients );
 		}
 		int nRecords = -1; // all
 		if ( args.ArgC() >= 3 )

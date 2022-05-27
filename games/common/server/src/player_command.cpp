@@ -217,7 +217,7 @@ void CPlayerMove::FinishMove( CBasePlayer *player, CUserCmd *ucmd, CMoveData *mo
 	{
 		pitch -= 360.0f;
 	}
-	pitch = clamp( pitch, -90, 90 );
+	pitch = seclamp( pitch, -90, 90 );
 
 	move->m_vecAngles[ PITCH ] = pitch;
 

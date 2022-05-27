@@ -1730,7 +1730,7 @@ void ClampVector( Vector &out, const Vector &mins, const Vector &maxs )
 {
 	for ( int i = 0; i < 3; i++ )
 	{
-		out[i] = clamp(out[i], mins[i], maxs[i]);
+		out[i] = seclamp(out[i], mins[i], maxs[i]);
 	}
 }
 

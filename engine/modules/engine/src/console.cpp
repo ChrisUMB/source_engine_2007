@@ -990,7 +990,7 @@ void CConPanel::DrawNotify( void )
 
 		if ( timeleft < .5f )
 		{
-			float f = clamp( timeleft, 0.0f, .5f ) / .5f;
+			float f = seclamp( timeleft, 0.0f, .5f ) / .5f;
 
 			clr[3] = (int)( f * 255.0f );
 

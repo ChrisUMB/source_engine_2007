@@ -2608,18 +2608,18 @@ void CMatRenderContext::GetStandardTextureDimensions( int *pWidth, int *pHeight,
 void CMatRenderContext::FogColor3f( float r, float g, float b )
 {
 	unsigned char fogColor[3];
-	fogColor[0] = clamp( (int)(r * 255.0f), 0, 255 );
-	fogColor[1] = clamp( (int)(g * 255.0f), 0, 255 );
-	fogColor[2] = clamp( (int)(b * 255.0f), 0, 255 );
+	fogColor[0] = seclamp( (int)(r * 255.0f), 0, 255 );
+	fogColor[1] = seclamp( (int)(g * 255.0f), 0, 255 );
+	fogColor[2] = seclamp( (int)(b * 255.0f), 0, 255 );
 	g_pShaderAPI->SceneFogColor3ub( fogColor[0], fogColor[1], fogColor[2] );
 }
 
 void CMatRenderContext::FogColor3fv( const float* rgb )
 {
 	unsigned char fogColor[3];
-	fogColor[0] = clamp( (int)(rgb[0] * 255.0f), 0, 255 );
-	fogColor[1] = clamp( (int)(rgb[1] * 255.0f), 0, 255 );
-	fogColor[2] = clamp( (int)(rgb[2] * 255.0f), 0, 255 );
+	fogColor[0] = seclamp( (int)(rgb[0] * 255.0f), 0, 255 );
+	fogColor[1] = seclamp( (int)(rgb[1] * 255.0f), 0, 255 );
+	fogColor[2] = seclamp( (int)(rgb[2] * 255.0f), 0, 255 );
 	g_pShaderAPI->SceneFogColor3ub( fogColor[0], fogColor[1], fogColor[2] );
 }
 

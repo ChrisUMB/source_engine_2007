@@ -255,7 +255,7 @@ void BuildGammaTable( float gamma, float texGamma, float brightness, int overbri
 				lineartovertex[i] = 1;
 
 			int nLightmap = RoundFloatToInt( f * 255 * overbrightFactor );
-			nLightmap = clamp( nLightmap, 0, 255 );
+			nLightmap = seclamp( nLightmap, 0, 255 );
 			lineartolightmap[i] = (unsigned char)nLightmap;
 		}
 	}
@@ -316,13 +316,13 @@ float LinearToGamma( float linear )
 //-----------------------------------------------------------------------------
 float SrgbGammaToLinear( float flSrgbGammaValue )
 {
-	float x = clamp( flSrgbGammaValue, 0.0f, 1.0f );
+	float x = seclamp( flSrgbGammaValue, 0.0f, 1.0f );
 	return ( x <= 0.04045f ) ? ( x / 12.92f ) : ( pow( ( x + 0.055f ) / 1.055f, 2.4f ) );
 }
 
 float SrgbLinearToGamma( float flLinearValue )
 {
-	float x = clamp( flLinearValue, 0.0f, 1.0f );
+	float x = seclamp( flLinearValue, 0.0f, 1.0f );
 	return ( x <= 0.0031308f ) ? ( x * 12.92f ) : ( 1.055f * pow( x, ( 1.0f / 2.4f ) ) ) - 0.055f;
 }
 
@@ -330,7 +330,7 @@ float X360GammaToLinear( float fl360GammaValue )
 {
 	float flLinearValue;
 
-	fl360GammaValue = clamp( fl360GammaValue, 0.0f, 1.0f );
+	fl360GammaValue = seclamp( fl360GammaValue, 0.0f, 1.0f );
 	if ( fl360GammaValue < ( 96.0f / 255.0f ) )
 	{
 		if ( fl360GammaValue < ( 64.0f / 255.0f ) )
@@ -359,7 +359,7 @@ float X360GammaToLinear( float fl360GammaValue )
 
 	flLinearValue *= 1.0f / 1023.0f;
 
-	flLinearValue = clamp( flLinearValue, 0.0f, 1.0f );
+	flLinearValue = seclamp( flLinearValue, 0.0f, 1.0f );
 	return flLinearValue;
 }
 
@@ -367,7 +367,7 @@ float X360LinearToGamma( float flLinearValue )
 {
 	float fl360GammaValue;
 
-	flLinearValue = clamp( flLinearValue, 0.0f, 1.0f );
+	flLinearValue = seclamp( flLinearValue, 0.0f, 1.0f );
 	if ( flLinearValue < ( 128.0f / 1023.0f ) )
 	{
 		if ( flLinearValue < ( 64.0f / 1023.0f ) )
@@ -395,7 +395,7 @@ float X360LinearToGamma( float flLinearValue )
 		}
 	}
 
-	fl360GammaValue = clamp( fl360GammaValue, 0.0f, 1.0f );
+	fl360GammaValue = seclamp( fl360GammaValue, 0.0f, 1.0f );
 	return fl360GammaValue;
 }
 

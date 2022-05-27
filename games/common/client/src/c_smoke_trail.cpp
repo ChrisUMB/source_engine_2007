@@ -333,9 +333,9 @@ void C_SmokeTrail::Update( float fTimeDelta )
 		offsetColor *= random->RandomFloat( -0.2f, 0.2f );
 		offsetColor += m_StartColor;
 
-		offsetColor[0] = clamp( offsetColor[0], 0.0f, 1.0f );
-		offsetColor[1] = clamp( offsetColor[1], 0.0f, 1.0f );
-		offsetColor[2] = clamp( offsetColor[2], 0.0f, 1.0f );
+		offsetColor[0] = seclamp( offsetColor[0], 0.0f, 1.0f );
+		offsetColor[1] = seclamp( offsetColor[1], 0.0f, 1.0f );
+		offsetColor[2] = seclamp( offsetColor[2], 0.0f, 1.0f );
 
 		pParticle->m_uchColor[0]	= offsetColor[0]*255.0f;
 		pParticle->m_uchColor[1]	= offsetColor[1]*255.0f;
@@ -345,7 +345,7 @@ void C_SmokeTrail::Update( float fTimeDelta )
 		pParticle->m_uchEndSize		= m_EndSize;
 		
 		float alpha = random->RandomFloat( m_Opacity*0.75f, m_Opacity*1.25f );
-		alpha = clamp( alpha, 0.0f, 1.0f );
+		alpha = seclamp( alpha, 0.0f, 1.0f );
 
 		pParticle->m_uchStartAlpha	= alpha * 255; 
 		pParticle->m_uchEndAlpha	= 0;
@@ -446,9 +446,9 @@ void C_SmokeTrail::CleanupToolRecordingState( KeyValues *msg )
 
 		KeyValues *pColor = pInitializers->FindKey( "DmeRandomValueColorInitializer", true );
 		Color c( 
-			clamp( m_StartColor.x * 255.0f, 0, 255 ),
-			clamp( m_StartColor.y * 255.0f, 0, 255 ),
-			clamp( m_StartColor.z * 255.0f, 0, 255 ), 255 );
+			seclamp( m_StartColor.x * 255.0f, 0, 255 ),
+			seclamp( m_StartColor.y * 255.0f, 0, 255 ),
+			seclamp( m_StartColor.z * 255.0f, 0, 255 ), 255 );
 		pColor->SetColor( "startColor", c );
 		pColor->SetFloat( "minStartValueDelta", -0.2f );
  		pColor->SetFloat( "maxStartValueDelta", 0.2f );
@@ -459,8 +459,8 @@ void C_SmokeTrail::CleanupToolRecordingState( KeyValues *msg )
 		int nMaxAlpha = 255 * m_Opacity * 1.25f;
 		pAlpha->SetInt( "minStartAlpha", 0 );
 		pAlpha->SetInt( "maxStartAlpha", 0 );
-		pAlpha->SetInt( "minEndAlpha", clamp( nMinAlpha, 0, 255 ) );
-		pAlpha->SetInt( "maxEndAlpha", clamp( nMaxAlpha, 0, 255 ) );
+		pAlpha->SetInt( "minEndAlpha", seclamp( nMinAlpha, 0, 255 ) );
+		pAlpha->SetInt( "maxEndAlpha", seclamp( nMaxAlpha, 0, 255 ) );
 
 		KeyValues *pSize = pInitializers->FindKey( "DmeRandomSizeInitializer", true );
 		pSize->SetFloat( "minStartSize", m_StartSize );
@@ -741,9 +741,9 @@ void C_RocketTrail::Update( float fTimeDelta )
 				
 				offsetColor = m_StartColor * random->RandomFloat( 0.75f, 1.25f );
 
-				offsetColor[0] = clamp( offsetColor[0], 0.0f, 1.0f );
-				offsetColor[1] = clamp( offsetColor[1], 0.0f, 1.0f );
-				offsetColor[2] = clamp( offsetColor[2], 0.0f, 1.0f );
+				offsetColor[0] = seclamp( offsetColor[0], 0.0f, 1.0f );
+				offsetColor[1] = seclamp( offsetColor[1], 0.0f, 1.0f );
+				offsetColor[2] = seclamp( offsetColor[2], 0.0f, 1.0f );
 
 				pParticle->m_uchColor[0]	= offsetColor[0]*255.0f;
 				pParticle->m_uchColor[1]	= offsetColor[1]*255.0f;
@@ -797,9 +797,9 @@ void C_RocketTrail::Update( float fTimeDelta )
 				
 				offsetColor = m_StartColor * random->RandomFloat( 0.75f, 1.25f );
 
-				offsetColor[0] = clamp( offsetColor[0], 0.0f, 1.0f );
-				offsetColor[1] = clamp( offsetColor[1], 0.0f, 1.0f );
-				offsetColor[2] = clamp( offsetColor[2], 0.0f, 1.0f );
+				offsetColor[0] = seclamp( offsetColor[0], 0.0f, 1.0f );
+				offsetColor[1] = seclamp( offsetColor[1], 0.0f, 1.0f );
+				offsetColor[2] = seclamp( offsetColor[2], 0.0f, 1.0f );
 
 				pParticle->m_uchColor[0]	= offsetColor[0]*255.0f;
 				pParticle->m_uchColor[1]	= offsetColor[1]*255.0f;
@@ -1505,7 +1505,7 @@ void C_FireTrail::Update( float fTimeDelta )
 		int	numPuffs = moveLength / ( STARTSIZE / 2.0f );
 
 		//FIXME: More rational cap here, perhaps
-		numPuffs = clamp( numPuffs, 1, 32 );
+		numPuffs = seclamp( numPuffs, 1, 32 );
 
 		SimpleParticle	*pParticle;
 		Vector			offset;
@@ -1849,9 +1849,9 @@ void C_DustTrail::Update( float fTimeDelta )
 		offsetColor *= random->RandomFloat( -0.2f, 0.2f );
 		offsetColor += m_Color;
 
-		offsetColor[0] = clamp( offsetColor[0], 0.0f, 1.0f );
-		offsetColor[1] = clamp( offsetColor[1], 0.0f, 1.0f );
-		offsetColor[2] = clamp( offsetColor[2], 0.0f, 1.0f );
+		offsetColor[0] = seclamp( offsetColor[0], 0.0f, 1.0f );
+		offsetColor[1] = seclamp( offsetColor[1], 0.0f, 1.0f );
+		offsetColor[2] = seclamp( offsetColor[2], 0.0f, 1.0f );
 
 		pParticle->m_uchColor[0]	= offsetColor[0]*255.0f;
 		pParticle->m_uchColor[1]	= offsetColor[1]*255.0f;
@@ -1861,7 +1861,7 @@ void C_DustTrail::Update( float fTimeDelta )
 		pParticle->m_uchEndSize		= m_EndSize;
 		
 		float alpha = random->RandomFloat( m_Opacity*0.75f, m_Opacity*1.25f );
-		alpha = clamp( alpha, 0.0f, 1.0f );
+		alpha = seclamp( alpha, 0.0f, 1.0f );
 
 		if ( m_StopEmitTime != 0 && m_StopEmitTime > m_StartEmitTime )
 		{
@@ -1960,9 +1960,9 @@ void C_DustTrail::CleanupToolRecordingState( KeyValues *msg )
 
 		KeyValues *pColor = pInitializers->FindKey( "DmeRandomValueColorInitializer", true );
 		Color c( 
-			clamp( m_Color.x * 255.0f, 0, 255 ),
-			clamp( m_Color.y * 255.0f, 0, 255 ),
-			clamp( m_Color.z * 255.0f, 0, 255 ), 255 );
+			seclamp( m_Color.x * 255.0f, 0, 255 ),
+			seclamp( m_Color.y * 255.0f, 0, 255 ),
+			seclamp( m_Color.z * 255.0f, 0, 255 ), 255 );
 		pColor->SetColor( "startColor", c );
 		pColor->SetFloat( "minStartValueDelta", 0.0f );
  		pColor->SetFloat( "maxStartValueDelta", 0.0f );
@@ -1971,10 +1971,10 @@ void C_DustTrail::CleanupToolRecordingState( KeyValues *msg )
 		KeyValues *pAlpha = pInitializers->FindKey( "DmeRandomAlphaInitializer", true );
 		int nMinAlpha = 255 * m_Opacity * 0.75f;
 		int nMaxAlpha = 255 * m_Opacity * 1.25f;
-		pAlpha->SetInt( "minStartAlpha", clamp( nMinAlpha, 0, 255 ) );
-		pAlpha->SetInt( "maxStartAlpha", clamp( nMaxAlpha, 0, 255 ) );
-		pAlpha->SetInt( "minEndAlpha", clamp( nMinAlpha, 0, 255 ) );
-		pAlpha->SetInt( "maxEndAlpha", clamp( nMaxAlpha, 0, 255 ) );
+		pAlpha->SetInt( "minStartAlpha", seclamp( nMinAlpha, 0, 255 ) );
+		pAlpha->SetInt( "maxStartAlpha", seclamp( nMaxAlpha, 0, 255 ) );
+		pAlpha->SetInt( "minEndAlpha", seclamp( nMinAlpha, 0, 255 ) );
+		pAlpha->SetInt( "maxEndAlpha", seclamp( nMaxAlpha, 0, 255 ) );
 
 		KeyValues *pSize = pInitializers->FindKey( "DmeRandomSizeInitializer", true );
 		pSize->SetFloat( "minStartSize", m_StartSize );

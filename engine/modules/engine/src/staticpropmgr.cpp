@@ -2000,7 +2000,7 @@ unsigned char CStaticPropMgr::ComputeScreenFade( CStaticProp &prop, float flMinS
 		if ( (flMaxSize >= 0) && (flPixelWidth < flMaxSize) )
 		{
 			int nAlpha = flFalloffFactor * (flPixelWidth - flMinSize);
-			alpha = clamp( nAlpha, 0, 255 );
+			alpha = seclamp( nAlpha, 0, 255 );
 		}
 		else
 		{
@@ -2087,7 +2087,7 @@ void CStaticPropMgr::ComputePropOpacity( CStaticProp &prop )
 				if ( (fade.m_MinDistSq >= 0) && (sqDist > fade.m_MinDistSq) )
 				{
 					int nAlpha = fade.m_FalloffFactor * (fade.m_MaxDistSq - sqDist);
-					alpha = clamp( nAlpha, 0, 255 );
+					alpha = seclamp( nAlpha, 0, 255 );
 				}
 				else
 				{

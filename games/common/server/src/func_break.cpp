@@ -690,7 +690,7 @@ bool CBreakable::UpdateHealth( int iNewHealth, CBaseEntity *pActivator )
 		}
 
 		// Output the new health as a percentage of max health [0..1]
-		float flRatio = clamp( (float)m_iHealth / (float)m_iMaxHealth, 0, 1 );
+		float flRatio = seclamp( (float)m_iHealth / (float)m_iMaxHealth, 0, 1 );
 		m_OnHealthChanged.Set( flRatio, pActivator, this );
 
 		if ( m_iHealth <= 0 )

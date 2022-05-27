@@ -362,7 +362,7 @@ void ThreadPoolReserverFunction()
 
 void ReserveThreads( int nToReserve )
 {
-	nToReserve = clamp( nToReserve, 0, g_pThreadPool->NumThreads() );
+	nToReserve = seclamp( nToReserve, 0, g_pThreadPool->NumThreads() );
 	g_ReleaseThreadReservation.Set();
 
 	while ( g_NumReservedThreads != 0 )
@@ -1423,7 +1423,7 @@ Host_PostFrameRate
 */
 void Host_PostFrameRate( float frameTime )
 {
-	frameTime = clamp( frameTime, 0.0001f, 1.0f );
+	frameTime = seclamp( frameTime, 0.0001f, 1.0f );
 
 	float fps = 1.0f / frameTime;
 	g_fFramesPerSecond = g_fFramesPerSecond * FPS_AVG_FRAC + ( 1.0f - FPS_AVG_FRAC ) * fps;
@@ -2194,7 +2194,7 @@ bool CheckVarRange_Generic( ConVar *pVar, int minVal, int maxVal )
 
 	if ( !CanCheat() && !Host_IsSinglePlayerGame() )
 	{
-		int clampedValue = clamp( pVar->GetInt(), minVal, maxVal );
+		int clampedValue = seclamp( pVar->GetInt(), minVal, maxVal );
 		if ( clampedValue != pVar->GetInt() )
 		{
 			Warning( "sv_cheats=0 prevented changing %s outside of the range [0,2] (was %d).\n", pVar->GetName(), pVar->GetInt() );
@@ -2293,7 +2293,7 @@ void CL_FindInterpolatedAddAngle( float t, float& frac, AddAngle **prev, AddAngl
 
 			// Time spans the two entries
 			frac = ( t - pentry->starttime ) / ( entry->starttime - pentry->starttime );
-			frac = clamp( frac, 0.0f, 1.0f );
+			frac = seclamp( frac, 0.0f, 1.0f );
 			return;
 		}
 

@@ -67,7 +67,7 @@ class C_OP_InstantaneousEmitter : public CParticleOperatorInstance
 		{
 			m_nPerFrameNum = INT_MAX;
 		}
-		m_nScaleControlPointField = clamp( m_nScaleControlPointField, 0, 2 );
+		m_nScaleControlPointField = seclamp( m_nScaleControlPointField, 0, 2 );
 	}
 
 	virtual void StopEmission( CParticleCollection *pParticles, void *pContext, bool bInfiniteOnly ) const
@@ -780,7 +780,7 @@ uint32 C_OP_NoiseEmitter::Emit( CParticleCollection *pParticles, float flCurStre
 	}
 
 	float flInitialNoise = ( ValueBase + ( ValueScale * flNoise ) );
-	flInitialNoise = clamp(flInitialNoise, 0.0f, INT_MAX );
+	flInitialNoise = seclamp(flInitialNoise, 0.0f, INT_MAX );
 
 	//Global strength scale brought in by operator fade in/fade out/oscillate 
 	float flEmissionRate = flInitialNoise * flCurStrength;

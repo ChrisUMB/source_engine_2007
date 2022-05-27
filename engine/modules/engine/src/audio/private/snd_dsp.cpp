@@ -1404,7 +1404,7 @@ void DLY_SetNormalizingGain ( dly_t *pdly, int feedback )
 
 	// limit gain reduction to N% PMAX
 
-	gain = clamp (gain, (PMAX * DLY_NORMALIZING_REDUCTION_MAX), PMAX);		
+	gain = seclamp (gain, (PMAX * DLY_NORMALIZING_REDUCTION_MAX), PMAX);
 	
 	gain = ((float)b/(float)PMAX) * gain;	// scale final gain by pdly->b.
 
@@ -2447,7 +2447,7 @@ rva_t * RVA_Alloc ( int *D, int *a, int *b, int m, flt_t *pflt, int fparallel, f
 
 			modtime = (float)D / (float)(SOUND_DMA_SPEED);	// seconds per delay
 			depth = (fmoddly / 1000.0) / modtime;								// convert milliseconds to 'depth' %
-			depth = clamp (depth, 0.01, 0.99);
+			depth = seclamp (depth, 0.01, 0.99);
 			modtime = modtime * fmodrate;										// modulate every N delay passes
 
 			ramptime = fpmin(20.0f/1000.0f, modtime / 2);							// ramp between delay values in N ms
@@ -2839,7 +2839,7 @@ rva_t * RVA_Params ( prc_t *pprc )
 
 	// limit # delays 1-12
 
-	m = clamp (numdelays, RVA_BASEM, CRVA_DLYS);
+	m = seclamp (numdelays, RVA_BASEM, CRVA_DLYS);
 
 	// set up D (delay) a (feedback) b (gain) arrays
 
@@ -3146,7 +3146,7 @@ dfr_t * DFR_Params ( prc_t *pprc )
 	
 	// limit m, n to half max number of delays
 
-	n = clamp (numdelays, DFR_BASEN, CDFR_DLYS/2);
+	n = seclamp (numdelays, DFR_BASEN, CDFR_DLYS/2);
 
 	// compute delays for diffusors
 
@@ -6058,7 +6058,7 @@ int DSP_Alloc( int ipset, float xfade, int cchan )
 	dsp_t *pdsp;
 	int i;
 	int idsp;
-	int cchans = clamp( cchan, 1, DSPCHANMAX);
+	int cchans = seclamp( cchan, 1, DSPCHANMAX);
 
 	// find free slot
 
@@ -6822,12 +6822,12 @@ void ADSP_SetupAutoDelay( prc_t *pprc_dly, auto_params_t *pa )
 
 	pprc_dly->prm[dly_idtype]		= DLY_LOWPASS;		// delay with feedback
 
-	pprc_dly->prm[dly_idelay]		= clamp((size / 12.0), 5.0, 500.0);
+	pprc_dly->prm[dly_idelay]		= seclamp((size / 12.0), 5.0, 500.0);
 	
 	pprc_dly->prm[dly_ifeedback]	= MapSizeToDLYFeedback[pa->len];
 
 	// reduce gain based on distance reflection travels
-//	float g = 1.0 - ( clamp(pprc_dly->prm[dly_idelay], 10.0, 1000.0) / (1000.0 - 10.0) );
+//	float g = 1.0 - ( seclamp(pprc_dly->prm[dly_idelay], 10.0, 1000.0) / (1000.0 - 10.0) );
 //	pprc_dly->prm[dly_igain]		= g;
 
 	pprc_dly->prm[dly_iftype]		= FLT_LP;
@@ -6840,8 +6840,8 @@ void ADSP_SetupAutoDelay( prc_t *pprc_dly, auto_params_t *pa )
 
 	pprc_dly->prm[dly_iquality]		= QUA_LO;
 
-	float l = clamp((pa->length * 2.0 / 12.0), 14.0, 500.0);
-	float w = clamp((pa->width * 2.0 / 12.0), 14.0, 500.0);
+	float l = seclamp((pa->length * 2.0 / 12.0), 14.0, 500.0);
+	float w = seclamp((pa->width * 2.0 / 12.0), 14.0, 500.0);
 
 	// convert to multitap delay
 
@@ -6915,9 +6915,9 @@ void ADSP_SetupAutoReverb( prc_t *pprc_rva, auto_params_t *pa )
 
 	pprc_rva->prm[rva_iftaps]		= 0;	// 0.1 // use extra delay taps to increase density
 
-	pprc_rva->prm[rva_width]		= clamp( ((float)(pa->width) / 12.0), 6.0, 500.0);	// in feet
-	pprc_rva->prm[rva_depth]		= clamp( ((float)(pa->length) / 12.0), 6.0, 500.0);
-	pprc_rva->prm[rva_height]		= clamp( ((float)(pa->height) / 12.0), 6.0, 500.0);
+	pprc_rva->prm[rva_width]		= seclamp( ((float)(pa->width) / 12.0), 6.0, 500.0);	// in feet
+	pprc_rva->prm[rva_depth]		= seclamp( ((float)(pa->length) / 12.0), 6.0, 500.0);
+	pprc_rva->prm[rva_height]		= seclamp( ((float)(pa->height) / 12.0), 6.0, 500.0);
 
 	// room
 	pprc_rva->prm[rva_fbwidth]		= 0.9; // MapSizeToRVAFeedback[pa->size];	// larger size = more feedback
@@ -6979,7 +6979,7 @@ prc_t g_prc_dfr_auto[] = {PRC_DFRA_S, PRC_DFRA_M, PRC_DFRA_L, PRC_DFRA_VL, PRC_D
 
 void ADSP_SetupAutoDiffusor( prc_t *pprc_dfr, auto_params_t *pa )
 {
-	int i = clamp(pa->size, 0, CDFRTEMPLATES - 1);
+	int i = seclamp(pa->size, 0, CDFRTEMPLATES - 1);
 
 	// copy diffusor preset based on size
 
@@ -7138,9 +7138,9 @@ void ADSP_InterpolatePreset( pset_t *pnew, pset_t *pmin, pset_t *pmax, auto_para
 	// interpolate width,depth,height based on ap width length & height - exponential interpolation
 	// if pmin or pmax parameters are < 0, directly set value from w/l/h
 
-	float w	= clamp( ((float)(pa->width) / 12.0), 6.0, 500.0);	// in feet
-	float l = clamp( ((float)(pa->length) / 12.0), 6.0, 500.0);
-	float h	= clamp( ((float)(pa->height) / 12.0), 6.0, 500.0);
+	float w	= seclamp( ((float)(pa->width) / 12.0), 6.0, 500.0);	// in feet
+	float l = seclamp( ((float)(pa->length) / 12.0), 6.0, 500.0);
+	float h	= seclamp( ((float)(pa->height) / 12.0), 6.0, 500.0);
 
 	ADSP_SetParamIfNegative( pnew, pmin, pmax, PRC_RVA, iskip, rva_width, pa->wid, ADSP_WIDTH_MAX, 1, w);
 	ADSP_SetParamIfNegative( pnew, pmin, pmax, PRC_RVA, iskip, rva_depth, pa->len, ADSP_LENGTH_MAX, 1, l);
@@ -7163,8 +7163,8 @@ void ADSP_InterpolatePreset( pset_t *pnew, pset_t *pmin, pset_t *pmax, auto_para
 	
 	// directly set delay value from pa->length if pmin or pmax value is < 0
 	
-	l = clamp((pa->length * 2.0 / 12.0), 14.0, 500.0);
-	w = clamp((pa->width * 2.0 / 12.0), 14.0, 500.0);
+	l = seclamp((pa->length * 2.0 / 12.0), 14.0, 500.0);
+	w = seclamp((pa->width * 2.0 / 12.0), 14.0, 500.0);
 
 	ADSP_SetParamIfNegative( pnew, pmin, pmax, PRC_DLY, iskip, dly_idelay, pa->len, ADSP_LENGTH_MAX, 1, l);
 

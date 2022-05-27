@@ -2173,7 +2173,7 @@ static void CheckPushedEntity( CBaseEntity *pEntity, pushblock_t &params )
 				else
 				{
 					fraction = dist / expectedDist;
-					fraction = clamp(fraction, 0, 1);
+					fraction = seclamp(fraction, 0, 1);
 				}
 			}
 		}
@@ -2224,7 +2224,7 @@ static void CheckPushedEntity( CBaseEntity *pEntity, pushblock_t &params )
 				}
 
 				float t = expectedDist != 0.0f ? fabsf(deltaAngle / expectedDist) : 1.0f;
-				t = clamp(t,0,1);
+				t = seclamp(t,0,1);
 				fraction = max(fraction, t);
 			}
 			else
@@ -3785,7 +3785,7 @@ bool CBaseEntity::AcceptInput( const char *szInputName, CBaseEntity *pActivator,
 //-----------------------------------------------------------------------------
 void CBaseEntity::InputAlpha( inputdata_t &inputdata )
 {
-	SetRenderColorA( clamp( inputdata.value.Int(), 0, 255 ) );
+	SetRenderColorA( seclamp( inputdata.value.Int(), 0, 255 ) );
 }
 
 
@@ -6532,7 +6532,7 @@ bool CBaseEntity::ComputeStepSimulationNetworkOrigin( StepSimulationData *step )
 	if ( tickdelta > 0 )
 	{
 		frac = (float)( gpGlobals->tickcount - step->m_Previous.nTickCount ) / (float) tickdelta;
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 	}
 
 	if (step->m_Previous2.nTickCount == 0 || step->m_Previous2.nTickCount >= step->m_Previous.nTickCount)
@@ -6560,7 +6560,7 @@ bool CBaseEntity::ComputeStepSimulationNetworkOrigin( StepSimulationData *step )
 			if ( tickdelta > 0 )
 			{
 				frac = (float)( gpGlobals->tickcount - pOlder->nTickCount ) / (float) tickdelta;
-				frac = clamp( frac, 0.0f, 1.0f );
+				frac = seclamp( frac, 0.0f, 1.0f );
 			}
 		}
 
@@ -6610,7 +6610,7 @@ bool CBaseEntity::ComputeStepSimulationNetworkAngles( StepSimulationData *step )
 	if ( tickdelta > 0 )
 	{
 		frac = (float)( gpGlobals->tickcount - step->m_Previous.nTickCount ) / (float) tickdelta;
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 	}
 
 	if (step->m_Previous2.nTickCount == 0 || step->m_Previous2.nTickCount >= step->m_Previous.nTickCount)
@@ -6640,7 +6640,7 @@ bool CBaseEntity::ComputeStepSimulationNetworkAngles( StepSimulationData *step )
 			if ( tickdelta > 0 )
 			{
 				frac = (float)( gpGlobals->tickcount - pOlder->nTickCount ) / (float) tickdelta;
-				frac = clamp( frac, 0.0f, 1.0f );
+				frac = seclamp( frac, 0.0f, 1.0f );
 			}
 		}
 

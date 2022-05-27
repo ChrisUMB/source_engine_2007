@@ -1615,7 +1615,7 @@ bool CVideoMode_Common::TakeSnapshotJPEGToBuffer( CUtlBuffer& buf, int quality )
 		return false;
 
 	// Validate quality level
-	quality = clamp( quality, 1, 100 );
+	quality = seclamp( quality, 1, 100 );
 
 	// Allocate space for bits
 	uint8 *pImage = new uint8[ GetModeWidth() * 3 * GetModeHeight() ];

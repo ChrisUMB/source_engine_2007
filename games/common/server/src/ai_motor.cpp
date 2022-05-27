@@ -166,7 +166,7 @@ AIMotorMoveResult_t CAI_Motor::MoveGroundStep( const Vector &newPos, CBaseEntity
 		// skip tiny steps, but notify the shadow object of any large steps
 		if ( moveTrace.flStepUpDistance > 0.1f )
 		{
-			float height = clamp( moveTrace.flStepUpDistance, 0, StepHeight() );
+			float height = seclamp( moveTrace.flStepUpDistance, 0, StepHeight() );
 			IPhysicsObject *pPhysicsObject = GetOuter()->VPhysicsGetObject();
 			if ( pPhysicsObject )
 			{

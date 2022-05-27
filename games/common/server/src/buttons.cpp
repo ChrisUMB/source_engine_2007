@@ -990,7 +990,7 @@ void CMomentaryRotButton::Spawn( void )
 	if (m_flStartPosition < 0.0 || m_flStartPosition > 1.0)
 	{
 		Warning("WARNING: Momentary door (%s) start position not between 0 and 1.  Clamping.\n",GetDebugName());
-		m_flStartPosition = clamp(m_IdealYaw, 0, 1);
+		m_flStartPosition = seclamp(m_IdealYaw, 0, 1);
 	}
 
 	// Check direction fields (for backward compatibility)
@@ -1124,7 +1124,7 @@ float CMomentaryRotButton::GetPos( const QAngle &vecAngles )
 	}
 
 	float flPos = flScale * CBaseToggle::AxisDelta( m_spawnflags, vecAngles, m_start ) / m_flMoveDistance;
-	return( clamp( flPos, 0, 1 ));
+	return( seclamp( flPos, 0, 1 ));
 }
 
 
@@ -1134,7 +1134,7 @@ float CMomentaryRotButton::GetPos( const QAngle &vecAngles )
 //------------------------------------------------------------------------------
 void CMomentaryRotButton::InputSetPosition( inputdata_t &inputdata )
 {
-	m_IdealYaw = clamp( inputdata.value.Float(), 0, 1 );
+	m_IdealYaw = seclamp( inputdata.value.Float(), 0, 1 );
 
 	float flCurPos = GetPos( GetLocalAngles() );
 	if ( flCurPos < m_IdealYaw )
@@ -1175,7 +1175,7 @@ void CMomentaryRotButton::InputSetPosition( inputdata_t &inputdata )
 		float speed = flAngleDelta / TICK_INTERVAL;
 		SetLocalAngularVelocity( speed * m_vecMoveAng * m_direction );
 	}
-	dt = clamp( dt, TICK_INTERVAL, TICK_INTERVAL * 6);
+	dt = seclamp( dt, TICK_INTERVAL, TICK_INTERVAL * 6);
 
 	SetMoveDoneTime( dt );
 }
@@ -1187,7 +1187,7 @@ void CMomentaryRotButton::InputSetPosition( inputdata_t &inputdata )
 //------------------------------------------------------------------------------
 void CMomentaryRotButton::InputSetPositionImmediately( inputdata_t &inputdata )
 {
-	m_IdealYaw = clamp( inputdata.value.Float(), 0, 1 );
+	m_IdealYaw = seclamp( inputdata.value.Float(), 0, 1 );
 	SetLocalAngles( m_start + m_vecMoveAng * ( m_IdealYaw * m_flMoveDistance ) );
 }
 
@@ -1294,7 +1294,7 @@ void CMomentaryRotButton::SetPositionMoveDone(void)
 		float speed = flAngleDelta / TICK_INTERVAL;
 		SetLocalAngularVelocity( speed * m_vecMoveAng * m_direction );
 	}
-	dt = clamp( dt, TICK_INTERVAL, TICK_INTERVAL * 6);
+	dt = seclamp( dt, TICK_INTERVAL, TICK_INTERVAL * 6);
 
 	SetMoveDoneTime( dt );
 }

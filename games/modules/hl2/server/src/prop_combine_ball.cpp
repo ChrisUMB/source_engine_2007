@@ -314,7 +314,7 @@ bool CPropCombineBall::IsInField() const
 //-----------------------------------------------------------------------------
 void CPropCombineBall::SetRadius( float flRadius )
 {
-	m_flRadius = clamp( flRadius, 1, MAX_COMBINEBALL_RADIUS );
+	m_flRadius = seclamp( flRadius, 1, MAX_COMBINEBALL_RADIUS );
 }
 
 //-----------------------------------------------------------------------------

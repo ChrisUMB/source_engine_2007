@@ -1812,7 +1812,7 @@ void CViewRenderBeams::DrawBeamWithHalo(	Beam_t*			pbeam,
 	if ( distToLine < distThreshold )
 	{
 		dotScale = RemapVal( distToLine, distThreshold, pbeam->width, 1.0f, 0.0f );
-		dotScale = clamp( dotScale, 0, 1 );
+		dotScale = seclamp( dotScale, 0, 1 );
 	}
 
 	scaleColor[0] = color[0] * dotScale;
@@ -1845,12 +1845,12 @@ void CViewRenderBeams::DrawBeamWithHalo(	Beam_t*			pbeam,
 		//NOTENOTE: This is kinda funky when moving away and to the backside -- jdw
 		float haloScale = RemapVal( distToLine, distThreshold, pbeam->width*0.5f, 1.0f, 2.0f );
 
-		haloScale = clamp( haloScale, 1.0f, 2.0f );
+		haloScale = seclamp( haloScale, 1.0f, 2.0f );
 
 		haloScale *= pbeam->haloScale;
 		
 		float colorFade = fade*fade;
-		colorFade = clamp( colorFade, 0, 1 );
+		colorFade = seclamp( colorFade, 0, 1 );
 
 		float haloColor[3];
 		VectorScale( srcColor, colorFade * haloFractionVisible, haloColor );
@@ -2262,7 +2262,7 @@ void CViewRenderBeams::DrawBeam( C_Beam* pbeam, ITraceFilter *pEntityBeamTraceFi
 	{
 		// HACKHACK: heuristic to estimate proxy size.  Revisit this!
 		float size = 1.0f + (pbeam->m_fHaloScale * pbeam->m_fWidth / pbeam->m_fEndWidth);
-		size = clamp( size, 1.0f, 8.0f );
+		size = seclamp( size, 1.0f, 8.0f );
 		beam.m_queryHandleHalo = &pbeam->m_queryHandleHalo;
 		beam.m_haloProxySize = size;
 	}

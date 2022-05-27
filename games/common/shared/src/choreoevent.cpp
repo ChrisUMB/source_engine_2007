@@ -804,7 +804,7 @@ float CFlexAnimationTrack::GetFracIntensity( float time, int type )
 	{
 		f2 = ( time - esStart->time ) / ( dt );
 	}
-	f2 = clamp( f2, 0.0f, 1.0f );
+	f2 = seclamp( f2, 0.0f, 1.0f );
 
 	Vector vOut;
 	int dummy;
@@ -844,7 +844,7 @@ float CFlexAnimationTrack::GetFracIntensity( float time, int type )
 		}
 	}
 
-	float retval = clamp( vOut.y, 0.0f, 1.0f );
+	float retval = seclamp( vOut.y, 0.0f, 1.0f );
 	return retval;
 }
 
@@ -1681,7 +1681,7 @@ float CCurveData::GetIntensity( ICurveDataAccessor *data, float time )
 	{
 		f2 = ( time - esStart->time ) / ( dt );
 	}
-	f2 = clamp( f2, 0.0f, 1.0f );
+	f2 = seclamp( f2, 0.0f, 1.0f );
 
 	Vector vOut;
 	int dummy;
@@ -1733,7 +1733,7 @@ float CCurveData::GetIntensity( ICurveDataAccessor *data, float time )
 		}
 	}
 
-	float retval = clamp( vOut.y, 0.0f, 1.0f );
+	float retval = seclamp( vOut.y, 0.0f, 1.0f );
 	return retval;
 }
 
@@ -1863,7 +1863,7 @@ float CCurveData::GetIntensityArea( ICurveDataAccessor *data, float time )
 	{
 		f2 = ( time - esStart->time ) / ( dt );
 	}
-	f2 = clamp( f2, 0.0f, 1.0f );
+	f2 = seclamp( f2, 0.0f, 1.0f );
 
 	Vector vOut;
 	int dummy;
@@ -1895,7 +1895,7 @@ float CCurveData::GetIntensityArea( ICurveDataAccessor *data, float time )
 		vOut );
 
 	// Con_Printf( "Accum %f : Partial %f\n", flTotal, vOut.y * (vEnd.x - vStart.x) * f2 );
-	flTotal = flTotal + clamp( vOut.y, 0.0f, 1.0f ) * (vEnd.x - vStart.x);
+	flTotal = flTotal + seclamp( vOut.y, 0.0f, 1.0f ) * (vEnd.x - vStart.x);
 	return flTotal;
 }
 
@@ -1940,7 +1940,7 @@ void CCurveData::UpdateIntensityArea( ICurveDataAccessor *data )
 			1.0f, 
 			vOut );
 
-		m_RampAccumulator[i+1] = clamp( vOut.y, 0.0f, 1.0f ) * (vEnd.x - vStart.x);
+		m_RampAccumulator[i+1] = seclamp( vOut.y, 0.0f, 1.0f ) * (vEnd.x - vStart.x);
 
 		vPre = vStart;
 		vStart = vEnd;
@@ -3224,7 +3224,7 @@ float CChoreoEvent::GetOriginalPercentageFromPlaybackPercentage( float t )
 	{
 		f2 = ( t - s ) / ( dt );
 	}
-	f2 = clamp( f2, 0.0f, 1.0f );
+	f2 = seclamp( f2, 0.0f, 1.0f );
 
 	Vector vOut;
 	Catmull_Rom_Spline_NormalizeX( 
@@ -3241,7 +3241,7 @@ float CChoreoEvent::GetOriginalPercentageFromPlaybackPercentage( float t )
 	float duration;
 	GetGestureSequenceDuration( duration );
 
-	float retval = clamp( vOut.y, 0.0f, duration );
+	float retval = seclamp( vOut.y, 0.0f, duration );
 	return retval;
 	*/
 }
@@ -3350,7 +3350,7 @@ float CChoreoEvent::GetPlaybackPercentageFromOriginalPercentage( float t )
 	{
 		f2 = ( t - s ) / ( dt );
 	}
-	f2 = clamp( f2, 0.0f, 1.0f );
+	f2 = seclamp( f2, 0.0f, 1.0f );
 
 	Vector vOut;
 	Catmull_Rom_Spline_NormalizeX( 
@@ -3367,7 +3367,7 @@ float CChoreoEvent::GetPlaybackPercentageFromOriginalPercentage( float t )
 	float duration;
 	GetGestureSequenceDuration( duration );
 
-	float retval = clamp( vOut.y, 0.0f, duration );
+	float retval = seclamp( vOut.y, 0.0f, duration );
 	return retval;
 	*/
 }
@@ -3638,7 +3638,7 @@ void CChoreoEvent::RescaleGestureTimes( float newstart, float newend, bool bMain
 	
 			tagtime += dt;
 	
-			tagtime = clamp( tagtime / newduration, 0.0f, 1.0f );
+			tagtime = seclamp( tagtime / newduration, 0.0f, 1.0f );
 	
 			tag->SetPercentage( tagtime );
 		}

@@ -147,7 +147,7 @@ void CBaseFlex::SetFlexWeight( LocalFlexController_t index, float value )
 		if (pflexcontroller->max != pflexcontroller->min)
 		{
 			value = (value - pflexcontroller->min) / (pflexcontroller->max - pflexcontroller->min);
-			value = clamp( value, 0.0, 1.0 );
+			value = seclamp( value, 0.0, 1.0 );
 		}
 
 		m_flexWeight.Set( index, value );
@@ -1521,7 +1521,7 @@ bool CBaseFlex::ProcessLookAtSceneEvent( CSceneEventInfo *info, CChoreoScene *sc
 		// clamp in-ramp to 0.3 seconds
 		float flDuration = scene->GetTime() - event->GetStartTime();
 		float flMaxIntensity = flDuration < 0.3f ? SimpleSpline( flDuration / 0.3f ) : 1.0f;
-		intensity = clamp( intensity, 0.0f, flMaxIntensity );
+		intensity = seclamp( intensity, 0.0f, flMaxIntensity );
 
 		myNpc->AddLookTarget( info->m_hTarget, intensity, 0.1 );
 		if (developer.GetInt() > 0 && scene_showlook.GetBool() && info->m_hTarget)
@@ -1787,7 +1787,7 @@ void CBaseFlex::AddFlexSetting( const char *expr, float scale,
 		LocalFlexController_t index = FlexControllerLocalToGlobal( pSettinghdr, pWeights->key );
 
 		// blend scaled weighting in to total
-		float s = clamp( scale * pWeights->influence, 0.0f, 1.0f );
+		float s = seclamp( scale * pWeights->influence, 0.0f, 1.0f );
 		float value = GetFlexWeight( index ) * (1.0f - s ) + pWeights->weight * s;
 		SetFlexWeight( index, value );
 	}
@@ -1931,7 +1931,7 @@ bool CBaseFlex::ProcessSequenceSceneEvent( CSceneEventInfo *info, CChoreoScene *
 			float dt =  scene->GetTime() - event->GetStartTime();
 			float seq_duration = SequenceDuration( info->m_nSequence );
 			float flCycle = dt / seq_duration;
-			flCycle = clamp( flCycle, 0, 1.0 );
+			flCycle = seclamp( flCycle, 0, 1.0 );
 			SetLayerCycle( info->m_iLayer, flCycle );
 		}
 
@@ -2120,9 +2120,9 @@ void CBaseFlex::DoBodyLean( void )
 		}
 
 		vecDelta = vecOrigin - m_vecPrevOrigin;
-		vecDelta.x = clamp( vecDelta.x, -50, 50 );
-		vecDelta.y = clamp( vecDelta.y, -50, 50 );
-		vecDelta.z = clamp( vecDelta.z, -50, 50 );
+		vecDelta.x = seclamp( vecDelta.x, -50, 50 );
+		vecDelta.y = seclamp( vecDelta.y, -50, 50 );
+		vecDelta.z = seclamp( vecDelta.z, -50, 50 );
 
 		float dt = gpGlobals->curtime - GetLastThink();
 		bool bSkip = ((GetFlags() & (FL_FLY | FL_SWIM)) != 0) || (GetMoveParent() != NULL) || (GetGroundEntity() == NULL) || (GetGroundEntity()->IsMoving());
@@ -2613,7 +2613,7 @@ void CFlexCycler::Think( void )
 			{
 				weight = weight + (m_flextarget[i] - weight) / random->RandomFloat( 2.0, 4.0 );
 			}
-			weight = clamp( weight, 0.0f, 1.0f );
+			weight = seclamp( weight, 0.0f, 1.0f );
 			SetFlexWeight( i, weight );
 		}
 

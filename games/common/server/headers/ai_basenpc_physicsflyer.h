@@ -127,9 +127,9 @@ protected:
 	virtual void ClampMotorForces( Vector &linear, AngularImpulse &angular )
 	{ 
 		// limit reaction forces
-		linear.x = clamp( linear.x, -3000, 3000 );
-		linear.y = clamp( linear.y, -3000, 3000 );
-		linear.z = clamp( linear.z, -3000, 3000 );
+		linear.x = seclamp( linear.x, -3000, 3000 );
+		linear.y = seclamp( linear.y, -3000, 3000 );
+		linear.z = seclamp( linear.z, -3000, 3000 );
 
 		// add in weightlessness
 		linear.z += 800;

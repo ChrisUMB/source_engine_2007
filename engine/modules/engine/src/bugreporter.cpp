@@ -951,7 +951,7 @@ void CBugUIPanel::OnTick()
 		{
 			if ( m_pProgressDialog )
 			{
-				float percent = clamp( 1.0f - ( m_flPauseTime - system()->GetFrameTime() ) / (float)PUBLIC_BUGREPORT_WAIT_TIME, 0.0f, 1.0f );
+				float percent = seclamp( 1.0f - ( m_flPauseTime - system()->GetFrameTime() ) / (float)PUBLIC_BUGREPORT_WAIT_TIME, 0.0f, 1.0f );
 				m_pProgressDialog->SetProgress( percent );
 			}
 		}

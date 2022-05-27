@@ -52,7 +52,7 @@ enum
 #endif
 
 #ifndef clamp
-#define clamp( val, min, max ) ( ((val) > (max)) ? (max) : ( ((val) < (min)) ? (min) : (val) ) )
+#define seclamp( val, min, max ) ( ((val) > (max)) ? (max) : ( ((val) < (min)) ? (min) : (val) ) )
 #endif
 
 //-----------------------------------------------------------------------------
@@ -2342,7 +2342,7 @@ void ListPanel::OnKeyCodeTyped(KeyCode code)
 	};
 
 	// make sure newly selected item is a valid range
-	nSelectedRow = clamp(nSelectedRow, 0, nTotalRows - 1);
+	nSelectedRow = seclamp(nSelectedRow, 0, nTotalRows - 1);
 
 	int row = m_VisibleItems[ nSelectedRow ];
 

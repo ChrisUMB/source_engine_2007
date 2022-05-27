@@ -1753,7 +1753,7 @@ static int SoundStateIndexFromName( const char *pName )
 
 static const char *SoundStateNameFromIndex( int index )
 {
-	index = clamp(index, 0, SS_NUM_STATES-1 );
+	index = seclamp(index, 0, SS_NUM_STATES-1 );
 	return pSoundStateNames[index];
 }
 
@@ -2275,7 +2275,7 @@ void CBaseServerVehicle::SoundUpdate( vbs_sound_update_t &params )
 			flCurrentSpeed = Approach( flCurrentSpeed, m_flSpeedPercentage, params.flFrameTime * m_vehicleSounds.pGears[m_iSoundGear].flSpeedApproachFactor );
 		}
 	}
-	m_flSpeedPercentage = clamp( flCurrentSpeed, 0.0f, 1.0f );
+	m_flSpeedPercentage = seclamp( flCurrentSpeed, 0.0f, 1.0f );
 
 	if ( g_debug_vehiclesound.GetInt() > 1 )
 	{

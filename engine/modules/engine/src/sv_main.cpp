@@ -624,7 +624,7 @@ void CGameServer::InitMaxClients( void )
 		newmaxplayers	= defaultmaxplayers;
 	}
 
-	newmaxplayers = clamp( newmaxplayers, minmaxplayers, m_nMaxClientsLimit );
+	newmaxplayers = seclamp( newmaxplayers, minmaxplayers, m_nMaxClientsLimit );
 
 	if ( ( CL_IsHL2Demo() || CL_IsPortalDemo() ) && !IsDedicated() )
 	{
@@ -1522,7 +1522,7 @@ void CGameServer::SendClientMessages ( bool bSendSnapshots )
 
 void CGameServer::SetMaxClients( int number )
 {
-	m_nMaxclients = clamp( number, 1, m_nMaxClientsLimit );
+	m_nMaxclients = seclamp( number, 1, m_nMaxClientsLimit );
 
 	ConMsg( "maxplayers set to %i\n", m_nMaxclients );
 

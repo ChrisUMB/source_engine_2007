@@ -480,7 +480,7 @@ CHLTVServer::~CHLTVServer()
 void CHLTVServer::SetMaxClients( int number )
 {
 	// allow max clients 0 in HLTV
-	m_nMaxclients = clamp( number, 0, ABSOLUTE_PLAYER_LIMIT );
+	m_nMaxclients = seclamp( number, 0, ABSOLUTE_PLAYER_LIMIT );
 }
 
 void CHLTVServer::StartMaster(CGameClient *client)

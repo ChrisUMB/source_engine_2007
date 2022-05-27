@@ -635,7 +635,7 @@ int CSaveRestore::SaveGameSlot( const char *pSaveName, const char *pSaveComment,
 
 	if ( save_asyncdelay.GetInt() > 0 )
 	{
-		Sys_Sleep( clamp( save_asyncdelay.GetInt(), 0, 3000 ) );
+		Sys_Sleep( seclamp( save_asyncdelay.GetInt(), 0, 3000 ) );
 	}
 
 	SaveMsg( "Start save...\n", ThreadInMainThread(), ThreadGetCurrentId() );
@@ -3289,7 +3289,7 @@ char const *CSaveRestore::GetSaveFileName()
 
 void CSaveRestore::AddDeferredCommand( char const *pchCommand )
 {
-	m_nDeferredCommandFrames = clamp( save_huddelayframes.GetInt(), 0, 10 );
+	m_nDeferredCommandFrames = seclamp( save_huddelayframes.GetInt(), 0, 10 );
 	CUtlSymbol sym;
 	sym = pchCommand;
 	m_sDeferredCommands.AddToTail( sym );

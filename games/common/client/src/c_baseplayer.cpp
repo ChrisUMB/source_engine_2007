@@ -1284,7 +1284,7 @@ void C_BasePlayer::CalcChaseCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 	}
 
 	m_flObserverChaseDistance += gpGlobals->frametime*48.0f;
-	m_flObserverChaseDistance = clamp( m_flObserverChaseDistance, 16, CHASE_CAM_DISTANCE );
+	m_flObserverChaseDistance = seclamp( m_flObserverChaseDistance, 16, CHASE_CAM_DISTANCE );
 	
 	AngleVectors( viewangles, &forward );
 
@@ -1361,7 +1361,7 @@ void C_BasePlayer::CalcFreezeCamView( Vector& eyeOrigin, QAngle& eyeAngles, floa
 
 	// Zoom towards our target
 	float flCurTime = (gpGlobals->curtime - m_flFreezeFrameStartTime);
-	float flBlendPerc = clamp( flCurTime / spec_freeze_traveltime.GetFloat(), 0, 1 );
+	float flBlendPerc = seclamp( flCurTime / spec_freeze_traveltime.GetFloat(), 0, 1 );
 	flBlendPerc = SimpleSpline( flBlendPerc );
 
 	Vector vecCamDesired = pTarget->GetObserverCamOrigin();	// Returns ragdoll origin if they're ragdolled
@@ -1494,10 +1494,10 @@ void C_BasePlayer::CalcDeathCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 	}
 
 	float interpolation = ( gpGlobals->curtime - m_flDeathTime ) / DEATH_ANIMATION_TIME;
-	interpolation = clamp( interpolation, 0.0f, 1.0f );
+	interpolation = seclamp( interpolation, 0.0f, 1.0f );
 
 	m_flObserverChaseDistance += gpGlobals->frametime*48.0f;
-	m_flObserverChaseDistance = clamp( m_flObserverChaseDistance, 16, CHASE_CAM_DISTANCE );
+	m_flObserverChaseDistance = seclamp( m_flObserverChaseDistance, 16, CHASE_CAM_DISTANCE );
 
 	QAngle aForward = eyeAngles;
 	Vector origin = EyePosition();			

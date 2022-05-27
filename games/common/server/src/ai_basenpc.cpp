@@ -3338,7 +3338,7 @@ void CAI_BaseNPC::UpdateEfficiency( bool bInPVS )
 	
 	//---------------------------------
 
-	SetEfficiency( clamp( efficiency, minEfficiency, maxEfficiency ) );
+	SetEfficiency( seclamp( efficiency, minEfficiency, maxEfficiency ) );
 }
 
 
@@ -5747,7 +5747,7 @@ float CAI_BaseNPC::GetGoalRepathTolerance( CBaseEntity *pGoalEnt, GoalType_t typ
 	{
 		float t = distToGoal / distMoved1Sec;
 
-		result = clamp( 120 * t, 0, 120 );
+		result = seclamp( 120 * t, 0, 120 );
 		// Msg("t %.2f : d %.0f  (%.0f)\n", t, result, distMoved1Sec );
 	}
 		

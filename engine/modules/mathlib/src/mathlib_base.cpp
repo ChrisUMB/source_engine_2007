@@ -2945,9 +2945,9 @@ float CalcSqrDistanceToAABB( const Vector &mins, const Vector &maxs, const Vecto
 
 void CalcClosestPointOnAABB( const Vector &mins, const Vector &maxs, const Vector &point, Vector &closestOut )
 {
-	closestOut.x = clamp( point.x, mins.x, maxs.x );
-	closestOut.y = clamp( point.y, mins.y, maxs.y );
-	closestOut.z = clamp( point.z, mins.z, maxs.z );
+	closestOut.x = seclamp( point.x, mins.x, maxs.x );
+	closestOut.y = seclamp( point.y, mins.y, maxs.y );
+	closestOut.z = seclamp( point.z, mins.z, maxs.z );
 }
 
 void CalcSqrDistAndClosestPointOnAABB( const Vector &mins, const Vector &maxs, const Vector &point, Vector &closestOut, float &distSqrOut )
@@ -3019,11 +3019,13 @@ float CalcDistanceSqrToLine( const Vector &P, const Vector &vLineA, const Vector
 	return P.DistToSqr(vClosest);
 }
 
+#include <algorithm>
+
 void CalcClosestPointOnLineSegment( const Vector &P, const Vector &vLineA, const Vector &vLineB, Vector &vClosest, float *outT )
 {
 	Vector vDir;
 	float t = CalcClosestPointToLineT( P, vLineA, vLineB, vDir );
-	t = clamp( t, 0, 1 );
+	t = seclamp( t, 0, 1 );
 	if ( outT ) 
 	{
 		*outT = t;
@@ -3095,7 +3097,7 @@ void CalcClosestPointOnLineSegment2D( const Vector2D &P, const Vector2D &vLineA,
 {
 	Vector2D vDir;
 	float t = CalcClosestPointToLineT2D( P, vLineA, vLineB, vDir );
-	t = clamp( t, 0, 1 );
+	t = seclamp( t, 0, 1 );
 	if ( outT )
 	{
 		*outT = t;

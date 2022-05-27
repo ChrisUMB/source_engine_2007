@@ -889,7 +889,7 @@ void NET_AdjustLag( void )
 	
 	// Bound time step
 	
-	float dt = clamp( net_time - s_LastTime, 0.0f, 0.2f );
+	float dt = seclamp( net_time - s_LastTime, 0.0f, 0.2f );
 	
 	s_LastTime = net_time;
 
@@ -2298,7 +2298,7 @@ int NET_SendPacket ( INetChannel *chan, int sock,  const netadr_t &to, const uns
 	int nMaxRoutable = MAX_ROUTABLE_PAYLOAD;
 	if ( chan )
 	{
-		nMaxRoutable = clamp( chan->GetMaxRoutablePayloadSize(), MIN_USER_MAXROUTABLE_SIZE, min( sv_maxroutable.GetInt(), MAX_USER_MAXROUTABLE_SIZE ) );
+		nMaxRoutable = seclamp( chan->GetMaxRoutablePayloadSize(), MIN_USER_MAXROUTABLE_SIZE, min( sv_maxroutable.GetInt(), MAX_USER_MAXROUTABLE_SIZE ) );
 	}
 
 	if ( length <= nMaxRoutable && 

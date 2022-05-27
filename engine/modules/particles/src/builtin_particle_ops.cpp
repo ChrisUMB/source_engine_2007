@@ -979,8 +979,8 @@ void C_OP_RemapScalar::Operate( CParticleCollection *pParticles, float flStrengt
 	float flMax=m_flOutputMax;
 	if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & ( 1 << m_nFieldOutput ) )
 	{
-		flMin = clamp(m_flOutputMin, 0.0f, 1.0f );
-		flMax = clamp(m_flOutputMax, 0.0f, 1.0f );
+		flMin = seclamp(m_flOutputMin, 0.0f, 1.0f );
+		flMax = seclamp(m_flOutputMax, 0.0f, 1.0f );
 	}
 
 	// FIXME: SSE-ize
@@ -1253,7 +1253,7 @@ void C_OP_Cull::Operate( CParticleCollection *pParticles, float flStrength,  voi
 			continue;
 		}
 		// Find our life percentage
-		flLifeTime = clamp( ( pParticles->m_flCurTime - *pCreationTime ) / ( *pLifeDuration ), 0.0f, 1.0f );
+		flLifeTime = seclamp( ( pParticles->m_flCurTime - *pCreationTime ) / ( *pLifeDuration ), 0.0f, 1.0f );
 		if ( flLifeTime >= m_flCullStart && flLifeTime <= m_flCullEnd && flLifeTime >= flCullTime  )
 		{
 			pParticles->KillParticle( i );
@@ -1838,7 +1838,7 @@ void C_OP_PositionLock::Operate( CParticleCollection *pParticles, float flStreng
 		const float *pLifeDuration;	
 		pCreationTime = pParticles->GetFloatAttributePtr( PARTICLE_ATTRIBUTE_CREATION_TIME, i );
 		pLifeDuration = pParticles->GetFloatAttributePtr( PARTICLE_ATTRIBUTE_LIFE_DURATION, i );
-		float flLifeTime = *pLifeDuration != 0.0f ? clamp( ( pParticles->m_flCurTime - *pCreationTime ) / ( *pLifeDuration ), 0.0f, 1.0f ) : 0.0f;
+		float flLifeTime = *pLifeDuration != 0.0f ? seclamp( ( pParticles->m_flCurTime - *pCreationTime ) / ( *pLifeDuration ), 0.0f, 1.0f ) : 0.0f;
 
 		// clamp activity to start/end time
 		int nParticleId = *pParticles->GetIntAttributePtr( PARTICLE_ATTRIBUTE_PARTICLE_ID, i );
@@ -2803,8 +2803,8 @@ void C_OP_DistanceBetweenCPs::Operate( CParticleCollection *pParticles, float fl
 	float flMax=m_flOutputMax;
 	if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & ( 1 << m_nFieldOutput ) )
 	{
-		flMin = clamp(m_flOutputMin, 0.0f, 1.0f );
-		flMax = clamp(m_flOutputMax, 0.0f, 1.0f );
+		flMin = seclamp(m_flOutputMin, 0.0f, 1.0f );
+		flMax = seclamp(m_flOutputMax, 0.0f, 1.0f );
 	}
 	Vector vecControlPoint1 = pParticles->GetControlPointAtCurrentTime( m_nStartCP );
 	Vector vecControlPoint2 = pParticles->GetControlPointAtCurrentTime( m_nEndCP );
@@ -2923,8 +2923,8 @@ void C_OP_DistanceToCP::Operate( CParticleCollection *pParticles, float flStreng
 	float flMax=m_flOutputMax;
 	if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & ( 1 << m_nFieldOutput ) )
 	{
-		flMin = clamp(m_flOutputMin, 0.0f, 1.0f );
-		flMax = clamp(m_flOutputMax, 0.0f, 1.0f );
+		flMin = seclamp(m_flOutputMin, 0.0f, 1.0f );
+		flMax = seclamp(m_flOutputMax, 0.0f, 1.0f );
 	}
 	Vector vecControlPoint1 = pParticles->GetControlPointAtCurrentTime( m_nStartCP );
 
@@ -3928,8 +3928,8 @@ void C_OP_RemapDotProductToScalar::Operate( CParticleCollection *pParticles, flo
 	float flMax=m_flOutputMax;
 	if ( ATTRIBUTES_WHICH_ARE_0_TO_1 & ( 1 << m_nFieldOutput ) )
 	{
-		flMin = clamp(m_flOutputMin, 0.0f, 1.0f );
-		flMax = clamp(m_flOutputMax, 0.0f, 1.0f );
+		flMin = seclamp(m_flOutputMin, 0.0f, 1.0f );
+		flMax = seclamp(m_flOutputMax, 0.0f, 1.0f );
 	}
 
 	Vector	vecInput1;

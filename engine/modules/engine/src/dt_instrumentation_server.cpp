@@ -299,7 +299,7 @@ void ServerDTI_AddEntityEncodeEvent( SendTable *pSendTable, float distToPlayer )
 		return;
 
 	int iDist = (int)( distToPlayer / DELTA_DISTANCE_BAND );
-	iDist = clamp( iDist, 0, NUM_DELTA_DISTANCE_BANDS - 1 );
+	iDist = seclamp( iDist, 0, NUM_DELTA_DISTANCE_BANDS - 1 );
 	pTable->m_DistanceDeltaCounts[iDist]++;
 }
 

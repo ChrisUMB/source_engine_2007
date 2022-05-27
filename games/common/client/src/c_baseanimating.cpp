@@ -1230,7 +1230,7 @@ float C_BaseAnimating::ClampCycle( float flCycle, bool isLooping )
 	}
 	else 
 	{
-		flCycle = clamp( flCycle, 0.0f, 0.999f );
+		flCycle = seclamp( flCycle, 0.0f, 0.999f );
 	}
 	return flCycle;
 }
@@ -1645,7 +1645,7 @@ void C_BaseAnimating::UnragdollBlend( CStudioHdr *hdr, Vector pos[], Quaternion 
 
 	// Slerp bone sets together
 	float frac = dt / 0.2f;
-	frac = clamp( frac, 0.0f, 1.0f );
+	frac = seclamp( frac, 0.0f, 1.0f );
 
 	int i;
 	for ( i = 0; i < hdr->numbones(); i++ )

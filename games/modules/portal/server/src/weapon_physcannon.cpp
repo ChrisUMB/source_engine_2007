@@ -675,7 +675,7 @@ float CGrabController::ComputeError()
 		QAngle playerAngles = pPortalPlayer->EyeAngles();
 
 		float pitch = AngleDistance(playerAngles.x,0);
-		playerAngles.x = clamp( pitch, -75, 75 );
+		playerAngles.x = seclamp( pitch, -75, 75 );
 		AngleVectors( playerAngles, &forward, &right, &up );
 
 		Vector start = pPortalPlayer->Weapon_ShootPosition();
@@ -1283,7 +1283,7 @@ void CPlayerPickupController::Use( CBaseEntity *pActivator, CBaseEntity *pCaller
 
 			((CPortal_Player *)m_pPlayer)->SetHeldObjectOnOppositeSideOfPortal( false );
 			// JAY: Scale this with mass because some small objects really go flying
-			float massFactor = clamp( pPhys->GetMass(), 0.5, 15 );
+			float massFactor = seclamp( pPhys->GetMass(), 0.5, 15 );
 			massFactor = RemapVal( massFactor, 0.5, 15, 0.5, 4 );
 			vecLaunch *= player_throwforce.GetFloat() * massFactor;
 
@@ -2871,11 +2871,11 @@ bool CGrabController::UpdateObject( CBasePlayer *pPlayer, float flError )
 	float pitch = AngleDistance(playerAngles.x,0);
 	if( !m_bAllowObjectOverhead )
 	{
-		playerAngles.x = clamp( pitch, -75, 75 );
+		playerAngles.x = seclamp( pitch, -75, 75 );
 	}
 	else
 	{
-		playerAngles.x = clamp( pitch, -90, 75 );
+		playerAngles.x = seclamp( pitch, -90, 75 );
 	}
 	AngleVectors( playerAngles, &forward, &right, &up );
 

@@ -1413,7 +1413,7 @@ CON_COMMAND( demos, "Demo demo file sequence." )
 		int numdemos = Host_GetNumDemos();
 		if ( numdemos >= 1 )
 		{
-			cl.demonum = clamp( Q_atoi( args[1] ), 0, numdemos - 1 );
+			cl.demonum = seclamp( Q_atoi( args[1] ), 0, numdemos - 1 );
 			DevMsg( "Jumping to %s\n", cl.demos[ cl.demonum ] );
 		}
 	}
@@ -1444,7 +1444,7 @@ CON_COMMAND( nextdemo, "Play next demo in sequence." )
 		int numdemos = Host_GetNumDemos();
 		if ( numdemos >= 1 )
 		{
-			cl.demonum = clamp( Q_atoi( args[1] ), 0, numdemos - 1 );
+			cl.demonum = seclamp( Q_atoi( args[1] ), 0, numdemos - 1 );
 			DevMsg( "Jumping to %s\n", cl.demos[ cl.demonum ] );
 		}
 	}
@@ -1474,7 +1474,7 @@ CON_COMMAND_F( soundfade, "Fade client volume.", FCVAR_SERVER_CAN_EXECUTE )
 		return;
 	}
 
-	percent = clamp( atof(args[1]), 0.0f, 100.0f );
+	percent = seclamp( atof(args[1]), 0.0f, 100.0f );
 	
 	holdTime = max( 0.0f, atof(args[2]) );
 

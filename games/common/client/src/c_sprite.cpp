@@ -169,7 +169,7 @@ float StandardGlowBlend( const pixelvis_queryparams_t &params, pixelvis_handle_t
 
 	// UNDONE: Tweak these magic numbers (1200 - distance at full brightness)
 	float fadeOut = (1200.0f*1200.0f) / (dist*dist);
-	fadeOut = clamp( fadeOut, 0.0f, 1.0f );
+	fadeOut = seclamp( fadeOut, 0.0f, 1.0f );
 
 	if (rendermode != kRenderWorldGlow)
 	{

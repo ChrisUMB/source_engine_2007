@@ -124,7 +124,7 @@ void CSimpleGlowEmitter::SetVisibleInView( unsigned char viewMask, bool bVisible
 unsigned char CSimpleGlowEmitter::CurrentViewMask() const
 {
 	int viewId = (int)CurrentViewID();
-	viewId = clamp(viewId, 0, 7);
+	viewId = seclamp(viewId, 0, 7);
 	return 1<<viewId;
 }
 

@@ -130,8 +130,8 @@ static void DrawLightSprite( dworldlight_t *pLight, float angleAttenFactor )
 
 	float radius = 16.0f;
 	Vector p;
-	
-	ColorClamp( color );
+
+    ColorClamp( color );
 	
 	p = pLight->origin + right * radius + up * radius;
 	meshBuilder.TexCoord2f( 0, 1.0f, 1.0f );

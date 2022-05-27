@@ -115,7 +115,7 @@ void C_PropCombineBall::DrawMotionBlur( void )
 	Vector	vecDir = GetAbsOrigin() - m_vecLastOrigin;
 	float	speed = VectorNormalize( vecDir );
 	
-	speed = clamp( speed, 0, 32 );
+	speed = seclamp( speed, 0, 32 );
 	
 	float	stepSize = min( ( speed * 0.5f ), 4.0f );
 

@@ -159,7 +159,7 @@ static float ResponseCurve( int curve, float x, int axis, float sensitivity )
 		{
 			float flScale = sensitivity < 0.0f ? -1.0f : 1.0f;
 
-			sensitivity = clamp( fabs( sensitivity ), 1.0e-8f, 1000.0f );
+			sensitivity = seclamp( fabs( sensitivity ), 1.0e-8f, 1000.0f );
 
 			float oneOverSens = 1.0f / sensitivity;
 		
@@ -168,7 +168,7 @@ static float ResponseCurve( int curve, float x, int axis, float sensitivity )
 				flScale = -flScale;
 			}
 
-			float retval = clamp( powf( fabs( x ), oneOverSens ), 0.0f, 1.0f );
+			float retval = seclamp( powf( fabs( x ), oneOverSens ), 0.0f, 1.0f );
 			return retval * flScale;
 		}
 		break;
@@ -857,7 +857,7 @@ void CInput::JoyStickMove( float frametime, CUserCmd *cmd )
 	}
 
 	// Bound pitch
-	viewangles[PITCH] = clamp( viewangles[ PITCH ], -cl_pitchup.GetFloat(), cl_pitchdown.GetFloat() );
+	viewangles[PITCH] = seclamp( viewangles[ PITCH ], -cl_pitchup.GetFloat(), cl_pitchdown.GetFloat() );
 
 	engine->SetViewAngles( viewangles );
 }

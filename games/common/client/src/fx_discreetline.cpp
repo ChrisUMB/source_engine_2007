@@ -125,7 +125,7 @@ void CFXDiscreetLine::Draw( double frametime )
 		if ( flScreenSpaceWidth < 0.5f )
 		{
 			flAlpha = RemapVal( flScreenSpaceWidth, 0.25f, 2.0f, 0.3f, 1.0f );
-			flAlpha = clamp( flAlpha, 0.25f, 1.0f );
+			flAlpha = seclamp( flAlpha, 0.25f, 1.0f );
 			flScale = 0.5f * zCoord / flHalfScreenWidth;
 		}
 		else

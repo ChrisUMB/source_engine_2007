@@ -568,7 +568,7 @@ bool CFuncRotating::KeyValue( const char *szKeyName, const char *szValue )
 	else if (FStrEq(szKeyName, "Volume"))
 	{
 		m_flVolume = atof(szValue) / 10.0;
-		m_flVolume = clamp(m_flVolume, 0.0, 1.0f);
+		m_flVolume = seclamp(m_flVolume, 0.0, 1.0f);
 	}
 	else
 	{ 
@@ -800,11 +800,11 @@ void CFuncRotating::RampPitchVol( void )
 	// Calc volume and pitch as % of maximum vol and pitch.
 	//
 	float fpct = fabs(m_flSpeed) / m_flMaxSpeed;
-	float fvol = clamp(m_flVolume * fpct, 0, 1);			  // slowdown volume ramps down to 0
+	float fvol = seclamp(m_flVolume * fpct, 0, 1);			  // slowdown volume ramps down to 0
 
 	float fpitch = FANPITCHMIN + (FANPITCHMAX - FANPITCHMIN) * fpct;	
 	
-	int pitch = clamp(fpitch, 0, 255);
+	int pitch = seclamp(fpitch, 0, 255);
 	if (pitch == PITCH_NORM)
 	{
 		pitch = PITCH_NORM - 1;
@@ -847,7 +847,7 @@ float CFuncRotating::GetNextMoveInterval() const
 void CFuncRotating::UpdateSpeed( float flNewSpeed )
 {
 	float flOldSpeed = m_flSpeed;
-	m_flSpeed = clamp( flNewSpeed, -m_flMaxSpeed, m_flMaxSpeed );
+	m_flSpeed = seclamp( flNewSpeed, -m_flMaxSpeed, m_flMaxSpeed );
 
 	if ( m_bStopAtStartPos )
 	{
@@ -1221,7 +1221,7 @@ void CFuncRotating::InputSetSpeed( inputdata_t &inputdata )
 	float flSpeed = inputdata.value.Float();
 	m_bReversed = flSpeed < 0 ? true : false;
 	flSpeed = fabs(flSpeed);
-	SetTargetSpeed( clamp( flSpeed, 0, 1 ) * m_flMaxSpeed );
+	SetTargetSpeed( seclamp( flSpeed, 0, 1 ) * m_flMaxSpeed );
 }
 
 

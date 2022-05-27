@@ -245,7 +245,7 @@ void C_BaseFlex::StandardBlendingRules(CStudioHdr *hdr, Vector pos[], Quaternion
         float cosAngle = DotProduct(p0, leanPos);
         float angle = atan2(sinAngle, cosAngle) * 180 / M_PI;
         Quaternion q1;
-        angle = clamp(angle, -45, 45);
+        angle = seclamp(angle, -45, 45);
         AxisAngleQuaternion(p1, angle, q1);
         QuaternionMult(q1, q[0], q[0]);
         QuaternionNormalize(q[0]);
@@ -1076,9 +1076,9 @@ void C_BaseFlex::SetupWeights(const matrix3x4_t *pBoneToWorld, int nFlexWeightCo
             t = sqrtf(t) * 2.0f;
             if (t > 1.0f)
                 t = 2.0f - t;
-            t = clamp(t, 0.0f, 1.0f);
+            t = seclamp(t, 0.0f, 1.0f);
             // add it to whatever the blink track is doing
-            g_flexweight[m_iBlink] = clamp(g_flexweight[m_iBlink] + t, 0.0, 1.0);
+            g_flexweight[m_iBlink] = seclamp(g_flexweight[m_iBlink] + t, 0.0, 1.0);
         }
     }
 
@@ -1393,7 +1393,7 @@ void C_BaseFlex::SetFlexWeight(LocalFlexController_t index, float value) {
 
         if (pflexcontroller->max != pflexcontroller->min) {
             value = (value - pflexcontroller->min) / (pflexcontroller->max - pflexcontroller->min);
-            value = clamp(value, 0.0, 1.0);
+            value = seclamp(value, 0.0, 1.0);
         }
 
         m_flexWeight[index] = value;
@@ -1606,7 +1606,7 @@ void C_BaseFlex::AddFlexSetting(const char *expr, float scale,
         int index = FlexControllerLocalToGlobal(pSettinghdr, pWeights->key);
 
         // blend scaled weighting in to total (post networking g_flexweight!!!!)
-        float s = clamp(scale * pWeights->influence, 0.0f, 1.0f);
+        float s = seclamp(scale * pWeights->influence, 0.0f, 1.0f);
         g_flexweight[index] = g_flexweight[index] * (1.0f - s) + pWeights->weight * s;
     }
 }

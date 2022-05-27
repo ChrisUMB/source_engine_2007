@@ -353,7 +353,7 @@ void CAmbientGeneric::ComputeMaxAudibleDistance( )
 //-----------------------------------------------------------------------------
 void CAmbientGeneric::InputPitch( inputdata_t &inputdata )
 {
-	m_dpv.pitch = clamp( inputdata.value.Float(), 0, 255 );
+	m_dpv.pitch = seclamp( inputdata.value.Float(), 0, 255 );
 
 	SendSound( SND_CHANGE_PITCH );
 }
@@ -368,7 +368,7 @@ void CAmbientGeneric::InputVolume( inputdata_t &inputdata )
 	//
 	// Multiply the input value by ten since volumes are expected to be from 0 - 100.
 	//
-	m_dpv.vol = clamp( inputdata.value.Float(), 0, 10 ) * 10;
+	m_dpv.vol = seclamp( inputdata.value.Float(), 0, 10 ) * 10;
 	m_dpv.volfrac = m_dpv.vol << 8;
 
 	SendSound( SND_CHANGE_VOL );

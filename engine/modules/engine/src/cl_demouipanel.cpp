@@ -194,7 +194,7 @@ void CDemoUIPanel::OnTick()
 		totalticks = demoplayer->GetTotalTicks();
 		
 		fProgress = (float)curtick/(float)totalticks;
-		fProgress = clamp( fProgress, 0.0f, 1.0f );
+		fProgress = seclamp( fProgress, 0.0f, 1.0f );
 	}
 		
 	m_pProgress->SetProgress( fProgress );
@@ -545,7 +545,7 @@ void CDemoUIPanel::HandleInput( bool active )
 		// Apply mouse
 		m_ViewAngles.x += pitch;
 
-		m_ViewAngles.x = clamp( m_ViewAngles.x, -89.0f, 89.0f );
+		m_ViewAngles.x = seclamp( m_ViewAngles.x, -89.0f, 89.0f );
 
 		m_ViewAngles.y += yaw;
 		if ( m_ViewAngles.y > 180.0f )
@@ -735,7 +735,7 @@ void CDemoUIPanel2::OnTick()
 		totalticks = demoplayer->GetTotalTicks();
 
 		fProgress = (float)curtick/(float)totalticks;
-		fProgress = clamp( fProgress, 0.0f, 1.0f );
+		fProgress = seclamp( fProgress, 0.0f, 1.0f );
 	}
 
 	if ( !m_pProgress->IsDragged() )

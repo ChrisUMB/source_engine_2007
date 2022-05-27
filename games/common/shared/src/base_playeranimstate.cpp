@@ -362,10 +362,10 @@ void CBasePlayerAnimState::UpdateAimSequenceLayers(
 	}
 	
 	pDest0->m_flWeight *= flWeightScale * flAimSequenceWeight;
-	pDest0->m_flWeight = clamp( pDest0->m_flWeight, 0.0f, 1.0f );
+	pDest0->m_flWeight = seclamp( pDest0->m_flWeight, 0.0f, 1.0f );
 
 	pDest1->m_flWeight *= flWeightScale * flAimSequenceWeight;
-	pDest1->m_flWeight = clamp( pDest1->m_flWeight, 0.0f, 1.0f );
+	pDest1->m_flWeight = seclamp( pDest1->m_flWeight, 0.0f, 1.0f );
 
 	pDest0->m_flCycle = pDest1->m_flCycle = flCycle;
 }
@@ -521,7 +521,7 @@ float CBasePlayerAnimState::CalcMovementPlaybackRate( bool *bIsMoving )
 		{
 			// Note this gets set back to 1.0 if sequence changes due to ResetSequenceInfo below
 			flReturnValue = speed / flGroundSpeed;
-			flReturnValue = clamp( flReturnValue, 0.01, 10 );	// don't go nuts here.
+			flReturnValue = seclamp( flReturnValue, 0.01, 10 );	// don't go nuts here.
 		}
 		*bIsMoving = true;
 	}
@@ -721,7 +721,7 @@ void CBasePlayerAnimState::ComputePoseParam_BodyPitch( CStudioHdr *pStudioHdr )
 	{
 		flPitch -= 360.0f;
 	}
-	flPitch = clamp( flPitch, -90, 90 );
+	flPitch = seclamp( flPitch, -90, 90 );
 
 	// See if we have a blender for pitch
 	int pitch = GetOuter()->LookupPoseParameter( pStudioHdr, "body_pitch" );
@@ -754,7 +754,7 @@ int CBasePlayerAnimState::ConvergeAngles( float goal,float maxrate, float maxgap
 	{
 		scale = anglediffabs / FADE_TURN_DEGREES;
 		// Always do at least a bit of the turn ( 1% )
-		scale = clamp( scale, 0.01f, 1.0f );
+		scale = seclamp( scale, 0.01f, 1.0f );
 	}
 
 	float maxmove = maxrate * dt * scale;

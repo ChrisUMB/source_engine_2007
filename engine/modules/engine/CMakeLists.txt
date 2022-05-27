@@ -2,7 +2,7 @@ load_sources_file()
 add_library(engine SHARED ${SE_SOURCES})
 
 target_include_directories(engine PRIVATE headers headers/audio headers/audio/private headers/audio/public
-        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1  ${WINSDK_INCLUDE_DIRS} ${SE_LIBS}/dx9sdk/include)
+        ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS} ${SE_LIBS}/dx9sdk/include)
 
 target_compile_definitions(engine PRIVATE
         WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE

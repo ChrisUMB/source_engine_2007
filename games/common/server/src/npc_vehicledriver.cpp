@@ -763,7 +763,7 @@ bool CNPC_VehicleDriver::OverridePathMove( float flInterval )
 	float flIncrement = flIncTime * (flSpeed / pCurrentSplineBeingTraversed->GetLength());
 
 	// Now advance our point along the spline
-	m_flDistanceAlongSpline = clamp( m_flDistanceAlongSpline + flIncrement, 0, 2);
+	m_flDistanceAlongSpline = seclamp( m_flDistanceAlongSpline + flIncrement, 0, 2);
 	if ( m_flDistanceAlongSpline > 1 )
 	{
 		// We crossed the spline boundary

@@ -775,7 +775,7 @@ void CDemoActionChangePlaybackRate::SaveKeysToBuffer( int depth, CUtlBuffer& buf
 //-----------------------------------------------------------------------------
 void CDemoActionChangePlaybackRate::SetPlaybackRate( float rate )
 {
-	m_flPlaybackRate = clamp( rate, 0.001f, 1000.0f );
+	m_flPlaybackRate = seclamp( rate, 0.001f, 1000.0f );
 }
 
 //-----------------------------------------------------------------------------
@@ -849,7 +849,7 @@ void CDemoActionPausePlayback::SaveKeysToBuffer( int depth, CUtlBuffer& buf )
 //-----------------------------------------------------------------------------
 void CDemoActionPausePlayback::SetPauseTime( float t )
 {
-	m_flPauseTime = clamp( t, 0.0f, 300.0f );
+	m_flPauseTime = seclamp( t, 0.0f, 300.0f );
 }
 
 //-----------------------------------------------------------------------------
@@ -958,7 +958,7 @@ bool CDemoActionZoom::Update( const DemoActionTimingContext& tc )
 			{
 				frac = 3.0f * frac * frac - 2.0f * frac * frac * frac;
 			}
-			frac = clamp( frac, 0.0f, 1.0f );
+			frac = seclamp( frac, 0.0f, 1.0f );
 
 			frac = 1.0f - frac;
 
@@ -975,7 +975,7 @@ bool CDemoActionZoom::Update( const DemoActionTimingContext& tc )
 			{
 				frac = 3.0f * frac * frac - 2.0f * frac * frac * frac;
 			}
-			frac = clamp( frac, 0.0f, 1.0f );
+			frac = seclamp( frac, 0.0f, 1.0f );
 
 			scr_demo_override_fov = m_flOriginalFOV + frac * ( m_flFinalFOV - m_flOriginalFOV );
 		}

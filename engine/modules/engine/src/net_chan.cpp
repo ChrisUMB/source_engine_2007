@@ -651,7 +651,7 @@ void CNetChan::SetTimeout(float seconds)
 void CNetChan::SetMaxBufferSize(bool bReliable, int nBytes, bool bVoice )
 {
 	// force min/max sizes 4-96kB
-	nBytes = clamp( nBytes, NET_MAX_DATAGRAM_PAYLOAD, NET_MAX_PAYLOAD );
+	nBytes = seclamp( nBytes, NET_MAX_DATAGRAM_PAYLOAD, NET_MAX_PAYLOAD );
 
 	bf_write *stream;
 	CUtlMemory<byte> *buffer;
@@ -716,7 +716,7 @@ void CNetChan::SetCompressionMode( bool bUseCompression )
 
 void CNetChan::SetDataRate(float rate)
 {
-	m_Rate = clamp( rate, MIN_RATE, MAX_RATE );
+	m_Rate = seclamp( rate, MIN_RATE, MAX_RATE );
 }
 
 const char * CNetChan::GetName() const

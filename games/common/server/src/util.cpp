@@ -720,10 +720,10 @@ void UTIL_GetPlayerConnectionInfo( int playerIndex, int& ping, int &packetloss )
 		latency -= TICKS_TO_TIME( 0.5f );
 
 		ping = latency * 1000.0f; // as msecs
-		ping = clamp( ping, 5, 1000 ); // set bounds, dont show pings under 5 msecs
+		ping = seclamp( ping, 5, 1000 ); // set bounds, dont show pings under 5 msecs
 		
 		packetloss = 100.0f * nci->GetAvgLoss( FLOW_INCOMING ); // loss in percentage
-		packetloss = clamp( packetloss, 0, 100 );
+		packetloss = seclamp( packetloss, 0, 100 );
 	}
 	else
 	{
@@ -2521,7 +2521,7 @@ Vector UTIL_PointOnLineNearestPoint(const Vector& vStartPos, const Vector& vEndP
 	
 	if ( clampEnds )
 	{
-		fIntersectDist = clamp( fIntersectDist, 0.0f, flLineLength );
+		fIntersectDist = seclamp( fIntersectDist, 0.0f, flLineLength );
 	}
 	
 	Vector	vIntersectPos	= vStartPos + vEndToStart * fIntersectDist;
@@ -2858,7 +2858,7 @@ void UTIL_BoundToWorldSize( Vector *pVecPos )
 	Assert( pVecPos );
 	for ( int i = 0; i < 3; ++i )
 	{
-		(*pVecPos)[ i ] = clamp( (*pVecPos)[ i ], MIN_COORD_FLOAT, MAX_COORD_FLOAT );
+		(*pVecPos)[ i ] = seclamp( (*pVecPos)[ i ], MIN_COORD_FLOAT, MAX_COORD_FLOAT );
 	}
 }
 

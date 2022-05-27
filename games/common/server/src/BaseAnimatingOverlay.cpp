@@ -276,13 +276,13 @@ void CBaseAnimatingOverlay::StudioFrameAdvance ()
 				if (pLayer->m_flKillDelay > 0)
 				{
 					pLayer->m_flKillDelay -= flAdvance;
-					pLayer->m_flKillDelay = clamp( 	pLayer->m_flKillDelay, 0.0, 1.0 );
+					pLayer->m_flKillDelay = seclamp( 	pLayer->m_flKillDelay, 0.0, 1.0 );
 				}
 				else if (pLayer->m_flWeight != 0.0f)
 				{
 					// give it at least one frame advance cycle to propagate 0.0 to client
 					pLayer->m_flWeight -= pLayer->m_flKillRate * flAdvance;
-					pLayer->m_flWeight = clamp( 	pLayer->m_flWeight, 0.0, 1.0 );
+					pLayer->m_flWeight = seclamp( 	pLayer->m_flWeight, 0.0, 1.0 );
 				}
 				else
 				{
@@ -893,7 +893,7 @@ void CBaseAnimatingOverlay::SetLayerCycle( int iLayer, float flCycle )
 
 	if (!m_AnimOverlay[iLayer].m_bLooping)
 	{
-		flCycle = clamp( flCycle, 0.0, 1.0 );
+		flCycle = seclamp( flCycle, 0.0, 1.0 );
 	}
 	m_AnimOverlay[iLayer].m_flCycle = flCycle;
 	m_AnimOverlay[iLayer].MarkActive( );
@@ -910,8 +910,8 @@ void CBaseAnimatingOverlay::SetLayerCycle( int iLayer, float flCycle, float flPr
 
 	if (!m_AnimOverlay[iLayer].m_bLooping)
 	{
-		flCycle = clamp( flCycle, 0.0, 1.0 );
-		flPrevCycle = clamp( flPrevCycle, 0.0, 1.0 );
+		flCycle = seclamp( flCycle, 0.0, 1.0 );
+		flPrevCycle = seclamp( flPrevCycle, 0.0, 1.0 );
 	}
 	m_AnimOverlay[iLayer].m_flCycle = flCycle;
 	m_AnimOverlay[iLayer].m_flPrevCycle = flPrevCycle;
@@ -951,7 +951,7 @@ void CBaseAnimatingOverlay::SetLayerWeight( int iLayer, float flWeight )
 	if (!IsValidLayer( iLayer ))
 		return;
 
-	flWeight = clamp( flWeight, 0.0f, 1.0f );
+	flWeight = seclamp( flWeight, 0.0f, 1.0f );
 	m_AnimOverlay[iLayer].m_flWeight = flWeight;
 	m_AnimOverlay[iLayer].MarkActive( );
 }
@@ -1109,7 +1109,7 @@ void CBaseAnimatingOverlay::FastRemoveLayer( int iLayer )
 
 CAnimationLayer *CBaseAnimatingOverlay::GetAnimOverlay( int iIndex )
 {
-	iIndex = clamp( iIndex, 0, m_AnimOverlay.Count()-1 );
+	iIndex = seclamp( iIndex, 0, m_AnimOverlay.Count()-1 );
 
 	return &m_AnimOverlay[iIndex];
 }

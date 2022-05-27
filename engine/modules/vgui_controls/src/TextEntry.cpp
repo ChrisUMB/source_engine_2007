@@ -447,8 +447,8 @@ int TextEntry::PixelToCursorSpace(int cx, int cy)
 	
 	int w, h;
 	GetSize(w, h);
-	cx = clamp(cx, 0, w+100);
-	cy = clamp(cy, 0, h);
+	cx = seclamp(cx, 0, w+100);
+	cy = seclamp(cy, 0, h);
 
 	_putCursorAtEnd = false; //	Start off assuming we clicked somewhere in the text
 	

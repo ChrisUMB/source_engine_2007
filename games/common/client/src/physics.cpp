@@ -978,7 +978,7 @@ void PhysFrictionSound( CBaseEntity *pEntity, IPhysicsObject *pObject, const cha
 	
 	// cut out the quiet sounds
 	// UNDONE: Separate threshold for starting a sound vs. continuing?
-	flVolume = clamp( flVolume, 0.0f, 1.0f );
+	flVolume = seclamp( flVolume, 0.0f, 1.0f );
 	if ( flVolume > (1.0f/128.0f) )
 	{
 		friction_t *pFriction = g_Collisions.FindFriction( pEntity );

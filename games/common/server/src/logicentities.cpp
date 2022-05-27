@@ -691,7 +691,7 @@ void CMathRemap::InputValue( inputdata_t &inputdata )
 	//
 	// Disallow out-of-range input values to avoid out-of-range output values.
 	//
-	float flClampValue = clamp(flValue, m_flInMin, m_flInMax);
+	float flClampValue = seclamp(flValue, m_flInMin, m_flInMax);
 
 	if ((flClampValue == flValue) || !FBitSet(m_spawnflags, SF_MATH_REMAP_IGNORE_OUT_OF_RANGE))
 	{
@@ -791,7 +791,7 @@ void CMathColorBlend::InputValue( inputdata_t &inputdata )
 	//
 	// Disallow out-of-range input values to avoid out-of-range output values.
 	//
-	float flClampValue = clamp(flValue, m_flInMin, m_flInMax);
+	float flClampValue = seclamp(flValue, m_flInMin, m_flInMax);
 	if ((flClampValue == flValue) || !FBitSet(m_spawnflags, SF_COLOR_BLEND_IGNORE_OUT_OF_RANGE))
 	{
 		//
@@ -1404,7 +1404,7 @@ void CMathCounter::Spawn( void )
 	//
 	if ((m_flMin != 0) || (m_flMax != 0))
 	{
-		float flStartValue = clamp(m_OutValue.Get(), m_flMin, m_flMax);
+		float flStartValue = seclamp(m_OutValue.Get(), m_flMin, m_flMax);
 		m_OutValue.Init(flStartValue);
 	}
 }
@@ -1563,7 +1563,7 @@ void CMathCounter::InputSetValueNoFire( inputdata_t &inputdata )
 	float flNewValue = inputdata.value.Float();
 	if (( m_flMin != 0 ) || (m_flMax != 0 ))
 	{
-		flNewValue = clamp(flNewValue, m_flMin, m_flMax);
+		flNewValue = seclamp(flNewValue, m_flMin, m_flMax);
 	}
 
 	m_OutValue.Init( flNewValue );
@@ -1649,7 +1649,7 @@ void CMathCounter::UpdateOutValue(CBaseEntity *pActivator, float fNewValue)
 			m_bHitMin = false;
 		}
 
-		fNewValue = clamp(fNewValue, m_flMin, m_flMax);
+		fNewValue = seclamp(fNewValue, m_flMin, m_flMax);
 	}
 
 	m_OutValue.Set(fNewValue, pActivator, this);

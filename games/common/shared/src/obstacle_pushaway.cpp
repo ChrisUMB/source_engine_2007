@@ -219,7 +219,7 @@ void AvoidPushawayProps( CBaseCombatCharacter *pPlayer, CUserCmd *pCmd )
 		{
 			mass = pInterface->GetMass();
 		}
-		mass = clamp( mass, minMass, maxMass );
+		mass = seclamp( mass, minMass, maxMass );
 		
 		mass = max( mass, 0 );
 		mass /= maxMass; // bring into a 0..1 range

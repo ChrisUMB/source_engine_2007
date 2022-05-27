@@ -1572,7 +1572,7 @@ void CMP3Player::OnTick()
 			float elapsed = gpGlobals->realtime - m_SongStart;
 
 			float frac = elapsed / m_flSongDuration;
-			frac = clamp( frac, 0.0f, 1.0f );
+			frac = seclamp( frac, 0.0f, 1.0f );
 			m_pSongProgress->SetProgress( frac );
 
 			int minutes = ( int ) ( elapsed / 60.0f );

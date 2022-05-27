@@ -481,7 +481,7 @@ void C_BaseExplosionEffect::CreateCore( void )
 			
 			pParticle->m_uchStartSize	= random->RandomInt( 8, 16 ) * vDev;
 
-			pParticle->m_uchStartSize	= clamp( pParticle->m_uchStartSize, 4, 32 );
+			pParticle->m_uchStartSize	= seclamp( pParticle->m_uchStartSize, 4, 32 );
 
 			pParticle->m_uchEndSize		= pParticle->m_uchStartSize;
 			
@@ -542,7 +542,7 @@ void C_BaseExplosionEffect::CreateCore( void )
 			
 			pParticle->m_uchStartSize	= random->RandomInt( 32, 85 ) * vDev;
 
-			pParticle->m_uchStartSize	= clamp( pParticle->m_uchStartSize, 32, 85 );
+			pParticle->m_uchStartSize	= seclamp( pParticle->m_uchStartSize, 32, 85 );
 
 			pParticle->m_uchEndSize		= (int)((float)pParticle->m_uchStartSize * 1.5f);
 			
@@ -1203,7 +1203,7 @@ void C_WaterExplosionEffect::CreateMisc( void )
 		tParticle->m_vecVelocity = offDir * random->RandomFloat( 50.0f * flScale * 2.0f, 100.0f * flScale * 2.0f );
 		tParticle->m_vecVelocity[2] += random->RandomFloat( 32.0f, 128.0f ) * flScale;
 
-		tParticle->m_flWidth		= clamp( random->RandomFloat( 1.0f, 3.0f ) * flScale, 0.1f, 4.0f );
+		tParticle->m_flWidth		= seclamp( random->RandomFloat( 1.0f, 3.0f ) * flScale, 0.1f, 4.0f );
 		tParticle->m_flLength		= random->RandomFloat( length*0.25f, length )/* * flScale*/;
 
 		colorRamp = random->RandomFloat( 1.5f, 2.0f );
@@ -1231,7 +1231,7 @@ void C_WaterExplosionEffect::CreateMisc( void )
 		tParticle->m_vecVelocity = offDir * random->RandomFloat( 50 * flScale * 3.0f, 100 * flScale * 3.0f );
 		tParticle->m_vecVelocity[2] += random->RandomFloat( 32.0f, 128.0f ) * flScale;
 
-		tParticle->m_flWidth		= clamp( random->RandomFloat( 2.0f, 3.0f ) * flScale, 0.1f, 4.0f );
+		tParticle->m_flWidth		= seclamp( random->RandomFloat( 2.0f, 3.0f ) * flScale, 0.1f, 4.0f );
 		tParticle->m_flLength		= random->RandomFloat( length*0.25f, length )/* * flScale*/;
 
 		colorRamp = random->RandomFloat( 1.5f, 2.0f );
@@ -1393,7 +1393,7 @@ void C_MegaBombExplosionEffect::CreateCore( void )
 			
 			pParticle->m_uchStartSize	= random->RandomInt( 32, 85 ) * vDev;
 
-			pParticle->m_uchStartSize	= clamp( pParticle->m_uchStartSize, 32, 85 );
+			pParticle->m_uchStartSize	= seclamp( pParticle->m_uchStartSize, 32, 85 );
 
 			pParticle->m_uchEndSize		= (int)((float)pParticle->m_uchStartSize * 1.5f);
 			

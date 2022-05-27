@@ -76,7 +76,7 @@ public:
 		  static const ConVar *pMax = dynamic_cast< const ConVar* >( g_pCVar->FindCommandBase( "sv_client_max_interp_ratio" ) );
 		  if ( pMin && pMax && pMin->GetFloat() != -1 )
 		  {
-			  return clamp( GetBaseFloatValue(), pMin->GetFloat(), pMax->GetFloat() );
+			  return seclamp( GetBaseFloatValue(), pMin->GetFloat(), pMax->GetFloat() );
 		  }
 		  else
 		  {

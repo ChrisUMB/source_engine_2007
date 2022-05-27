@@ -78,12 +78,12 @@ int ClampClientRate( int nRate )
 {
 	if ( sv_maxrate.GetInt() > 0 )
 	{
-		nRate = clamp( nRate, MIN_RATE, sv_maxrate.GetInt() );
+		nRate = seclamp( nRate, MIN_RATE, sv_maxrate.GetInt() );
 	}
 
 	if ( sv_minrate.GetInt() > 0 )
 	{
-		nRate = clamp( nRate, sv_minrate.GetInt(), MAX_RATE );
+		nRate = seclamp( nRate, sv_minrate.GetInt(), MAX_RATE );
 	}
 
 	return nRate;
@@ -414,12 +414,12 @@ void CGameClient::SetUpdateRate(int udpaterate, bool bForce)
 	{
 		if ( sv_maxupdaterate.GetInt() > 0 )
 		{
-			udpaterate = clamp( udpaterate, 1, sv_maxupdaterate.GetInt() );
+			udpaterate = seclamp( udpaterate, 1, sv_maxupdaterate.GetInt() );
 		}
 
 		if ( sv_minupdaterate.GetInt() > 0 )
 		{
-			udpaterate = clamp( udpaterate, sv_minupdaterate.GetInt(), 100 );
+			udpaterate = seclamp( udpaterate, sv_minupdaterate.GetInt(), 100 );
 		}
 	}
 
@@ -1281,7 +1281,7 @@ CON_COMMAND( st, "sound test" )
 	int nCount = 1;
 	if ( args.ArgC() >= 2 )
 	{
-		nCount = clamp( Q_atoi( args.Arg( 1 ) ), 1, 100000 );
+		nCount = seclamp( Q_atoi( args.Arg( 1 ) ), 1, 100000 );
 	}
 
 	for ( int i = 0 ; i < nCount; ++i )

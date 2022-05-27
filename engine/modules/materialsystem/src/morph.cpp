@@ -954,14 +954,14 @@ void CMorph::WriteDeltaPositionNormalToTexture( CPixelWriter &pixelWriter, int x
 			r = (int)( info.m_PositionDelta.x * m_flFloatToFixedScale ) + 32767;
 			g = (int)( info.m_PositionDelta.y * m_flFloatToFixedScale ) + 32767;
 			b = (int)( info.m_PositionDelta.z * m_flFloatToFixedScale ) + 32767;
-			r = clamp( r, 0, 65534 );
-			g = clamp( g, 0, 65534 );
-			b = clamp( b, 0, 65534 );
+			r = seclamp( r, 0, 65534 );
+			g = seclamp( g, 0, 65534 );
+			b = seclamp( b, 0, 65534 );
 		}
 		if ( m_Format & MORPH_WRINKLE )
 		{
 			a = (int)( info.m_flWrinkleDelta * m_flFloatToFixedScale ) + 32767;
-			a = clamp( a, 0, 65534 );
+			a = seclamp( a, 0, 65534 );
 		}
 		pixelWriter.WritePixel( r, g, b, a );
 	}
@@ -972,9 +972,9 @@ void CMorph::WriteDeltaPositionNormalToTexture( CPixelWriter &pixelWriter, int x
 		r = (int)( info.m_NormalDelta.x * m_flFloatToFixedScale ) + 32767;
 		g = (int)( info.m_NormalDelta.y * m_flFloatToFixedScale ) + 32767;
 		b = (int)( info.m_NormalDelta.z * m_flFloatToFixedScale ) + 32767;
-		r = clamp( r, 0, 65534 );
-		g = clamp( g, 0, 65534 );
-		b = clamp( b, 0, 65534 );
+		r = seclamp( r, 0, 65534 );
+		g = seclamp( g, 0, 65534 );
+		b = seclamp( b, 0, 65534 );
 
 		pixelWriter.WritePixel( r, g, b, a );
 	}
@@ -994,8 +994,8 @@ void CMorph::WriteSideSpeedToTexture( CPixelWriter &pixelWriter, int x, int y, c
 	{
 		g = info.m_flSpeed * 255;
 	}
-	r = clamp( r, 0, 255 );
-	g = clamp( g, 0, 255 );
+	r = seclamp( r, 0, 255 );
+	g = seclamp( g, 0, 255 );
 
 	pixelWriter.Seek( x, y );
 	pixelWriter.WritePixel( r, g, b, a );

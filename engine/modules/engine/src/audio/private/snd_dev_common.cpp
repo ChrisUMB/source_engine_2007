@@ -51,9 +51,9 @@ static float XfadeSpeakerVolToMono( float scale, float xfade, float ispeaker, fl
 		float scale_targets2ch[] = {0.9, 0.9, 0.0, 0.0};	// RF, LF, RR, LR
 
 		if ( fmix2channels )
-			scale_target = scale_targets2ch[(int)clamp(ispeaker, 0, 3)];
+			scale_target = scale_targets2ch[(int)seclamp(ispeaker, 0, 3)];
 		else
-			scale_target = scale_targets[(int)clamp(ispeaker, 0, 3)];
+			scale_target = scale_targets[(int)seclamp(ispeaker, 0, 3)];
 
 		goto XfadeExit;
 	}
@@ -62,7 +62,7 @@ static float XfadeSpeakerVolToMono( float scale, float xfade, float ispeaker, fl
 	{
 		// mono sound distribution:
 		float scale_targets[] = {0.9, 0.9, 0.5, 0.5, 0.9};	// RF, LF, RR, LR, FC
-		scale_target = scale_targets[(int)clamp(ispeaker, 0, 4)];
+		scale_target = scale_targets[(int)seclamp(ispeaker, 0, 4)];
 		goto XfadeExit;
 	}
 
@@ -121,7 +121,7 @@ static float GetSpeakerVol( float yaw_source, float pitch_source, float mono, fl
 		xfade  = ( pitch_angle - PITCH_ANGLE_THRESHOLD ) / ( 90.0 - PITCH_ANGLE_THRESHOLD );	// 0.0 -> 1.0 as angle 45->90	
 
 		mono += xfade;
-		mono = clamp(mono, 0.0, 1.0);
+		mono = seclamp(mono, 0.0, 1.0);
 	}
 	
 	if ( cspeaker == 2 )
@@ -329,8 +329,8 @@ void CAudioDeviceBase::SpatializeChannel( int volume[CCHANVOLUMES/2], int master
 
 			// add sounds coming from rear (quieter)
 
-			rfscale = clamp((rfscale + rrscale * 0.75), 0.0, 1.0); 
-			lfscale = clamp((lfscale + lrscale * 0.75), 0.0, 1.0);		
+			rfscale = seclamp((rfscale + rrscale * 0.75), 0.0, 1.0);
+			lfscale = seclamp((lfscale + lrscale * 0.75), 0.0, 1.0);
 			
 			rrscale = 0;
 			lrscale = 0;
@@ -389,23 +389,23 @@ SpatialExit:
 	volume[IFRONT_RIGHT] = (int) (master_vol * gain * rfscale);
 	volume[IFRONT_LEFT] =  (int) (master_vol * gain * lfscale);
 	
-	volume[IFRONT_RIGHT] = clamp( volume[IFRONT_RIGHT], 0, 255 );
-	volume[IFRONT_LEFT]  = clamp( volume[IFRONT_LEFT], 0, 255 );
+	volume[IFRONT_RIGHT] = seclamp( volume[IFRONT_RIGHT], 0, 255 );
+	volume[IFRONT_LEFT]  = seclamp( volume[IFRONT_LEFT], 0, 255 );
 
 	if ( m_bSurround )
 	{
 		volume[IREAR_RIGHT] = (int) (master_vol * gain * rrscale);
 		volume[IREAR_LEFT] =  (int) (master_vol * gain * lrscale);
 
-		volume[IREAR_RIGHT] = clamp( volume[IREAR_RIGHT], 0, 255 );
-		volume[IREAR_LEFT] = clamp( volume[IREAR_LEFT], 0, 255 );
+		volume[IREAR_RIGHT] = seclamp( volume[IREAR_RIGHT], 0, 255 );
+		volume[IREAR_LEFT] = seclamp( volume[IREAR_LEFT], 0, 255 );
 
 		if ( m_bSurroundCenter )
 		{
 			volume[IFRONT_CENTER] = (int) (master_vol * gain * fcscale);
 			volume[IFRONT_CENTER0] = 0.0;
 
-			volume[IFRONT_CENTER] = clamp( volume[IFRONT_CENTER], 0, 255);
+			volume[IFRONT_CENTER] = seclamp( volume[IFRONT_CENTER], 0, 255);
 		}
 	}
 }

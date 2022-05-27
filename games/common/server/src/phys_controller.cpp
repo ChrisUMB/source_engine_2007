@@ -533,7 +533,7 @@ IMotionEvent::simresult_e CMotorController::Simulate( IPhysicsMotionController *
 		if ( deltaSpeed * accel > 0 )
 		{
 			float factor = deltaSpeed / m_lastAcceleration;
-			factor = 1 - clamp( factor, 0, 1 );
+			factor = 1 - seclamp( factor, 0, 1 );
 			rotForce += m_lastForce * factor * m_restistanceDamping;
 		}
 		else 

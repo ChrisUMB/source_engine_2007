@@ -1358,7 +1358,7 @@ void CDemoPlayer::InterpolateViewpoint( void )
 
 		frac = (TICKS_TO_TIME(nTargetTick-prev.tick)+cl.m_tickRemainder)/dt;
 
-		frac = clamp( frac, 0.0f, 1.0f );
+		frac = seclamp( frac, 0.0f, 1.0f );
 
 		// Now interpolate
 		Vector delta;
@@ -2172,7 +2172,7 @@ CON_COMMAND( demo_timescale, "Sets demo replay speed." )
 	if ( args.ArgC() == 2 )
 	{
 		fScale = atof( args[1] );
-		fScale = clamp( fScale, 0.0f, 100.0f );
+		fScale = seclamp( fScale, 0.0f, 100.0f );
 	}
 
 	demoplayer->SetPlaybackTimeScale( fScale );
