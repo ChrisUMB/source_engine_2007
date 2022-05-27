@@ -1,9 +1,9 @@
-${SE_PUBLIC}\tier0\memoverride.cpp
-${SE_PUBLIC}\vgui_controls\vgui_controls.cpp
-${SE_COMMON}\vgui\vgui_budgetpanelshared.cpp
-${SE_COMMON}\vgui\vgui_budgethistorypanel.cpp
-${SE_COMMON}\vgui\vgui_budgetbargraphpanel.cpp
-${SE_COMMON}\vgui\vgui_basebudgetpanel.cpp
+${SE_PUBLIC}/tier0/memoverride.cpp
+${SE_PUBLIC}/vgui_controls/vgui_controls.cpp
+${SE_COMMON}/vgui/vgui_budgetpanelshared.cpp
+${SE_COMMON}/vgui/vgui_budgethistorypanel.cpp
+${SE_COMMON}/vgui/vgui_budgetbargraphpanel.cpp
+${SE_COMMON}/vgui/vgui_basebudgetpanel.cpp
 src/serverinfopanel.cpp
 src/ServerConfigPanel.cpp
 src/RawLogPanel.cpp
@@ -25,4 +25,4 @@ src/GamePanelInfo.cpp
 src/ConfigPanel.cpp
 src/BanContextMenu.cpp
 src/AdminServer.cpp
-..\common\msgbuffer.cpp
+src/msgbuffer.cpp
