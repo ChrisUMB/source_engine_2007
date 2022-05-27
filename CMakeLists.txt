@@ -55,10 +55,11 @@ add_subdirectory(engine/modules/Bugreporter)
 add_subdirectory(engine/modules/Bugreporter_filequeue)
 add_subdirectory(engine/modules/Bugreporter_public)
 add_subdirectory(engine/modules/Bugreporter_text)
+add_subdirectory(engine/modules/datacache)
+add_subdirectory(engine/modules/FileSystem_Stdio)
 
 add_subdirectory(engine/modules/launcher)
 add_subdirectory(engine/modules/engine)
-
 
 add_subdirectory(games/modules/portal/client)
 add_subdirectory(games/modules/portal/server)
