@@ -10,7 +10,7 @@ target_compile_definitions(jpeglib PRIVATE
         )
 
 target_compile_options(jpeglib PRIVATE
-        /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
+        /GF /GS- /fp:fast /W4 /nologo /c /TC /errorReport:prompt
         $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
         $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
         )

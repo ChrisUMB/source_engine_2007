@@ -13,7 +13,7 @@
 #include "tier2/tier2.h"
 #include "input.h"
 #include "VGuiMatSurface.h"
-#include "../../vgui2/headers/VPanel.h"
+#include "../../vgui2/include/VPanel.h"
 #include <vgui/keycode.h>
 #include <vgui/mousecode.h>
 #include <vgui/IVGui.h>
@@ -23,7 +23,7 @@
 #include "inputsystem/buttoncode.h"
 #include "Cursor.h"
 #include "tier0/dbg.h"
-#include "../../vgui2/headers/vgui_key_translation.h"
+#include "../../vgui2/include/vgui_key_translation.h"
 #include <vgui/IInputInternal.h>
 #ifdef _X360
 #include "xbox/xbox_win32stubs.h"

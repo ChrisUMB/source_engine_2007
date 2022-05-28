@@ -1,0 +1,8 @@
+${SE_PUBLIC}/zip_utils.cpp
+${SE_PUBLIC}/tier0/memoverride.cpp
+${SE_PUBLIC}/kevvaluescompiler.cpp
+
+../shared/src/filetracker.cpp
+../shared/src/filesystem_async.cpp
+../shared/src/basefilesystem.cpp
+src/filesystem_steam.cpp

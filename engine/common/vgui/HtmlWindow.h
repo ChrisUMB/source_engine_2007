@@ -28,7 +28,7 @@
 #endif
 
 #if defined ( GAMEUI_EXPORTS )
-#include "../../vgui2/headers/Memorybitmap.h"
+#include "../../vgui2/include/Memorybitmap.h"
 #else
 #include "Memorybitmap.h"
 #endif

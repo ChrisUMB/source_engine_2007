@@ -1,10 +1,13 @@
 load_sources_file()
 add_library(AdminServer SHARED ${SE_SOURCES})
 
-target_include_directories(AdminServer PRIVATE headers ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS})
+target_include_directories(AdminServer PRIVATE headers
+        ${SE_COMMON} ${SE_PUBLIC} ${SE_UTILS}/common
+        ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS}
+        )
 
 target_compile_definitions(AdminServer PRIVATE
-        WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE
         _CRT_NONSTDC_NO_DEPRECATE ADMINSERVER_EXPORTS BUDGET_ADMIN_SERVER
         $<$<CONFIG:Release>:NDEBUG>
         $<$<CONFIG:Debug>:_DEBUG DEBUG>

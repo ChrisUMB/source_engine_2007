@@ -6,7 +6,7 @@ target_include_directories(Bugreporter_filequeue PRIVATE headers ${SE_COMMON} ${
         )
 
 target_compile_definitions(Bugreporter_filequeue PRIVATE
-        WIN32 _WIN32 NDEBUG _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE BUGREPORTER_EXPORTS
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE BUGREPORTER_EXPORTS
         $<$<CONFIG:Release>:NDEBUG>
         $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )

@@ -4,25 +4,15 @@ add_library(vguimatsurface SHARED ${SE_SOURCES})
 
 target_include_directories(vguimatsurface PRIVATE headers
         ${SE_COMMON} ${SE_PUBLIC} ${SE_PUBLIC}/tier0 ${SE_PUBLIC}/tier1 ${WINSDK_INCLUDE_DIRS}
-        ../vgui2/headers
+        ../vgui2/include
 
         )
 
 target_compile_definitions(vguimatsurface PRIVATE
-        WIN32
-        _WIN32
-        NDEBUG
-        _WINDOWS
-        _USRDLL
-        _CRT_SECURE_NO_DEPRECATE
-        _CRT_NONSTDC_NO_DEPRECATE
-        fopen=dont_use_fopen
-        BENCHMARK
-        VGUIMATSURFACE_DLL_EXPORT
-        GAMEUI_EXPORTS
-        DONT_PROTECT_FILEIO_FUNCTIONS
-        PROTECTED_THINGS_ENABLE
-        ENABLE_HTMLWINDOW
+        WIN32 _WIN32 _WINDOWS _USRDLL _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE
+        fopen=dont_use_fopen BENCHMARK VGUIMATSURFACE_DLL_EXPORT GAMEUI_EXPORTS DONT_PROTECT_FILEIO_FUNCTIONS
+        PROTECTED_THINGS_ENABLE ENABLE_HTMLWINDOW
+
         $<$<CONFIG:Release>:NDEBUG>
         $<$<CONFIG:Debug>:_DEBUG DEBUG>
         )
