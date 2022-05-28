@@ -30,7 +30,7 @@ target_compile_definitions(cl_portal PRIVATE
 target_compile_options(cl_portal PRIVATE
         /GF /GS- /Gy /fp:fast /W4 /nologo /c /TP /errorReport:prompt
         $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /GS->
-        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /GS- /Zi>
+        $<$<CONFIG:Debug>:/Od /RTC1 /GS- /Zi>
         )
 
 target_link_options(cl_portal PRIVATE

@@ -12,7 +12,7 @@ target_compile_definitions(tier1 PRIVATE
 target_compile_options(tier1 PRIVATE
         /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
         $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
-        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
+        $<$<CONFIG:Debug>:/Od /RTC1 /Zi>
         )
 
 target_link_options(tier1 PRIVATE

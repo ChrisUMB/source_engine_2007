@@ -11,7 +11,7 @@ target_compile_definitions(launcher_main PRIVATE
 target_compile_options(launcher_main PRIVATE
         /GF /GS- /fp:fast /W4 /nologo /c /TP /errorReport:prompt
         $<$<CONFIG:Release>:/O2 /Ob2 /Oi /Ot /FD /Gy>
-        $<$<CONFIG:Debug>:/Od /Gm /RTC1 /Zi>
+        $<$<CONFIG:Debug>:/Od /RTC1 /Zi>
         )
 
 target_link_options(launcher_main PRIVATE
