@@ -1,5 +1,5 @@
 # Source Engine 2007 - CLion/CMake
-###### Experimental MSVC v143, C++ 20 branch
+###### Experimental MSVC v143, C++ 17 branch
 
 This is the 2007 Source Engine leak transferred to a raw CMake project, made in CLion. It should be noted
 that this project doesn't need CLion to work, it is just a collection of carefully configured CMake projects and should
