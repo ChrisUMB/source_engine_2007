@@ -27,7 +27,7 @@ target_link_options(FileSystem_Stdio PRIVATE
 set_target_properties(FileSystem_Stdio PROPERTIES
         OUTPUT_NAME FileSystem_Stdio
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

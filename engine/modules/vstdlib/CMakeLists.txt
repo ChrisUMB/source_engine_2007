@@ -24,7 +24,7 @@ target_link_options(vstdlib PRIVATE
 set_target_properties(vstdlib PROPERTIES
         OUTPUT_NAME vstdlib
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

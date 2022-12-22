@@ -24,7 +24,7 @@ target_link_options(launcher PRIVATE
 set_target_properties(launcher PROPERTIES
         OUTPUT_NAME launcher
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/$<$<CONFIG:Debug>:debug/>$<$<CONFIG:Release>:release/>
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 
