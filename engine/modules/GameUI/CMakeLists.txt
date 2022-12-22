@@ -16,10 +16,10 @@ target_compile_options(GameUI PRIVATE
         )
 
 target_link_options(GameUI PRIVATE
-
         /NOLOGO /MANIFEST:NO /SUBSYSTEM:WINDOWS /MACHINE:X86
         $<$<CONFIG:Release>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF>
         $<$<CONFIG:Debug>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
+        $<$<CONFIG:RelWithDebInfo>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF /DEBUG>
         )
 
 set_target_properties(GameUI PROPERTIES

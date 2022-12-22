@@ -21,6 +21,7 @@ target_link_options(engine PRIVATE
         /NOLOGO /MANIFEST:NO /SUBSYSTEM:WINDOWS /MACHINE:X86
         $<$<CONFIG:Release>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF /ERRORREPORT:PROMPT>
         $<$<CONFIG:Debug>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
+        $<$<CONFIG:RelWithDebInfo>:/NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF /DEBUG>
         )
 
 set_target_properties(engine PROPERTIES

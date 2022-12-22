@@ -4,5 +4,6 @@
 /lib/x360xdk/lib/xbox
 /.idea/
 /.idea/*
+/run/
 
 TODO.md

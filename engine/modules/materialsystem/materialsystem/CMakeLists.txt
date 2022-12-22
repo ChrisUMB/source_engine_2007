@@ -22,6 +22,7 @@ target_link_options(materialsystem PRIVATE
         /NOLOGO /SUBSYSTEM:WINDOWS /MACHINE:X86 /ERRORREPORT:PROMPT
         $<$<CONFIG:Release>:/MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF>
         $<$<CONFIG:Debug>:/INCREMENTAL /DLL /MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmt /DEBUG>
+        $<$<CONFIG:RelWithDebInfo>:/MANIFEST:NO /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /OPT:REF /OPT:ICF /DEBUG>
         )
 
 set_target_properties(materialsystem PROPERTIES
