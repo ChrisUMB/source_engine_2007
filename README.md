@@ -21,8 +21,8 @@ however you can get their entire toolkit for $20/month, which is very worth it. 
 that they renew with every update, so if you're just a hobbyist you can scrape by that way.
 
 
-2. Add Visual Studio 2005 Toolchain to CLion. Follow the tutorial [here](https://florian0.gitlab.io/sro_devkit/build-environment/clion/#prepare-clion),
-it should only take you about 5 or so minutes. You will probably want to create an empty project for this step. If this tutorial ever goes down, contact me and I'll post one myself.
+2. Download and install Visual Studio 2022 with the Desktop C++ Development workload. You need this so you have access to
+the MSVC v143 compiler, if you know how else you can get this then do whatever works.
 
 
 3. Pull this repository in CLion. If you're not at the `Welcome` screen, it's `File > New > Project from Version Control..`,
@@ -32,7 +32,7 @@ otherwise, just click `Get from VCS` and follow the screen prompt.
 
 4. Configure the build types appropriately. This project supports release and debug at the time of writing. Just click
 the `+` in the top left of the Project Wizard, it will automatically create a second build type `Release`. Then for both
-build types `Debug` and `Release`, set their Toolchain to `Visual Studio 2005` that you setup in the 2nd step.
+build types `Debug` and `Release`, set their Toolchain to ~~`Visual Studio 2005`~~ `Visual Studio 2022` that you setup in the 2nd step.
 ![](https://media.discordapp.net/attachments/365987434800087041/976783039256477706/clion64_9fkWmVhfYm.gif?width=816&height=676)
 
 

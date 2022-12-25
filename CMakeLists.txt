@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
 cmake_policy(SET CMP0091 NEW)
-project(source_engine_2007)
 set(CMAKE_CXX_STANDARD 17)
 
 set(WINSDK_INCLUDE_DIRS
@@ -8,7 +7,13 @@ set(WINSDK_INCLUDE_DIRS
         "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared"
         "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um"
         "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/winrt"
+        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/ucrt"
         )
+
+set(CMAKE_SYSTEM_VERSION 10.0.19041.0 CACHE STRING INTERNAL FORCE)
+set(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION 10.0.19041.0 CACHE STRING INTERNAL FORCE)
+
+project(source_engine_2007)
 
 add_compile_definitions(
         WINVER=0x600
