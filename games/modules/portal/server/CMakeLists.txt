@@ -13,6 +13,7 @@ target_include_directories(sv_portal PRIVATE headers
         ${SE_GAMES_COMMON}/server/headers
         ${SE_GAMES_COMMON}/shared/headers
         ${SE_ENGINE_MODULES}/utils/common
+        ${WINSDK_INCLUDE_DIRS}
         )
 
 target_compile_definitions(sv_portal PRIVATE

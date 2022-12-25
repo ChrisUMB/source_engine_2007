@@ -16,6 +16,7 @@ target_include_directories(cl_portal PRIVATE headers
         ${SE_GAMES}/hl2/client/headers
         ${SE_GAMES}/hl2/shared/headers
         ${SE_GAMES}/portal/shared/headers
+        ${WINSDK_INCLUDE_DIRS}
         )
 
 target_compile_definitions(cl_portal PRIVATE
