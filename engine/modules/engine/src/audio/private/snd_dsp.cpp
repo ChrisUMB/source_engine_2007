@@ -3290,6 +3290,7 @@ void LFOWAV_Fill( int *w, int count, int type )
 
 void LFOWAV_InitAll()
 {
+    DEBUG_RAND();
 	int i;
 	dly_t *pdly;
 
@@ -3314,6 +3315,7 @@ void LFOWAV_InitAll()
 		if ( !lfowavs[i].pdly )
 			LFOWAV_FreeAll();
 	}
+    DEBUG_RAND();
 }
 
 

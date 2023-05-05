@@ -42,6 +42,7 @@ set(SE_ENGINE_MODULES ${CMAKE_SOURCE_DIR}/engine/modules)
 
 set(SE_COMMON ${CMAKE_SOURCE_DIR}/engine/common)
 set(SE_PUBLIC ${CMAKE_SOURCE_DIR}/engine/public)
+set(SE_MODULES ${CMAKE_SOURCE_DIR}/engine/modules)
 set(SE_UTILS ${CMAKE_SOURCE_DIR}/engine/modules/utils)
 
 set(SE_GAMES ${CMAKE_SOURCE_DIR}/games/modules)

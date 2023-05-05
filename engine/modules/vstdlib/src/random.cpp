@@ -82,31 +82,49 @@ CUniformRandomStream::CUniformRandomStream()
 	SetSeed(0);
 }
 
+static int rng_calls = 0;
+
+void WriteRandomDebug(const char *function, const char *file, int line) {
+	FILE *f;
+	fopen_s(&f, "RandomDebug.txt", "a");
+	fprintf(f, "RAND:\t%s:%d %s() [%d]\n", file, line, function, rng_calls);
+	fclose(f);
+}
+
 void CUniformRandomStream::SetSeed( int iSeed )
 {
+	int cache = m_idum;
 	AUTO_LOCK( m_mutex );
 	m_idum = ( ( iSeed < 0 ) ? iSeed : -iSeed );
 	m_iy = 0;
+
+	FILE *f;
+	fopen_s(&f, "RandomDebug.txt", "a");
+	fprintf(f, "SEED:\t%d -> %d [%d]\n", cache, m_idum, rng_calls);
+	fclose(f);
+
+	rng_calls = 0;
 }
 
 int CUniformRandomStream::GenerateRandomNumber()
 {
 	AUTO_LOCK( m_mutex );
+	rng_calls++;
 	int j;
 	int k;
-	
+
 	if (m_idum <= 0 || !m_iy)
 	{
-		if (-(m_idum) < 1) 
+		if (-(m_idum) < 1)
 			m_idum=1;
-		else 
+		else
 			m_idum = -(m_idum);
 
 		for ( j=NTAB+7; j>=0; j--)
 		{
 			k = (m_idum)/IQ;
 			m_idum = IA*(m_idum-k*IQ)-IR*k;
-			if (m_idum < 0) 
+			if (m_idum < 0)
 				m_idum += IM;
 			if (j < NTAB)
 				m_iv[j] = m_idum;
@@ -115,12 +133,12 @@ int CUniformRandomStream::GenerateRandomNumber()
 	}
 	k=(m_idum)/IQ;
 	m_idum=IA*(m_idum-k*IQ)-IR*k;
-	if (m_idum < 0) 
+	if (m_idum < 0)
 		m_idum += IM;
 	j=m_iy/NDIV;
 
-	// We're seeing some strange memory corruption in the contents of s_pUniformStream. 
-	// Perhaps it's being caused by something writing past the end of this array? 
+	// We're seeing some strange memory corruption in the contents of s_pUniformStream.
+	// Perhaps it's being caused by something writing past the end of this array?
 	// Bounds-check in release to see if that's the case.
 	if (j >= NTAB || j < 0)
 	{
@@ -139,7 +157,7 @@ float CUniformRandomStream::RandomFloat( float flLow, float flHigh )
 {
 	// float in [0,1)
 	float fl = AM * GenerateRandomNumber();
-	if (fl > RNMX) 
+	if (fl > RNMX)
 	{
 		fl = RNMX;
 	}

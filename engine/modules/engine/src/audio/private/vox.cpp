@@ -2348,6 +2348,7 @@ void VOX_LRUInit( sentencegroup_t *pGroup )
 //-----------------------------------------------------------------------------
 void VOX_GroupInitAllLRUs( void )
 {
+    DEBUG_RAND();
 	int i;
 
 	int totalCount = 0;
@@ -2362,6 +2363,8 @@ void VOX_GroupInitAllLRUs( void )
 	{
 		VOX_LRUInit( &g_SentenceGroups[i] );
 	}
+
+    DEBUG_RAND();
 }
 
 //-----------------------------------------------------------------------------

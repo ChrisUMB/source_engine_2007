@@ -243,9 +243,9 @@ void RememberInitialEntityPositions( int nEntities, HierarchicalSpawn_t *pSpawnL
 	}
 }
 
-
 void SpawnAllEntities( int nEntities, HierarchicalSpawn_t *pSpawnList, bool bActivateEntities )
 {
+    DEBUG_RAND();
 	int nEntity;
 	for (nEntity = 0; nEntity < nEntities; nEntity++)
 	{
@@ -301,6 +301,7 @@ void SpawnAllEntities( int nEntities, HierarchicalSpawn_t *pSpawnList, bool bAct
 		}
 		mdlcache->SetAsyncLoad( MDLCACHE_ANIMBLOCK, bAsyncAnims );
 	}
+    DEBUG_RAND();
 }
 
 //-----------------------------------------------------------------------------

@@ -353,7 +353,12 @@ extern CNetworkStringTableContainer *networkStringTableContainerServer;
 //---------------------------------------------------------------------------------
 // Purpose: pass through functions for the 3rd party API
 //---------------------------------------------------------------------------------
-void CServerPlugin::LevelInit(	char const *pMapName, 
+
+#include "vstdlib/random.h"
+
+extern IUniformRandomStream *s_pUniformStream;
+
+void CServerPlugin::LevelInit(	char const *pMapName,
 								char const *pMapEntities, char const *pOldLevel, 
 								char const *pLandmarkName, bool loadGame, bool background )
 {
@@ -368,6 +373,7 @@ void CServerPlugin::LevelInit(	char const *pMapName,
 	}
 
 	bool bPrevState = networkStringTableContainerServer->Lock( false );
+
 	serverGameDLL->LevelInit( pMapName, pMapEntities, pOldLevel, pLandmarkName, loadGame, background );
 	networkStringTableContainerServer->Lock( bPrevState );
 
