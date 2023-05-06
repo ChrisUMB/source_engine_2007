@@ -1,0 +1,4 @@
+${SE_PUBLIC}/SoundParametersInternal.cpp
+${SE_PUBLIC}/tier0/memoverride.cpp
+${SE_GAMES_COMMON}/shared/src/interval.cpp
+src/soundemittersystembase.cpp

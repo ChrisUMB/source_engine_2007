@@ -91,6 +91,7 @@ add_subdirectory(engine/modules/Bugreporter_filequeue)
 add_subdirectory(engine/modules/Bugreporter_public)
 add_subdirectory(engine/modules/Bugreporter_text)
 add_subdirectory(engine/modules/datacache)
+add_subdirectory(engine/modules/soundemittersystem)
 
 add_subdirectory(engine/modules/filesystem/stdio)
 add_subdirectory(engine/modules/filesystem/steam)
