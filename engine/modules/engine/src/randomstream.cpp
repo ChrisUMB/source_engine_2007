@@ -1,4 +1,4 @@
-//===== Copyright © 1996-2005, Valve Corporation, All rights reserved. ======//
+//===== Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ======//
 //
 // Purpose: random steam class
 //
@@ -26,6 +26,9 @@ public:
 		Assert(0);
 	}
 
+#undef RandomFloat
+#undef RandomInt
+#undef RandomFloatExp
 	// Generates random numbers
 	float	RandomFloat( float flMinVal = 0.0f, float flMaxVal = 1.0f )
 	{
@@ -41,6 +44,26 @@ public:
 	{
 		return ::RandomInt( iMinVal, iMaxVal );
 	}
+#define RandomFloat RandomFloatDebug
+#define RandomInt RandomIntDebug
+#define RandomFloatExp RandomFloatExpDebug
+
+    // Generates random numbers
+    float	RandomFloat( float flMinVal = 0.0f, float flMaxVal = 1.0f, DEBUG_ARGS_DEFAULTS )
+    {
+        return ::RandomFloatDebug( flMinVal, flMaxVal, line, file, function );
+    }
+
+    float	RandomFloatExp( float flMinVal = 0.0f, float flMaxVal = 1.0f, float flExponent = 1.0f, DEBUG_ARGS_DEFAULTS )
+    {
+        return ::RandomFloatExpDebug( flMinVal, flMaxVal, flExponent, line, file, function );
+    }
+
+    int		RandomInt( int iMinVal, int iMaxVal, DEBUG_ARGS_DEFAULTS )
+    {
+        return ::RandomIntDebug( iMinVal, iMaxVal, line, file, function );
+    }
+
 };
 
 static CEngineUniformRandomStream s_EngineRandomStream;

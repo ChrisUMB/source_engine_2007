@@ -1,4 +1,4 @@
-//===== Copyright © 1996-2005, Valve Corporation, All rights reserved. ======//
+//===== Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ======//
 //
 // Purpose: Random number generator
 //
@@ -43,34 +43,171 @@ void InstallUniformRandomStream( IUniformRandomStream *pStream )
 }
 
 
+static int rng_calls = 0;
+
+void WriteRandomDebug(const char *function, const char *file, int line) {
+//    FILE *f;
+//    fopen_s(&f, "RandomDebug.txt", "a");
+//    fprintf(f, "RAND:\t%s:%d %s() [%d]\n", file, line, function, rng_calls);
+//    fclose(f);
+}
+
+static const char* last_file = nullptr;
+static const char* last_function = nullptr;
+static int last_line = 0;
+static int num_duplicates = 0;
+
+#include <string>
+#include <filesystem>
+
+std::string get_parent_directory_and_filename(const std::string& path) {
+    std::string result;
+    auto pos = path.find("\\src");
+    if(pos == std::string::npos) {
+        pos = path.find("\\common");
+    }
+
+    if (pos != std::string::npos) {
+        std::string parent_dir = std::filesystem::path(path.substr(0, pos)).parent_path().filename().string();
+        std::string filename = std::filesystem::path(path.substr(pos + 4)).filename().string();
+        result = parent_dir + "\\" + filename;
+    }
+
+    return result;
+}
+
+void WriteConciseRandomDebug(const char* extra, const char *function, const char *file, int line) {
+    // Simple pointer check
+    if(last_file == file && last_function == function) {
+        num_duplicates++;
+        return;
+    }
+
+    // Check if the strings are the same
+    if(last_file != nullptr && strcmp(last_file, file) == 0 && last_function != nullptr && strcmp(last_function, function) == 0) {
+        num_duplicates++;
+        return;
+    }
+
+    if(last_file != nullptr) {
+        const std::string& path = get_parent_directory_and_filename(last_file);
+
+        FILE *f;
+        fopen_s(&f, "RandomDebug.txt", "a");
+        fprintf(f, "%24s:\t%s:%d %s() [%d, %d]\n", extra, path.c_str(), last_line, last_function, rng_calls, num_duplicates);
+        fclose(f);
+    }
+
+    last_file = file;
+    last_function = function;
+    last_line = line;
+    num_duplicates = 1;
+}
+
 //-----------------------------------------------------------------------------
 // A couple of convenience functions to access the library's global uniform stream
 //-----------------------------------------------------------------------------
-void RandomSeed( int iSeed )
+void RandomSeed( int iSeed, DEBUG_ARGS )
 {
+    WriteConciseRandomDebug("RandomSeed", function, file, line);
 	s_pUniformStream->SetSeed( iSeed );
 }
 
-float RandomFloat( float flMinVal, float flMaxVal )
+float RandomFloat( float flMinVal, float flMaxVal, DEBUG_ARGS )
 {
+    WriteConciseRandomDebug("RandomFloat", function, file, line);
+#undef RandomFloat
 	return s_pUniformStream->RandomFloat( flMinVal, flMaxVal );
+#define RandomFloat RandomFloatDebug
+}
+
+float RandomFloatExp( float flMinVal, float flMaxVal, float flExponent, DEBUG_ARGS )
+{
+    WriteConciseRandomDebug("RandomFloatExp", function, file, line);
+#undef RandomFloatExp
+	return s_pUniformStream->RandomFloatExp( flMinVal, flMaxVal, flExponent );
+#define RandomFloatExp RandomFloatExpDebug
+}
+
+int RandomInt( int iMinVal, int iMaxVal, DEBUG_ARGS )
+{
+    WriteConciseRandomDebug("RandomInt", function, file, line);
+#undef RandomInt
+	return s_pUniformStream->RandomInt( iMinVal, iMaxVal );
+#define RandomInt RandomIntDebug
+}
+
+float RandomGaussianFloat( float flMean, float flStdDev, DEBUG_ARGS )
+{
+    WriteConciseRandomDebug("RandomGaussianFloat", function, file, line);
+#undef RandomGaussianFloat
+	return s_GaussianStream.RandomFloat( flMean, flStdDev );
+#define RandomGaussianFloat RandomGaussianFloatDebug
+}
+
+float CUniformRandomStream::RandomFloat(float flMinVal, float flMaxVal, DEBUG_ARGS) {
+//    WriteConciseRandomDebug("CUniformRandomStream::RandomFloat", function, file, line);
+#undef RandomFloat
+    return this->RandomFloat(flMinVal, flMaxVal);
+#define RandomFloat RandomFloatDebug
+}
+
+int CUniformRandomStream::RandomInt(int iMinVal, int iMaxVal, DEBUG_ARGS) {
+//    WriteConciseRandomDebug("CUniformRandomStream::RandomInt", function, file, line);
+#undef RandomInt
+    return this->RandomInt(iMinVal, iMaxVal);
+#define RandomInt RandomIntDebug
+}
+
+float CUniformRandomStream::RandomFloatExp(float flMinVal, float flMaxVal, float flExponent, DEBUG_ARGS) {
+//    WriteConciseRandomDebug("CUniformRandomStream::RandomFloatExp", function, file, line);
+#undef RandomFloatExp
+    return this->RandomFloatExp(flMinVal, flMaxVal, flExponent);
+#define RandomFloatExp RandomFloatExpDebug
+}
+
+float CGaussianRandomStream::RandomFloat(float flMinVal, float flMaxVal, DEBUG_ARGS) {
+//    WriteConciseRandomDebug("CGaussianRandomStream::RandomFloat", function, file, line);
+#undef RandomFloat
+    return this->RandomFloat(flMinVal, flMaxVal);
+#define RandomFloat RandomFloatDebug
+}
+
+#undef RandomSeed
+#undef RandomFloat
+#undef RandomInt
+#undef RandomFloatExp
+#undef RandomGaussianFloat
+void RandomSeed( int iSeed )
+{
+    s_pUniformStream->SetSeed( iSeed );
+}
+
+float RandomFloat( float flMinVal, float flMaxVal)
+{
+    return s_pUniformStream->RandomFloat( flMinVal, flMaxVal );
 }
 
 float RandomFloatExp( float flMinVal, float flMaxVal, float flExponent )
 {
-	return s_pUniformStream->RandomFloatExp( flMinVal, flMaxVal, flExponent );
+    return s_pUniformStream->RandomFloatExp( flMinVal, flMaxVal, flExponent );
 }
 
 int RandomInt( int iMinVal, int iMaxVal )
 {
-	return s_pUniformStream->RandomInt( iMinVal, iMaxVal );
+    return s_pUniformStream->RandomInt( iMinVal, iMaxVal );
 }
 
 float RandomGaussianFloat( float flMean, float flStdDev )
 {
-	return s_GaussianStream.RandomFloat( flMean, flStdDev );
+    return s_GaussianStream.RandomFloat( flMean, flStdDev );
 }
 
+#define RandomSeed RandomSeedDebug
+#define RandomFloat RandomFloatDebug
+#define RandomInt RandomIntDebug
+#define RandomFloatExp RandomFloatExpDebug
+#define RandomGaussianFloat RandomGaussianFloatDebug
 
 //-----------------------------------------------------------------------------
 //
@@ -82,15 +219,6 @@ CUniformRandomStream::CUniformRandomStream()
 	SetSeed(0);
 }
 
-static int rng_calls = 0;
-
-void WriteRandomDebug(const char *function, const char *file, int line) {
-	FILE *f;
-	fopen_s(&f, "RandomDebug.txt", "a");
-	fprintf(f, "RAND:\t%s:%d %s() [%d]\n", file, line, function, rng_calls);
-	fclose(f);
-}
-
 void CUniformRandomStream::SetSeed( int iSeed )
 {
 	int cache = m_idum;
@@ -100,8 +228,9 @@ void CUniformRandomStream::SetSeed( int iSeed )
 
 	FILE *f;
 	fopen_s(&f, "RandomDebug.txt", "a");
-	fprintf(f, "SEED:\t%d -> %d [%d]\n", cache, m_idum, rng_calls);
+	fprintf(f, "%24s:\t%d -> %d [%d]\n", "SEED", cache, m_idum, rng_calls);
 	fclose(f);
+//    WriteConciseRandomDebug()
 
 	rng_calls = 0;
 }
@@ -153,6 +282,9 @@ int CUniformRandomStream::GenerateRandomNumber()
 	return m_iy;
 }
 
+#undef RandomFloat
+#undef RandomFloatExp
+#undef RandomInt
 float CUniformRandomStream::RandomFloat( float flLow, float flHigh )
 {
 	// float in [0,1)

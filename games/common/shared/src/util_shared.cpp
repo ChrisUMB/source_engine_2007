@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -140,6 +140,13 @@ static int SeedFileLineHash( int seedvalue, const char *sharedname, int addition
 	return (int)( retval );
 }
 
+#undef RandomFloat
+#undef RandomInt
+#undef RandomSeed
+#undef SharedRandomFloat
+#undef SharedRandomInt
+#undef SharedRandomVector
+#undef SharedRandomAngle
 float SharedRandomFloat( const char *sharedname, float flMinVal, float flMaxVal, int additionalSeed /*=0*/ )
 {
 	Assert( CBaseEntity::GetPredictionRandomSeed() != -1 );
@@ -189,6 +196,33 @@ QAngle SharedRandomAngle( const char *sharedname, float minVal, float maxVal, in
 	return QAngle( random.x, random.y, random.z );
 }
 
+float SharedRandomFloatDebug(const char *sharedname, float flMinVal, float flMaxVal, int additionalSeed, DEBUG_ARGS) {
+    WriteConciseRandomDebug("SharedRandomFloat", function, file, line);
+    return SharedRandomFloat(sharedname, flMinVal, flMaxVal, additionalSeed);
+}
+
+int SharedRandomIntDebug(const char *sharedname, int iMinVal, int iMaxVal, int additionalSeed, DEBUG_ARGS) {
+    WriteConciseRandomDebug("SharedRandomInt", function, file, line);
+    return SharedRandomInt(sharedname, iMinVal, iMaxVal, additionalSeed);
+}
+
+Vector SharedRandomVectorDebug(const char *sharedname, float minVal, float maxVal, int additionalSeed, DEBUG_ARGS) {
+    WriteConciseRandomDebug("SharedRandomVector", function, file, line);
+    return SharedRandomVector(sharedname, minVal, maxVal, additionalSeed);
+}
+
+QAngle SharedRandomAngleDebug(const char *sharedname, float minVal, float maxVal, int additionalSeed, DEBUG_ARGS) {
+    WriteConciseRandomDebug("SharedRandomAngle", function, file, line);
+    return SharedRandomAngle(sharedname, minVal, maxVal, additionalSeed);
+}
+
+#define RandomFloat RandomFloatDebug
+#define RandomInt RandomIntDebug
+#define RandomSeed RandomSeedDebug
+#define SharedRandomFloat SharedRandomFloatDebug
+#define SharedRandomInt SharedRandomIntDebug
+#define SharedRandomVector SharedRandomVectorDebug
+#define SharedRandomAngle SharedRandomAngleDebug
 
 //-----------------------------------------------------------------------------
 //

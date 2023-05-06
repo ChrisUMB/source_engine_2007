@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: Shared util code between client and server.
 //
@@ -66,6 +66,16 @@ float	SharedRandomFloat( const char *sharedname, float flMinVal, float flMaxVal,
 int		SharedRandomInt( const char *sharedname, int iMinVal, int iMaxVal, int additionalSeed = 0 );
 Vector	SharedRandomVector( const char *sharedname, float minVal, float maxVal, int additionalSeed = 0 );
 QAngle	SharedRandomAngle( const char *sharedname, float minVal, float maxVal, int additionalSeed = 0 );
+
+#define SharedRandomFloat SharedRandomFloatDebug
+#define SharedRandomInt SharedRandomIntDebug
+#define SharedRandomVector SharedRandomVectorDebug
+#define SharedRandomAngle SharedRandomAngleDebug
+
+float	SharedRandomFloat( const char *sharedname, float flMinVal, float flMaxVal, int additionalSeed = 0, DEBUG_ARGS_DEFAULTS );
+int		SharedRandomInt( const char *sharedname, int iMinVal, int iMaxVal, int additionalSeed = 0, DEBUG_ARGS_DEFAULTS );
+Vector	SharedRandomVector( const char *sharedname, float minVal, float maxVal, int additionalSeed = 0, DEBUG_ARGS_DEFAULTS );
+QAngle	SharedRandomAngle( const char *sharedname, float minVal, float maxVal, int additionalSeed = 0, DEBUG_ARGS_DEFAULTS );
 
 //-----------------------------------------------------------------------------
 // Standard collision filters...
