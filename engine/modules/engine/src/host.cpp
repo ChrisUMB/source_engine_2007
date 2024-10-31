@@ -1,4 +1,4 @@
-//===== Copyright © 1996-2005, Valve Corporation, All rights reserved. ======//
+//===== Copyright Â© 1996-2005, Valve Corporation, All rights reserved. ======//
 //
 // Purpose: 
 //
@@ -4183,6 +4183,8 @@ void Host_Shutdown(void)
 //-----------------------------------------------------------------------------
 void Host_AllowQueuedMaterialSystem( bool bAllow )
 {
+
+	bAllow = true;
 #if defined _WIN32 && !defined SWDS
 	if ( IsPC() )
 	{

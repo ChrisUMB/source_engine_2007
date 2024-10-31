@@ -195,12 +195,6 @@
 #endif
 
 
-#if defined(_PUSHPOP_SUPPORTED) || PRAGMA_STRUCT_PACKPUSH
-  #pragma pack(push,1)
-#else
-  #pragma pack(1)
-#endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -484,6 +478,12 @@ typedef LPVOID AILLPDIRECTSOUNDBUFFER;
 
 #ifndef NULL
 #define NULL 0
+#endif
+
+#if defined(_PUSHPOP_SUPPORTED) || PRAGMA_STRUCT_PACKPUSH
+#pragma pack(push,1)
+#else
+#pragma pack(1)
 #endif
 
 //

@@ -1,0 +1,10 @@
+${SE_PUBLIC}/tier0/memoverride.cpp
+src/flexrenderdata.cpp
+src/r_studio.cpp
+src/r_studiodecal.cpp
+src/r_studiodraw.cpp
+src/r_studioflex.cpp
+src/r_studiogettriangles.cpp
+src/r_studiolight.cpp
+src/studiorender.cpp
+src/studiorendercontext.cpp
