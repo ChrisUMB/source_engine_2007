@@ -2,12 +2,6 @@ cmake_minimum_required(VERSION 3.22)
 cmake_policy(SET CMP0091 NEW)
 set(CMAKE_CXX_STANDARD 17)
 
-# Set a default system version if not already defined
-if (NOT CMAKE_SYSTEM_VERSION)
-    set(CMAKE_SYSTEM_VERSION 10.0)  # Default to Windows 10 SDK version
-    message(STATUS "CMAKE_SYSTEM_VERSION unset, defaulting to '10.0'...")
-endif ()
-
 # Find Windows SDK
 include(cmake/FindWindowsSDK.cmake)
 
@@ -19,21 +13,6 @@ add_compile_definitions(
         _CRT_NO_VA_START_VALIDATION
         _HAS_AUTO_PTR_ETC
 )
-
-# This clears out all cmake and MSVC defaults, hopefully. Doesn't seem to ACTUALLY work, to be honest... :(
-set(CMAKE_CXX_FLAGS "")
-set(CMAKE_CXX_FLAGS_${CMAKE_BUILD_TYPE} "")
-set(CMAKE_C_FLAGS "")
-set(CMAKE_C_FLAGS_${CMAKE_BUILD_TYPE} "")
-set(CMAKE_EXE_LINKER_FLAGS "")
-set(CMAKE_MODULE_LINKER_FLAGS "")
-set(CMAKE_SHARED_LINKER_FLAGS "")
-set(CMAKE_STATIC_LINKER_FLAGS "")
-set(CMAKE_EXE_LINKER_FLAGS_${CMAKE_BUILD_TYPE} "")
-set(CMAKE_MODULE_LINKER_FLAGS_${CMAKE_BUILD_TYPE} "")
-set(CMAKE_SHARED_LINKER_FLAGS_${CMAKE_BUILD_TYPE} "")
-set(CMAKE_STATIC_LINKER_FLAGS_${CMAKE_BUILD_TYPE} "")
-
 
 set(SE_LIBS ${CMAKE_SOURCE_DIR}/lib)
 set(SE_ENGINE ${CMAKE_SOURCE_DIR}/engine)

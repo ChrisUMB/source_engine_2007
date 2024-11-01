@@ -5,14 +5,14 @@ ELSE ()
     cmake_host_system_information(
             RESULT WINSDK_VERSION
             QUERY WINDOWS_REGISTRY
-            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\v${CMAKE_SYSTEM_VERSION}"
+            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\v10.0"
             VALUE "ProductVersion"
     )
 
     cmake_host_system_information(
             RESULT WINSDK_KITS_DIR
             QUERY WINDOWS_REGISTRY
-            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\v${CMAKE_SYSTEM_VERSION}"
+            "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\v10.0"
             VALUE "InstallationFolder"
     )
 
@@ -52,19 +52,17 @@ set(REQUIRED_SUBDIRS
 set(ALL_FOUND TRUE)
 
 # Loop through each required subdirectory and check if it exists
-foreach (SUBDIR ${REQUIRED_SUBDIRS})
+FOREACH (SUBDIR ${REQUIRED_SUBDIRS})
     set(FULL_PATH "${WINSDK_INCLUDE_DIR}/${SUBDIR}")
-    if (NOT IS_DIRECTORY ${FULL_PATH})
+    IF (NOT IS_DIRECTORY ${FULL_PATH})
         message(STATUS "Directory not found: ${FULL_PATH}")
         set(ALL_FOUND FALSE)
-    endif ()
+    ENDIF ()
 
     set(WINSDK_INCLUDE_DIRS "${WINSDK_INCLUDE_DIRS}" "${WINSDK_INCLUDE_DIR}\\${SUBDIR}")
-endforeach ()
+ENDFOREACH ()
 
 # If any required directory is missing, stop with an error
-if (NOT ALL_FOUND)
+IF (NOT ALL_FOUND)
     message(FATAL_ERROR "One or more required SDK subdirectories were not found, check env variable `WINSDK_INCLUDE_DIR` is pointing to the right Windows SDK folder.\nIt is recommended to install and use Windows SDK version 10.0.19041.0")
-else ()
-    message(STATUS "Windows SDK Include Paths Found:")
-endif ()
+ENDIF ()
