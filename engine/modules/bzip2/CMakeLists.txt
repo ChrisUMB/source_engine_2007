@@ -22,6 +22,5 @@ target_link_options(bzip2 PRIVATE
 
 set_target_properties(bzip2 PROPERTIES
         OUTPUT_NAME bzip2
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )

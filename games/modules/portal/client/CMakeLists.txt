@@ -44,7 +44,6 @@ target_link_options(cl_portal PRIVATE
 set_target_properties(cl_portal PROPERTIES
         OUTPUT_NAME client
         RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/portal/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

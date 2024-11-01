@@ -23,8 +23,6 @@ target_link_options(StudioRender PRIVATE
 
 set_target_properties(StudioRender PROPERTIES
         OUTPUT_NAME StudioRender
-        RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

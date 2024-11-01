@@ -28,11 +28,10 @@ target_link_options(bitmap PRIVATE
 
 set_target_properties(bitmap PROPERTIES
         OUTPUT_NAME bitmap
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 
 target_link_libraries(bitmap PUBLIC
-        ${CMAKE_SOURCE_DIR}/lib/public/ati_compress_mt_vc8.lib
-        ${CMAKE_SOURCE_DIR}/lib/public/nvtc.lib
+        ${SE_LIBS}/public/ati_compress_mt_vc8.lib
+        ${SE_LIBS}/public/nvtc.lib
         )

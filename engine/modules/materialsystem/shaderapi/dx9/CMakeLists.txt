@@ -28,8 +28,6 @@ target_link_options(shaderapidx9 PRIVATE
 
 set_target_properties(shaderapidx9 PROPERTIES
         OUTPUT_NAME shaderapidx9
-        RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

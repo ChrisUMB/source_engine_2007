@@ -22,6 +22,5 @@ target_link_options(dmxloader PRIVATE
 
 set_target_properties(dmxloader PROPERTIES
         OUTPUT_NAME dmxloader
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )

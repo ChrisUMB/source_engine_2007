@@ -5,8 +5,16 @@ set(CMAKE_CXX_STANDARD 17)
 # Find Windows SDK
 include(cmake/FindWindowsSDK.cmake)
 
-
 project(source_engine_2007)
+
+IF (NOT SE_RUN_DIR)
+    set(SE_RUN_DIR ${PROJECT_SOURCE_DIR}/run)
+ENDIF ()
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${SE_RUN_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SE_RUN_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin)
+set(CMAKE_OBJECT_PATH_MAX 512)
 
 add_compile_definitions(
         WINVER=0x600
@@ -14,18 +22,36 @@ add_compile_definitions(
         _HAS_AUTO_PTR_ETC
 )
 
-set(SE_LIBS ${CMAKE_SOURCE_DIR}/lib)
-set(SE_ENGINE ${CMAKE_SOURCE_DIR}/engine)
-set(SE_ENGINE_MODULES ${CMAKE_SOURCE_DIR}/engine/modules)
+set(SE_LIBS ${PROJECT_SOURCE_DIR}/lib)
+set(SE_ENGINE ${PROJECT_SOURCE_DIR}/engine)
+set(SE_ENGINE_MODULES ${PROJECT_SOURCE_DIR}/engine/modules)
 
-set(SE_COMMON ${CMAKE_SOURCE_DIR}/engine/common)
-set(SE_PUBLIC ${CMAKE_SOURCE_DIR}/engine/public)
-set(SE_UTILS ${CMAKE_SOURCE_DIR}/engine/modules/utils)
+set(SE_COMMON ${PROJECT_SOURCE_DIR}/engine/common)
+set(SE_PUBLIC ${PROJECT_SOURCE_DIR}/engine/public)
+set(SE_UTILS ${PROJECT_SOURCE_DIR}/engine/modules/utils)
 
-set(SE_GAMES ${CMAKE_SOURCE_DIR}/games/modules)
-set(SE_GAMES_COMMON ${CMAKE_SOURCE_DIR}/games/common)
+set(SE_GAMES ${PROJECT_SOURCE_DIR}/games/modules)
+set(SE_GAMES_COMMON ${PROJECT_SOURCE_DIR}/games/common)
 
-set(SE_RUN_DIR ${CMAKE_SOURCE_DIR}/run)
+set(SE_INCLUDES
+        ${SE_GAMES}
+        ${SE_PUBLIC}
+        ${SE_PUBLIC}/engine
+        ${SE_PUBLIC}/tier0
+        ${SE_PUBLIC}/tier1
+        ${SE_COMMON}/
+
+        ${SE_GAMES_COMMON}/client/game_controls
+
+        ${SE_GAMES_COMMON}/client/headers
+        ${SE_GAMES_COMMON}/server/headers
+        ${SE_GAMES_COMMON}/shared/headers
+        ${SE_GAMES}/hl2/client/headers
+        ${SE_GAMES}/hl2/shared/headers
+        ${SE_GAMES}/portal/shared/headers
+
+        CACHE INTERNAL ""
+)
 
 macro("load_sources_file")
     file(READ sources.txt SE_SOURCES)

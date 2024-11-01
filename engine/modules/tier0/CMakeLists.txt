@@ -23,8 +23,6 @@ target_link_options(tier0 PRIVATE
 
 set_target_properties(tier0 PROPERTIES
         OUTPUT_NAME tier0
-        RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

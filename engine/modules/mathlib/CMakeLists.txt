@@ -22,6 +22,5 @@ target_link_options(mathlib PRIVATE
 
 set_target_properties(mathlib PROPERTIES
         OUTPUT_NAME mathlib
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )

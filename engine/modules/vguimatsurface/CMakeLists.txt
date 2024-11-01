@@ -30,8 +30,6 @@ target_link_options(vguimatsurface PRIVATE
 
 set_target_properties(vguimatsurface PROPERTIES
         OUTPUT_NAME vguimatsurface
-        RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

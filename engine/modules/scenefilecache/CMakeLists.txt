@@ -23,8 +23,6 @@ target_link_options(scenefilecache PRIVATE
 
 set_target_properties(scenefilecache PROPERTIES
         OUTPUT_NAME scenefilecache
-        RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 

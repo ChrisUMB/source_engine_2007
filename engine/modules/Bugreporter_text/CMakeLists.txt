@@ -25,8 +25,6 @@ target_link_options(Bugreporter_text PRIVATE
 
 set_target_properties(Bugreporter_text PROPERTIES
         OUTPUT_NAME Bugreporter_text
-        RUNTIME_OUTPUT_DIRECTORY ${SE_RUN_DIR}/bin/
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib/source-engine/${CMAKE_BUILD_TYPE}
         MSVC_RUNTIME_LIBRARY MultiThreaded$<$<CONFIG:Debug>:Debug>
         )
 
