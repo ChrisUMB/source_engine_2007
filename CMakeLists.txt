@@ -5,33 +5,12 @@ set(CMAKE_CXX_STANDARD 17)
 # Set a default system version if not already defined
 if (NOT CMAKE_SYSTEM_VERSION)
     set(CMAKE_SYSTEM_VERSION 10.0)  # Default to Windows 10 SDK version
+    message(STATUS "CMAKE_SYSTEM_VERSION unset, defaulting to '10.0'...")
 endif ()
 
-# Store the environment variable in a CMake variable
-set(PROGRAMFILES_X86 "$ENV{ProgramFiles\(x86\)}")
+# Find Windows SDK
+include(cmake/FindWindowsSDK.cmake)
 
-# Use find_path to locate the SDK root directory
-find_path(WINSDK_ROOT_INCLUDE_DIR
-        NAMES "um/Windows.h"
-        PATHS "${PROGRAMFILES_X86}/Windows Kits/10/Include/${CMAKE_SYSTEM_VERSION}"
-)
-
-# If found, define the SDK include directories
-if (WINSDK_ROOT_INCLUDE_DIR)
-    message(NOTICE ${WINSDK_ROOT_INCLUDE_DIR})
-    set(WINSDK_INCLUDE_DIRS
-            "${WINSDK_ROOT_INCLUDE_DIR}"
-            "${WINSDK_ROOT_INCLUDE_DIR}/shared"
-            "${WINSDK_ROOT_INCLUDE_DIR}/um"
-            "${WINSDK_ROOT_INCLUDE_DIR}/winrt"
-            "${WINSDK_ROOT_INCLUDE_DIR}/ucrt"
-    )
-else ()
-    message(FATAL_ERROR "Windows SDK include path not found!")
-endif ()
-
-set(CMAKE_SYSTEM_VERSION 10.0.19041.0 CACHE STRING INTERNAL FORCE)
-set(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION 10.0.19041.0 CACHE STRING INTERNAL FORCE)
 
 project(source_engine_2007)
 
