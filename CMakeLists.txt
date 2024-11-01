@@ -2,13 +2,33 @@ cmake_minimum_required(VERSION 3.22)
 cmake_policy(SET CMP0091 NEW)
 set(CMAKE_CXX_STANDARD 17)
 
-set(WINSDK_INCLUDE_DIRS
-        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0"
-        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/shared"
-        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um"
-        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/winrt"
-        "C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/ucrt"
-        )
+# Set a default system version if not already defined
+if (NOT CMAKE_SYSTEM_VERSION)
+    set(CMAKE_SYSTEM_VERSION 10.0)  # Default to Windows 10 SDK version
+endif ()
+
+# Store the environment variable in a CMake variable
+set(PROGRAMFILES_X86 "$ENV{ProgramFiles\(x86\)}")
+
+# Use find_path to locate the SDK root directory
+find_path(WINSDK_ROOT_INCLUDE_DIR
+        NAMES "um/Windows.h"
+        PATHS "${PROGRAMFILES_X86}/Windows Kits/10/Include/${CMAKE_SYSTEM_VERSION}"
+)
+
+# If found, define the SDK include directories
+if (WINSDK_ROOT_INCLUDE_DIR)
+    message(NOTICE ${WINSDK_ROOT_INCLUDE_DIR})
+    set(WINSDK_INCLUDE_DIRS
+            "${WINSDK_ROOT_INCLUDE_DIR}"
+            "${WINSDK_ROOT_INCLUDE_DIR}/shared"
+            "${WINSDK_ROOT_INCLUDE_DIR}/um"
+            "${WINSDK_ROOT_INCLUDE_DIR}/winrt"
+            "${WINSDK_ROOT_INCLUDE_DIR}/ucrt"
+    )
+else ()
+    message(FATAL_ERROR "Windows SDK include path not found!")
+endif ()
 
 set(CMAKE_SYSTEM_VERSION 10.0.19041.0 CACHE STRING INTERNAL FORCE)
 set(CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION 10.0.19041.0 CACHE STRING INTERNAL FORCE)
